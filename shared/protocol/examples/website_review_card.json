@@ -1,0 +1,27 @@
+{
+  "type": "website_review_card",
+  "tool_name": "prepare_publish",
+  "v": 1,
+  "data": {
+    "id": "pub_web_01",
+    "state": "draft",
+    "title": "Property website",
+    "subtitle": "1 page · public link",
+    "url": "https://jordanlee.radiusagent.com/123-ocean-view",
+    "preview_url": "https://…/site.jpg",
+    "footnote": "Goes live as soon as you tap Publish",
+    "actions": [
+      {
+        "label": "Publish website",
+        "style": "primary",
+        "kind": "approve"
+      },
+      {
+        "label": "Copy link",
+        "style": "secondary",
+        "kind": "open_url"
+      }
+    ]
+  },
+  "fallback_text": "Property website · 1 page · public link\nhttps://jordanlee.radiusagent.com/123-ocean-view"
+}

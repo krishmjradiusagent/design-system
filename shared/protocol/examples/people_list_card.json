@@ -1,0 +1,25 @@
+{
+  "type": "people_list_card",
+  "tool_name": "rank_buyers",
+  "v": 1,
+  "data": {
+    "items": [
+      {
+        "client_id": "88231",
+        "initials": "JL",
+        "title": "Jordan Lee",
+        "subtitle": "Buyer · 6 listing views",
+        "trailing": "Replied today"
+      },
+      {
+        "client_id": "88232",
+        "initials": "PN",
+        "title": "Priya Nair",
+        "subtitle": "Buyer · 4 listing views",
+        "trailing": "Saved 2 homes"
+      }
+    ],
+    "more_count": 29
+  },
+  "fallback_text": "1. Jordan Lee · Buyer · 6 listing views · Replied today\n2. Priya Nair · Buyer · 4 listing views · Saved 2 homes\n+29 more"
+}

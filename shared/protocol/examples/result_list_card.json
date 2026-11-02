@@ -1,0 +1,22 @@
+{
+  "type": "result_list_card",
+  "tool_name": "send_invites",
+  "v": 1,
+  "data": {
+    "title": "Invites sent",
+    "subtitle": "3 clients, email and text",
+    "items": [
+      {
+        "title": "Jordan Lee",
+        "status": "Email and text sent",
+        "tone": "success"
+      },
+      {
+        "title": "Marcus Reed",
+        "status": "Email sent, no phone on file",
+        "tone": "warning"
+      }
+    ]
+  },
+  "fallback_text": "Invites sent · 3 clients, email and text\nJordan Lee: Email and text sent\nMarcus Reed: Email sent, no phone on file"
+}

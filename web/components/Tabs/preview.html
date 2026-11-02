@@ -1,0 +1,13 @@
+<!-- @dsCard group="Disclosure" height=260 -->
+<div class="rds" style="padding:24px;background:var(--background);min-height:100%;box-sizing:border-box">
+<div style="display:flex;flex-direction:column;gap:16px">
+<div class="rds-tabs">
+ <div class="rds-tabs__list" role="tablist" aria-label="Drafts"><button class="rds-tabs__trigger" role="tab" aria-selected="true" aria-controls="tp1">Email</button><button class="rds-tabs__trigger" role="tab" aria-selected="false" aria-controls="tp2" tabindex="-1">Post</button><button class="rds-tabs__trigger" role="tab" aria-selected="false" aria-controls="tp3" tabindex="-1">Text</button></div>
+ <div class="rds-tabs__panel ui-small rds-muted" role="tabpanel" id="tp1">Subject: Your Saturday showing at 48 Birch Ln</div><div class="rds-tabs__panel ui-small rds-muted" role="tabpanel" id="tp2" hidden>Just listed: 12 Oak St</div><div class="rds-tabs__panel ui-small rds-muted" role="tabpanel" id="tp3" hidden>Hi Maya, confirming 10:00 Saturday.</div>
+</div>
+<div class="rds-tabs rds-tabs--line">
+ <div class="rds-tabs__list" role="tablist" aria-label="Client"><button class="rds-tabs__trigger" role="tab" aria-selected="true" aria-controls="tq1">Activity</button><button class="rds-tabs__trigger" role="tab" aria-selected="false" aria-controls="tq2" tabindex="-1">Notes</button><button class="rds-tabs__trigger" role="tab" aria-selected="false" aria-controls="tq3" tabindex="-1">Documents <span class="rds-badge rds-badge--square" style="height:18px">4</span></button></div>
+ <div class="rds-tabs__panel ui-small rds-muted" role="tabpanel" id="tq1">Mel replied 2h ago.</div><div class="rds-tabs__panel" role="tabpanel" id="tq2" hidden></div><div class="rds-tabs__panel" role="tabpanel" id="tq3" hidden></div>
+</div></div>
+</div>
+<script>window.RadiusUI && RadiusUI.init(document.body);</script>

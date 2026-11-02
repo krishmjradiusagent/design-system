@@ -1,0 +1,77 @@
+<!-- @dsCard group="Lists and rows" height=300 subtitle="c-property-result-list: result rows in light and dark (fixture addresses, placeholder photos)" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<style>
+body{margin:0;background:var(--bg-page);}
+.mx{display:grid;grid-template-columns:repeat(2,minmax(0,380px));gap:var(--space-6);justify-content:center;padding:var(--space-4)}
+.mx>.cell{background:var(--bg-page);border-radius:var(--radius-sheet);padding:var(--space-4);position:relative;color:var(--text-primary);min-width:0}
+.mx>.cell>.lab{font-size:12px;margin:0 0 12px;color:var(--text-secondary)}
+</style></head>
+<body class="rm-root">
+<div class="mx"><div class="cell" data-theme="light"><p class="lab t-caption">Light · quiet</p><div data-prl="light"></div></div><div class="cell" data-theme="dark"><p class="lab t-caption">Dark · quiet</p><div data-prl="dark"></div></div></div>
+<script>/* Radius Mobile harness. Include LAST on any prototype page:
+   <script src="<path>/harness/harness.js"><\/script>
+   - URL params: ?theme=dark|light  &exp=quiet|accented|colorful  &platform=ios|android  &ts=1|1.2|1.5  &compare=1
+   - compare=1 renders the device twice: dark + light, side by side (use for self-review screenshots).
+   - Fills every empty <span class="mel" data-state="..."> with the correct Mel body + face. Never hand-write Mel SVG. */
+(function () {
+  const q = new URLSearchParams(location.search);
+  const html = document.documentElement;
+  const set = (k, v) => v && (html.dataset[k] = v);
+  set('theme', q.get('theme')); set('expression', q.get('exp')); set('platform', q.get('platform'));
+  if (q.get('ts')) html.style.setProperty('--type-scale', q.get('ts'));
+
+  const FACE = '<span class="mel__body"><svg class="mel__eyes" viewBox="0 0 17 8" aria-hidden="true"><path class="mel__eye" d="M0 8V3a3 3 0 0 1 6 0v5Z"/><path class="mel__eye" d="M11 8V3a3 3 0 0 1 6 0v5Z"/></svg><svg class="mel__smile" viewBox="0 0 17 6.5" aria-hidden="true"><path d="M0 6V3a3 3 0 0 1 6 0v3H4.6V3a1.6 1.6 0 0 0-3.2 0v3Z"/><path d="M11 6V3a3 3 0 0 1 6 0v3h-1.4V3a1.6 1.6 0 0 0-3.2 0v3Z"/></svg></span>';
+  const fillMel = root => root.querySelectorAll('.mel').forEach(m => {
+    if (!m.querySelector('.mel__body')) m.innerHTML = FACE;
+    if (!m.hasAttribute('role')) { m.setAttribute('role', 'img'); m.setAttribute('aria-label', 'MEL, ' + (m.dataset.state || 'idle')); }
+    if (!m.dataset.state) m.dataset.state = 'idle';
+  });
+  fillMel(document);
+
+  // compare mode: clone first device into a light/dark pair
+  const dev = document.querySelector('.rm-device');
+  if (q.get('compare') && dev) {
+    const stage = dev.closest('.rm-stage') || dev.parentElement;
+    const mk = (theme, node) => { const c = document.createElement('div'); c.className = 'rm-stage__col'; c.dataset.theme = theme; c.innerHTML = `<p class="t-caption t-secondary">${theme}</p>`; c.appendChild(node); return c; };
+    const clone = dev.cloneNode(true);
+    stage.innerHTML = ''; stage.appendChild(mk('dark', dev)); stage.appendChild(mk('light', clone));
+  }
+
+  // control bar
+  if (q.get('bar') !== '0' && document.body.classList.contains('rm-harness')) {
+    const bar = document.createElement('div'); bar.className = 'rm-harness-bar'; bar.setAttribute('aria-label', 'Harness controls');
+    const sel = (name, opts, cur) => `<select data-k="${name}" aria-label="${name}">${opts.map(o => `<option ${o == cur ? 'selected' : ''}>${o}</option>`).join('')}</select>`;
+    bar.innerHTML = sel('theme', ['dark', 'light'], q.get('theme') || html.dataset.theme || 'light') + sel('exp', ['quiet', 'accented', 'colorful'], q.get('exp') || 'quiet') + sel('platform', ['ios', 'android'], q.get('platform') || 'ios') + sel('ts', ['1', '1.2', '1.5'], q.get('ts') || '1') + `<button data-compare>${q.get('compare') ? 'single' : 'compare'}</button>`;
+    bar.addEventListener('change', e => { q.set(e.target.dataset.k, e.target.value); location.search = q; });
+    bar.querySelector('[data-compare]').onclick = () => { q.get('compare') ? q.delete('compare') : q.set('compare', '1'); location.search = q; };
+    document.body.appendChild(bar);
+  }
+})();
+</script>
+<script type="module">
+// Shared, fixture-only markup composed from Radius mobile card, row, metric and type atoms.
+const escape = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+
+export const showcaseProperties = [
+ {address:'124 Oak Street',beds:3,baths:2,city:'Palo Alto',price:845000,image:'/vendor/web/assets/agent-profile/house-1.jpg'},
+ {address:'136 Oak Street',beds:4,baths:3,city:'Palo Alto',price:920000,image:'/vendor/web/assets/agent-profile/house-2.jpg'}
+];
+
+export function propertyResultListMarkup(properties, {showcase=false,theme="light"}={}) {
+ const rows=properties.map(property=>`<article class="rm-item c-property-result-list__row${showcase?' c-story-stack__property-result':''}"><img class="c-property-result-list__image${showcase?' c-story-stack__property-thumbnail':''}" src="${escape(property.image)}" width="48" height="48" alt="Home at ${escape(property.address)}"><div class="rm-item__body c-property-result-list__facts"><p class="t-body-strong c-property-result-list__address">${escape(property.address)}</p><p class="t-caption t-secondary">${escape(property.beds)} beds · ${escape(property.baths)} baths</p><p class="t-caption t-secondary">${escape(property.city)}</p></div><div class="rm-metric rm-metric--compact tone-success c-property-result-list__price"><p class="t-money-sm">$${escape(Math.round(property.price/1000))}K</p></div></article>`).join('');
+ return `<div class="rm-card rm-card--list c-property-result-list${showcase?' c-story-stack__property-results':''}" data-theme="${theme === 'dark' ? 'dark' : 'light'}" role="group" aria-label="Property results">${rows}</div>`;
+}
+
+export function mountPropertyResultList(host, properties) {
+ const template=host.ownerDocument.createElement('template');
+ template.innerHTML=propertyResultListMarkup(properties);
+ const node=template.content.firstElementChild;
+ host.append(node);
+ return node;
+}
+
+const PH="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='256' height='256'><rect width='256' height='256' fill='%23e2f5ea'/></svg>";document.querySelectorAll("[data-prl]").forEach(h=>{h.innerHTML=propertyResultListMarkup(showcaseProperties.map(p=>({...p,image:PH})),{theme:h.dataset.prl});});
+</script>
+</body></html>

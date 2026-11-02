@@ -1,0 +1,24 @@
+<!-- @dsCard group="Motion" height=980 width=1100 -->
+<div class="rds" style="padding:24px;background:var(--background);min-height:100%;box-sizing:border-box">
+<div class="rds-motion-grid"><div class="rds-motion-cell"><div class="rds-motion-cell__stage"><span class="rds-ease-dot"></span></div><b>Mel ease</b><code>cubic-bezier(0.2, 0.8, 0.2, 1)</code></div><div class="rds-motion-cell"><div class="rds-motion-cell__stage"><span class="rds-lift-demo"></span></div><b>Card lift</b><code>3px · 200ms · Mel ease</code></div><div class="rds-motion-cell"><div class="rds-motion-cell__stage"><span class="rds-swap-demo"><span><i data-icon="send"></i></span><span><i data-icon="check"></i></span></span></div><b>State swap</b><code>0.92 → 1 · 240ms</code></div><div class="rds-motion-cell"><div class="rds-motion-cell__stage"><span class="rds-reveal-demo"><i></i><i></i><i></i></span></div><b>Reveal</b><code>fade up 16px · 360ms · 80ms stagger</code></div><div class="rds-motion-cell"><div class="rds-motion-cell__stage"><span class="rds-spin" style="width:18px;height:18px"></span></div><b>Spinner</b><code>800ms linear · min 600ms on screen</code></div><div class="rds-motion-cell"><div class="rds-motion-cell__stage"><span class="rds-thinking__text" style="font-size:15px">Thinking…</span></div><b>Thinking shimmer</b><code>1.6s linear sweep</code></div><div class="rds-motion-cell"><div class="rds-motion-cell__stage"><span class="rds-mstatus" data-state="running"><span class="rds-mstatus__dot"></span>Sending…</span></div><b>Live dot</b><code>pulse 1.4s ease-in-out</code></div><div class="rds-motion-cell"><div class="rds-motion-cell__stage"><span class="rds-voice-bars" style="color:var(--brand)"><i></i><i></i><i></i><i></i><i></i></span></div><b>Voice bars</b><code>900ms · 110ms stagger</code></div><div class="rds-motion-cell"><div class="rds-motion-cell__stage"><span class="rds-mel-mark" data-state="ready" style="width:40px;height:40px"></span></div><b>Mel · ready</b><code>ring 13→34 · 2.4s</code></div><div class="rds-motion-cell"><div class="rds-motion-cell__stage"><span class="rds-mel-mark" data-state="listening" style="width:40px;height:40px"></span></div><b>Mel · listening</b><code>rings in · 1.8s · 0.6s stagger</code></div><div class="rds-motion-cell"><div class="rds-motion-cell__stage"><span class="rds-mel-mark" data-state="thinking" style="width:40px;height:40px"></span></div><b>Mel · working</b><code>dots 1.2s · 0.15s stagger</code></div><div class="rds-motion-cell"><div class="rds-motion-cell__stage"><span class="rds-mel-mark" data-state="done" style="width:40px;height:40px"></span></div><b>Mel · done</b><code>check 0.6s → ready after 2s</code></div></div>
+<div style="margin-top:20px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px">
+ <div><p class="ui-small" style="margin:0 0 8px;font-weight:600">Chat sequence (Mel web)</p>
+  <table class="rds-table" style="width:100%;font-size:13px"><tbody>
+   <tr><td>Send → first token</td><td class="rds-muted">800ms · 1400ms on skill switch</td></tr>
+   <tr><td>Thinking → each trace step</td><td class="rds-muted">700ms per step</td></tr>
+   <tr><td>Trace collapses</td><td class="rds-muted">when reply starts · chevron 180ms</td></tr>
+   <tr><td>Reply streams</td><td class="rds-muted">1 word / 60ms</td></tr>
+   <tr><td>Prompt rows</td><td class="rds-muted">after stream · rise 4px · 80ms stagger</td></tr>
+   <tr><td>Action spinner → check</td><td class="rds-muted">≥ 600ms → 240ms swap</td></tr>
+   <tr><td>Panel open</td><td class="rds-muted">16px slide + fade · 360ms</td></tr></tbody></table></div>
+ <div><p class="ui-small" style="margin:0 0 8px;font-weight:600">Rules (Brand · 09)</p>
+  <ul class="ui-small rds-muted" style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px">
+   <li>One easing everywhere: Mel ease. Loops ease-in-out; spinners linear.</li>
+   <li>No bounce, no overshoot. Nothing moves more than 16px.</li>
+   <li>Motion confirms what just happened. Never decorate.</li>
+   <li>Mel mark changes only at the center; the shape never moves.</li>
+   <li>Reduced motion: no movement, keep colour and opacity, still frames.</li>
+   <li>Tokens: <code>--ease-*</code>, <code>--duration-*</code>, <code>--stagger-*</code>, <code>--move-*</code>, <code>--scale-*</code>.</li></ul></div>
+</div>
+</div>
+<script>window.RadiusUI && RadiusUI.init(document.body);</script>

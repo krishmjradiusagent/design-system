@@ -1,0 +1,27 @@
+{
+  "type": "skill_cards",
+  "v": 1,
+  "data": {
+    "cards": [
+      {
+        "skill": "crm",
+        "icon": "users",
+        "text": "Add and manage your clients",
+        "prompt": "Help me add my clients"
+      },
+      {
+        "skill": "marketing",
+        "icon": "megaphone",
+        "text": "Market a listing",
+        "prompt": "Market my listing"
+      },
+      {
+        "skill": "campaign",
+        "icon": "paper-plane",
+        "text": "Run follow-up campaigns",
+        "prompt": "Run a follow-up campaign"
+      }
+    ]
+  },
+  "fallback_text": "Add and manage your clients\nMarket a listing\nRun follow-up campaigns"
+}

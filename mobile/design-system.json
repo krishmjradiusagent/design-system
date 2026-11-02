@@ -1,0 +1,25 @@
+{
+  "v": 3,
+  "assetGroups": {},
+  "blobs": {},
+  "createdOnFiles": {
+    "at": "2026-10-15T15:59:00Z",
+    "v": 1
+  },
+  "docs": {
+    "readme": "project/README.md",
+    "sections": []
+  },
+  "groups": [],
+  "lastChange": {
+    "at": "2026-11-02T17:00:00Z",
+    "by": "KJ",
+    "via": "Claude (Cowork)",
+    "note": "6 alias pages named by JSON type (mel_text, thinking, reasoning_trace, suggested_prompts, empty_card, info_alert_card) built from existing parts. All 54 Mel Chat Templates types now map one to one."
+  },
+  "layout": "files",
+  "libraries": [],
+  "namespace": "RadiusMobile",
+  "sections": {},
+  "title": "Radius Mobile"
+}

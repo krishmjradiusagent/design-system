@@ -1,0 +1,28 @@
+{
+  "type": "escalation_card",
+  "tool_name": "portal_chat",
+  "v": 1,
+  "data": {
+    "client": {
+      "client_id": "77120",
+      "name": "Sarah Johnson"
+    },
+    "source": "Portal chat",
+    "time": "2 min ago",
+    "badge": {
+      "text": "Needs you",
+      "tone": "warning"
+    },
+    "quote": "Can I back out of my offer after the inspection?",
+    "reply": "Passed to your agent. They’ll reply soon.",
+    "actions": [
+      {
+        "label": "Reply to Sarah",
+        "style": "primary",
+        "kind": "deep_link",
+        "value": "radius://chat/client/77120"
+      }
+    ]
+  },
+  "fallback_text": "Sarah Johnson · Portal chat · 2 min ago\n“Can I back out of my offer after the inspection?”\nMel replied: Passed to your agent. They’ll reply soon."
+}

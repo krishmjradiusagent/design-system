@@ -1,0 +1,16 @@
+<!-- @dsCard group="Overlays" height=380 -->
+<div class="rds" style="padding:24px;background:var(--background);min-height:100%;box-sizing:border-box">
+<div class="rds-command" style="max-width:520px">
+ <div class="rds-command__search"><i data-icon="search"></i><input placeholder="Ask Mel or search…" aria-label="Command search"><span class="rds-kbd">Esc</span></div>
+ <div class="rds-command__list" role="listbox">
+  <div class="rds-command__group"><div class="rds-menu__label">Mel</div>
+   <button class="rds-menu__item" role="option" data-highlighted><span class="rds-mel-mark" data-state="ready" data-still style="width:18px;height:18px"></span> Draft a follow-up</button>
+   <button class="rds-menu__item" role="option"><i data-icon="image"></i> Make a just-listed post</button></div>
+  <div class="rds-command__group"><div class="rds-menu__label">Go to</div>
+   <button class="rds-menu__item" role="option"><i data-icon="users"></i> Clients <span class="rds-menu__shortcut">G C</span></button>
+   <button class="rds-menu__item" role="option"><i data-icon="calendar"></i> Calendar <span class="rds-menu__shortcut">G A</span></button>
+   <button class="rds-menu__item" role="option"><i data-icon="settings"></i> Settings <span class="rds-menu__shortcut">G S</span></button></div>
+  <div class="rds-command__empty">Nothing found. Press Enter to ask Mel.</div>
+ </div></div>
+</div>
+<script>window.RadiusUI && RadiusUI.init(document.body);</script>

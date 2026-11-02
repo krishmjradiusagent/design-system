@@ -1,0 +1,10 @@
+{
+  "type": "insufficient_credits",
+  "data": {
+    "state": "exhausted",
+    "severity": "error",
+    "title": "You're out of credits",
+    "message": "Add credits to keep using Mel.",
+    "show_add_credits": true
+  }
+}

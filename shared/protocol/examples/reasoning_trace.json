@@ -1,0 +1,21 @@
+{
+  "type": "reasoning_trace",
+  "v": 1,
+  "data": {
+    "id": "trace_01",
+    "state": "working",
+    "title": "Checking your CRM",
+    "done_title": "Checked 2 things",
+    "steps": [
+      {
+        "text": "Checked your CRM · 0 contacts",
+        "state": "done"
+      },
+      {
+        "text": "Looking for a texting number",
+        "state": "working"
+      }
+    ]
+  },
+  "fallback_text": "Checking your CRM"
+}

@@ -1,0 +1,33 @@
+{
+  "type": "option_picker_card",
+  "v": 1,
+  "data": {
+    "title": "What to create",
+    "multi": true,
+    "sentence": "Create {items}",
+    "options": [
+      {
+        "id": "posts",
+        "icon": "post",
+        "title": "Social posts",
+        "subtitle": "Feed and story",
+        "say": "social posts"
+      },
+      {
+        "id": "reels",
+        "icon": "reel",
+        "title": "Reels",
+        "subtitle": "Short vertical video",
+        "say": "reels"
+      },
+      {
+        "id": "flyer",
+        "icon": "flyer",
+        "title": "Flyer",
+        "subtitle": "Print-ready PDF",
+        "say": "a flyer"
+      }
+    ]
+  },
+  "fallback_text": "What to create\nSocial posts: Feed and story\nReels: Short vertical video\nFlyer: Print-ready PDF"
+}

@@ -1,0 +1,8 @@
+<!-- @dsCard group="Forms" height=130 -->
+<div class="rds" style="padding:24px;background:var(--background);min-height:100%;box-sizing:border-box">
+<div style="display:flex;flex-direction:column;gap:18px;max-width:380px">
+ <div class="rds-field"><div style="display:flex;justify-content:space-between"><label class="rds-label" for="s1">Search radius</label><span class="rds-num rds-muted">5 mi</span></div><input id="s1" type="range" class="rds-slider" min="0" max="20" value="5"></div>
+ <div class="rds-field"><label class="rds-label" for="s2">Tone: formal → friendly</label><input id="s2" type="range" class="rds-slider" value="70"></div>
+</div>
+</div>
+<script>window.RadiusUI && RadiusUI.init(document.body);</script>

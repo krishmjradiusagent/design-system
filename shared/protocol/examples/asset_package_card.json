@@ -1,0 +1,39 @@
+{
+  "type": "asset_package_card",
+  "tool_name": "generate_marketing",
+  "v": 1,
+  "data": {
+    "id": "pkg_01",
+    "title": "Listing marketing package",
+    "subtitle": "123 Ocean View Drive · 6 designs",
+    "assets": [
+      {
+        "kind": "image",
+        "title": "Instagram & Facebook Post",
+        "aspect": "4:5",
+        "url": "https://…/1.jpg"
+      },
+      {
+        "kind": "video",
+        "title": "Instagram Reel & TikTok",
+        "aspect": "9:16",
+        "url": "https://…/2.mp4",
+        "poster_url": "https://…/2.jpg"
+      },
+      {
+        "kind": "pdf",
+        "title": "Property Flyer",
+        "aspect": "17:22",
+        "url": "https://…/3.pdf"
+      }
+    ],
+    "actions": [
+      {
+        "label": "Open",
+        "style": "link",
+        "kind": "open_viewer"
+      }
+    ]
+  },
+  "fallback_text": "Listing marketing package · 123 Ocean View Drive · 6 designs\nInstagram & Facebook Post (image)\nInstagram Reel & TikTok (video)\nProperty Flyer (pdf)"
+}

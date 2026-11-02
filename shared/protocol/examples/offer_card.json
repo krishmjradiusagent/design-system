@@ -1,0 +1,10 @@
+{
+  "type": "offer",
+  "data": {
+    "agent_id": 11123941,
+    "offer_id": 3301,
+    "offer_price": 875000,
+    "property_address": "88 Pine Avenue",
+    "client_name": "Jordan Lee"
+  }
+}

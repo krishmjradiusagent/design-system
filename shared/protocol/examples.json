@@ -1,0 +1,1373 @@
+{
+  "mel_text": {
+    "reply": "Your campaign is live 🚀\n\nI'll send your approved messages on schedule and track replies.\n\n**What I'll do next**\n- Qualify replies\n- Tell you when someone wants a tour"
+  },
+  "thinking": {
+    "event": "thinking"
+  },
+  "reasoning_trace": {
+    "type": "reasoning_trace",
+    "v": 1,
+    "data": {
+      "id": "trace_01",
+      "state": "working",
+      "title": "Checking your CRM",
+      "done_title": "Checked 2 things",
+      "steps": [
+        {
+          "text": "Checked your CRM · 0 contacts",
+          "state": "done"
+        },
+        {
+          "text": "Looking for a texting number",
+          "state": "working"
+        }
+      ]
+    },
+    "fallback_text": "Checking your CRM"
+  },
+  "job_status": {
+    "type": "job_status",
+    "v": 1,
+    "data": {
+      "id": "job_01",
+      "state": "working",
+      "label": "Designing",
+      "done": 2,
+      "total": 6,
+      "unit": "ready"
+    },
+    "fallback_text": "Designing · 2 of 6 ready"
+  },
+  "suggested_prompts": {
+    "prompts": [
+      {
+        "text": "Find Jordan Lee",
+        "style": "standard"
+      },
+      {
+        "text": "Draft a message to Jordan",
+        "style": "standard"
+      },
+      {
+        "text": "What else can you do?",
+        "style": "more"
+      }
+    ]
+  },
+  "skill_cards": {
+    "type": "skill_cards",
+    "v": 1,
+    "data": {
+      "cards": [
+        {
+          "skill": "crm",
+          "icon": "users",
+          "text": "Add and manage your clients",
+          "prompt": "Help me add my clients"
+        },
+        {
+          "skill": "marketing",
+          "icon": "megaphone",
+          "text": "Market a listing",
+          "prompt": "Market my listing"
+        },
+        {
+          "skill": "campaign",
+          "icon": "paper-plane",
+          "text": "Run follow-up campaigns",
+          "prompt": "Run a follow-up campaign"
+        }
+      ]
+    },
+    "fallback_text": "Add and manage your clients\nMarket a listing\nRun follow-up campaigns"
+  },
+  "capability_carousel": {
+    "type": "capability_carousel",
+    "v": 1,
+    "data": {
+      "items": [
+        {
+          "skill": "marketing",
+          "title": "Marketing",
+          "text": "Posts, reels, flyers and emails for any listing.",
+          "preview": {
+            "kind": "image"
+          }
+        },
+        {
+          "skill": "crm",
+          "title": "CRM",
+          "text": "Import contacts, track leads",
+          "preview": {
+            "kind": "stats",
+            "stats": [
+              {
+                "label": "Imported",
+                "value": "1,216"
+              },
+              {
+                "label": "Buyers",
+                "value": "812"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "fallback_text": "Marketing: Posts, reels, flyers and emails for any listing.\nCRM: Import contacts, track leads"
+  },
+  "stats_card": {
+    "type": "stats_card",
+    "tool_name": "import_contacts",
+    "v": 1,
+    "data": {
+      "id": "import_01",
+      "stats": [
+        {
+          "label": "Imported",
+          "value": "1,248"
+        },
+        {
+          "label": "Buyers",
+          "value": "836"
+        },
+        {
+          "label": "Sellers",
+          "value": "412"
+        },
+        {
+          "label": "Duplicates skipped",
+          "value": "32"
+        }
+      ],
+      "warning": {
+        "title": "12 need review",
+        "text": "missing phone or email"
+      },
+      "link": {
+        "title": "View my contacts",
+        "subtitle": "1,248 in Radius CRM",
+        "kind": "deep_link",
+        "value": "radius://crm/contacts"
+      }
+    },
+    "fallback_text": "Imported: 1,248\nBuyers: 836\nSellers: 412\nDuplicates skipped: 32\n12 need review: missing phone or email"
+  },
+  "contact_card": {
+    "type": "contact_card",
+    "tool_name": "find_client",
+    "v": 1,
+    "data": {
+      "id": "client_88231",
+      "name": "Jordan Lee",
+      "initials": "JL",
+      "subtitle": "Buyer · Active",
+      "rows": [
+        {
+          "label": "Phone",
+          "value": "(555) 014 2290"
+        },
+        {
+          "label": "Email",
+          "value": "jordan.lee@gmail.com"
+        },
+        {
+          "label": "Looking for",
+          "value": "3 beds · Oak Street · under $900K"
+        },
+        {
+          "label": "Last contact",
+          "value": "12 days ago"
+        }
+      ],
+      "link": {
+        "title": "Open Jordan in CRM",
+        "subtitle": "Notes, activity and family",
+        "kind": "deep_link",
+        "value": "radius://crm/client/88231"
+      }
+    },
+    "fallback_text": "Jordan Lee · Buyer · Active\nPhone: (555) 014 2290\nEmail: jordan.lee@gmail.com\nLooking for: 3 beds · Oak Street · under $900K\nLast contact: 12 days ago"
+  },
+  "change_card": {
+    "type": "change_card",
+    "tool_name": "update_client",
+    "v": 1,
+    "data": {
+      "id": "change_01",
+      "state": "draft",
+      "title": "Jordan Lee · preferences",
+      "changes": [
+        {
+          "label": "Beds",
+          "from": "2",
+          "to": "3"
+        },
+        {
+          "label": "Area",
+          "from": "Oak Street",
+          "to": null
+        },
+        {
+          "label": "Budget",
+          "from": "Under $900K",
+          "to": null
+        }
+      ],
+      "actions": [
+        {
+          "label": "Save it",
+          "style": "primary",
+          "kind": "approve"
+        },
+        {
+          "label": "Undo",
+          "style": "link",
+          "kind": "undo"
+        }
+      ]
+    },
+    "fallback_text": "Jordan Lee · preferences\nBeds: 2 → 3\nArea: no change\nBudget: no change"
+  },
+  "message_draft_card": {
+    "type": "message_draft_card",
+    "tool_name": "draft_message",
+    "v": 1,
+    "data": {
+      "id": "draft_01",
+      "state": "draft",
+      "channel": "text",
+      "to": {
+        "name": "Jordan Lee",
+        "client_id": "88231"
+      },
+      "subject": null,
+      "body": "Hi Jordan, two homes near Oak Street match your budget. Want to tour on Saturday?",
+      "footnote": "Sends from your Radius number",
+      "actions": [
+        {
+          "label": "Send",
+          "style": "primary",
+          "kind": "approve"
+        }
+      ]
+    },
+    "fallback_text": "Text to Jordan Lee\nHi Jordan, two homes near Oak Street match your budget. Want to tour on Saturday?"
+  },
+  "reminder_card": {
+    "type": "reminder_card",
+    "tool_name": "create_client_reminder",
+    "v": 1,
+    "data": {
+      "id": "reminder:93",
+      "state": "done",
+      "kind": "reminder",
+      "icon": "phone",
+      "title": "Call Jordan Lee",
+      "when": "2026-10-27T10:00:00-07:00",
+      "when_text": "Tue, Oct 27 · 10:00 AM",
+      "rows": [
+        {
+          "label": "Type",
+          "value": "Call"
+        }
+      ],
+      "actions": []
+    },
+    "fallback_text": "Call Jordan Lee · Tue, Oct 27 · 10:00 AM\nType: Call"
+  },
+  "campaign_plan_card": {
+    "type": "campaign_plan_card",
+    "tool_name": "plan_campaign",
+    "v": 1,
+    "data": {
+      "id": "plan_01",
+      "state": "draft",
+      "title": "4-week check-in",
+      "subtitle": "12 inactive clients · not contacted in 90 days",
+      "rows": [
+        {
+          "label": "Week 1",
+          "value": "Text · “Still thinking about a move this year?”"
+        },
+        {
+          "label": "Week 2",
+          "value": "Email · new listings in their area"
+        }
+      ],
+      "footnote": "You approve each message before it sends",
+      "actions": [
+        {
+          "label": "Start the campaign",
+          "style": "primary",
+          "kind": "approve"
+        }
+      ]
+    },
+    "fallback_text": "4-week check-in\n12 inactive clients · not contacted in 90 days\nWeek 1: Text · “Still thinking about a move this year?”\nWeek 2: Email · new listings in their area"
+  },
+  "people_list_card": {
+    "type": "people_list_card",
+    "tool_name": "rank_buyers",
+    "v": 1,
+    "data": {
+      "items": [
+        {
+          "client_id": "88231",
+          "initials": "JL",
+          "title": "Jordan Lee",
+          "subtitle": "Buyer · 6 listing views",
+          "trailing": "Replied today"
+        },
+        {
+          "client_id": "88232",
+          "initials": "PN",
+          "title": "Priya Nair",
+          "subtitle": "Buyer · 4 listing views",
+          "trailing": "Saved 2 homes"
+        }
+      ],
+      "more_count": 29
+    },
+    "fallback_text": "1. Jordan Lee · Buyer · 6 listing views · Replied today\n2. Priya Nair · Buyer · 4 listing views · Saved 2 homes\n+29 more"
+  },
+  "empty_card": {
+    "type": "empty_card",
+    "v": 1,
+    "data": {
+      "title": "No buyer activity this month",
+      "text": "Views, saves and replies show up here."
+    },
+    "fallback_text": "No buyer activity this month\nViews, saves and replies show up here."
+  },
+  "info_alert_card": {
+    "type": "info_alert_card",
+    "v": 1,
+    "data": {
+      "tone": "info",
+      "title": "Your import is waiting",
+      "text": "clients-export.csv · 1,280 rows read. Pick up where you left off.",
+      "actions": [
+        {
+          "label": "Resume import",
+          "style": "link",
+          "kind": "send_prompt",
+          "value": "Resume my import"
+        }
+      ]
+    },
+    "fallback_text": "Your import is waiting\nclients-export.csv · 1,280 rows read. Pick up where you left off."
+  },
+  "property_card": {
+    "type": "property_card",
+    "tool_name": "get_specific_property",
+    "v": 1,
+    "data": {
+      "id": "property:123",
+      "state": "done",
+      "photo_url": "https://example.test/listing/1.jpg",
+      "price": "$2,450,000",
+      "title": "123 Ocean View Dr",
+      "subtitle": "4 bd · 3 ba · 2,400 sqft",
+      "rows": [
+        {
+          "label": "Status",
+          "value": "Active"
+        },
+        {
+          "label": "MLS",
+          "value": "ML81234567"
+        }
+      ],
+      "link": {
+        "title": "Open listing",
+        "kind": "open_url",
+        "value": "https://example.test/properties/123"
+      }
+    },
+    "fallback_text": "123 Ocean View Dr · $2,450,000\n4 bd · 3 ba · 2,400 sqft\nStatus: Active\nMLS: ML81234567"
+  },
+  "search_board_card": {
+    "type": "search_board_card",
+    "tool_name": "create_search_board",
+    "v": 1,
+    "data": {
+      "id": "board:88231:9",
+      "state": "done",
+      "title": "Jordan · Oak Street",
+      "subtitle": "Saved search",
+      "rows": [
+        {
+          "label": "Area",
+          "value": "Oak Street"
+        },
+        {
+          "label": "Beds / baths",
+          "value": "3+ beds / 2+ baths"
+        },
+        {
+          "label": "Budget",
+          "value": "$600K – $900K"
+        }
+      ],
+      "link": {
+        "title": "Open search board",
+        "kind": "deep_link",
+        "value": "radius://crm/client/88231/searches/9"
+      }
+    },
+    "fallback_text": "Jordan · Oak Street · Saved search\nArea: Oak Street\nBeds / baths: 3+ beds / 2+ baths\nBudget: $600K – $900K"
+  },
+  "audience_card": {
+    "type": "audience_card",
+    "tool_name": "build_audience",
+    "v": 1,
+    "data": {
+      "title": "Audience preview",
+      "subtitle": "Active and nurture buyers, Austin",
+      "rows": [
+        {
+          "label": "Matching contacts",
+          "value": "86"
+        },
+        {
+          "label": "Email ready",
+          "value": "81",
+          "tone": "info"
+        },
+        {
+          "label": "Text ready",
+          "value": "64",
+          "tone": "success"
+        },
+        {
+          "label": "Excluded, no consent",
+          "value": "5",
+          "tone": "warning"
+        }
+      ]
+    },
+    "fallback_text": "Audience preview · Active and nurture buyers, Austin\nMatching contacts: 86\nEmail ready: 81\nText ready: 64\nExcluded, no consent: 5"
+  },
+  "campaign_sequence_card": {
+    "type": "campaign_sequence_card",
+    "tool_name": "write_campaign",
+    "v": 1,
+    "data": {
+      "id": "seq_01",
+      "state": "draft",
+      "title": "Buyer Engagement Campaign",
+      "subtitle": "4 touchpoints · 14 days",
+      "badge": {
+        "text": "Draft",
+        "tone": "neutral"
+      },
+      "steps": [
+        {
+          "timing": "Day 1",
+          "channel": "email",
+          "title": "Introduction",
+          "subject": "Still thinking about your next home?",
+          "body": "Hi Sarah, I wanted to check in and see how your home search is going."
+        },
+        {
+          "timing": "Day 3",
+          "channel": "text",
+          "title": "Personal follow-up",
+          "body": "Hey Sarah. Just following up on your home search."
+        }
+      ]
+    },
+    "fallback_text": "Buyer Engagement Campaign · 4 touchpoints · 14 days\nDay 1 · Email · Introduction\nDay 3 · Text · Personal follow-up"
+  },
+  "sequence_step_card": {
+    "type": "sequence_step_card",
+    "tool_name": "edit_campaign_step",
+    "v": 1,
+    "data": {
+      "id": "seq_01",
+      "title": "Buyer Engagement Campaign",
+      "subtitle": "Day 3 updated",
+      "badge": {
+        "text": "Draft",
+        "tone": "neutral"
+      },
+      "step": {
+        "index": 2,
+        "timing": "Day 3",
+        "channel": "text",
+        "title": "Personal follow-up",
+        "body": "Hi Sarah, still looking? Happy to help."
+      }
+    },
+    "fallback_text": "Buyer Engagement Campaign · Day 3 updated\nDay 3 · Text · Personal follow-up\nHi Sarah, still looking? Happy to help."
+  },
+  "approval_summary_card": {
+    "type": "approval_summary_card",
+    "tool_name": "prepare_launch",
+    "v": 1,
+    "data": {
+      "id": "launch_01",
+      "state": "draft",
+      "title": "Campaign Launch Summary",
+      "badge": {
+        "text": "Awaiting approval",
+        "tone": "warning"
+      },
+      "rows": [
+        {
+          "icon": "megaphone",
+          "tone": "warning",
+          "label": "Campaign",
+          "value": "Buyer Engagement"
+        },
+        {
+          "icon": "users",
+          "tone": "info",
+          "label": "Audience",
+          "value": "Active buyer segment"
+        },
+        {
+          "icon": "target",
+          "tone": "danger",
+          "label": "Goals",
+          "value": "Collect criteria + book showings"
+        },
+        {
+          "icon": "chat",
+          "tone": "success",
+          "label": "Channels",
+          "chips": [
+            {
+              "text": "Email",
+              "tone": "info"
+            },
+            {
+              "text": "Text",
+              "tone": "success"
+            }
+          ]
+        },
+        {
+          "icon": "list",
+          "tone": "neutral",
+          "label": "Sequence",
+          "value": "4 touchpoints · 14 days"
+        },
+        {
+          "icon": "calendar",
+          "tone": "neutral",
+          "label": "Start",
+          "value": "After approval"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Approve & Launch",
+          "style": "primary",
+          "kind": "approve"
+        }
+      ]
+    },
+    "fallback_text": "Campaign Launch Summary · Awaiting approval\nCampaign: Buyer Engagement\nAudience: Active buyer segment\nGoals: Collect criteria + book showings\nSequence: 4 touchpoints · 14 days\nStart: After approval"
+  },
+  "campaign_status_card": {
+    "type": "campaign_status_card",
+    "tool_name": "launch_campaign",
+    "v": 1,
+    "data": {
+      "id": "camp_01",
+      "title": "Buyer Engagement",
+      "badge": {
+        "text": "Live",
+        "tone": "success"
+      },
+      "rows": [
+        {
+          "icon": "envelope",
+          "tone": "info",
+          "label": "First email",
+          "value": "Tomorrow, 9 AM"
+        },
+        {
+          "icon": "users",
+          "tone": "neutral",
+          "label": "Recipients",
+          "chips": [
+            {
+              "text": "81",
+              "tone": "info"
+            },
+            {
+              "text": "64",
+              "tone": "success"
+            }
+          ]
+        }
+      ]
+    },
+    "fallback_text": "Buyer Engagement · Live\nFirst email: Tomorrow, 9 AM\nRecipients: 81, 64"
+  },
+  "delivery_result_card": {
+    "type": "delivery_result_card",
+    "tool_name": "campaign_report",
+    "v": 1,
+    "data": {
+      "title": "Buyer Engagement",
+      "subtitle": "Day 1 · Introduction",
+      "rows": [
+        {
+          "label": "Sent",
+          "value": "79",
+          "tone": "success"
+        },
+        {
+          "label": "Bounced",
+          "value": "2",
+          "tone": "danger"
+        },
+        {
+          "label": "Next",
+          "value": "Day 3 text, Thursday"
+        }
+      ]
+    },
+    "fallback_text": "Buyer Engagement · Day 1 · Introduction\nSent: 79\nBounced: 2\nNext: Day 3 text, Thursday"
+  },
+  "connect_card": {
+    "type": "connect_card",
+    "tool_name": "check_connections",
+    "v": 1,
+    "data": {
+      "id": "connect_01",
+      "items": [
+        {
+          "provider": "gmail",
+          "title": "Gmail",
+          "subtitle": "Send emails · read replies",
+          "connected": true
+        },
+        {
+          "provider": "radius_text",
+          "title": "Radius texting number",
+          "subtitle": "Send texts · read replies",
+          "connected": false,
+          "action": {
+            "label": "Connect",
+            "style": "secondary",
+            "kind": "connect",
+            "value": "radius_text"
+          }
+        }
+      ]
+    },
+    "fallback_text": "Gmail: Connected\nRadius texting number: Not connected"
+  },
+  "portal_card": {
+    "type": "portal_card",
+    "tool_name": "build_portal",
+    "v": 1,
+    "data": {
+      "url": "https://yourname.radiusagent.com",
+      "badge": {
+        "text": "Live",
+        "tone": "success"
+      },
+      "title": "Your Client Portal Is Ready",
+      "actions": [
+        {
+          "label": "Open",
+          "style": "secondary",
+          "kind": "open_url",
+          "value": "https://yourname.radiusagent.com"
+        }
+      ]
+    },
+    "fallback_text": "Your Client Portal Is Ready\nhttps://yourname.radiusagent.com"
+  },
+  "portal_status_card": {
+    "type": "portal_status_card",
+    "tool_name": "build_portal",
+    "v": 1,
+    "data": {
+      "title": "Client Portal",
+      "state": "failed",
+      "rows": [
+        {
+          "label": "Your logo and colors are saved",
+          "badge": {
+            "text": "Not built",
+            "tone": "danger"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "label": "Try again",
+          "style": "primary",
+          "kind": "retry"
+        }
+      ]
+    },
+    "fallback_text": "Client Portal\nYour logo and colors are saved: Not built"
+  },
+  "feature_list": {
+    "type": "feature_list",
+    "v": 1,
+    "data": {
+      "items": [
+        {
+          "emoji": "🏡",
+          "title": "For Buyers",
+          "text": "Search available properties, save favorites, create searches and request showings."
+        },
+        {
+          "emoji": "🏷️",
+          "title": "For Sellers",
+          "text": "Add their property, request a home valuation report and explore the local market."
+        },
+        {
+          "emoji": "💬",
+          "title": "For Every Client",
+          "text": "Chat with Mel, ask real estate questions and message their agent."
+        }
+      ]
+    },
+    "fallback_text": "🏡 For Buyers: Search available properties, save favorites, create searches and request showings.\n🏷️ For Sellers: Add their property, request a home valuation report and explore the local market.\n💬 For Every Client: Chat with Mel, ask real estate questions and message their agent."
+  },
+  "invitation_preview_card": {
+    "type": "invitation_preview_card",
+    "tool_name": "draft_invites",
+    "v": 1,
+    "data": {
+      "id": "invite_01",
+      "state": "draft",
+      "title": "Client Invitation",
+      "subtitle": "312 clients · Email and text",
+      "badge": {
+        "text": "Draft",
+        "tone": "neutral"
+      },
+      "sections": [
+        {
+          "channel": "email",
+          "title": "Email Invitation",
+          "subject": "Your personalized home search experience is ready",
+          "body": "Hi Sarah, …"
+        },
+        {
+          "channel": "text",
+          "title": "Text Invitation",
+          "body": "Hi Sarah, your agent set up a home search app for you: …"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Approve & Send Invites",
+          "style": "primary",
+          "kind": "approve"
+        }
+      ]
+    },
+    "fallback_text": "Client Invitation · 312 clients · Email and text\nEmail: Your personalized home search experience is ready\nText: Hi Sarah, your agent set up a home search app for you: …"
+  },
+  "send_summary_card": {
+    "type": "send_summary_card",
+    "tool_name": "send_invites",
+    "v": 1,
+    "data": {
+      "state": "partial",
+      "title": "Sent to 304 of 312",
+      "counts": [
+        {
+          "channel": "email",
+          "value": 304
+        },
+        {
+          "channel": "text",
+          "value": 287
+        }
+      ],
+      "failed": 8,
+      "actions": [
+        {
+          "label": "See who failed",
+          "style": "link",
+          "kind": "send_prompt",
+          "value": "Show the 8 that failed"
+        }
+      ]
+    },
+    "fallback_text": "Sent to 304 of 312\nEmail: 304\nText: 287\nFailed: 8"
+  },
+  "insights_card": {
+    "type": "insights_card",
+    "tool_name": "client_insights",
+    "v": 1,
+    "data": {
+      "title": "Client Activity Insights",
+      "stats": [
+        {
+          "label": "Active clients",
+          "value": "24",
+          "tone": "info"
+        },
+        {
+          "label": "Hot prospects",
+          "value": "8",
+          "tone": "danger"
+        },
+        {
+          "label": "Need follow-up",
+          "value": "5",
+          "tone": "warning"
+        }
+      ],
+      "list_title": "Hot prospects",
+      "items": [
+        {
+          "client_id": "77120",
+          "initials": "SJ",
+          "title": "Sarah Johnson",
+          "time": "2h",
+          "subtitle": "Austin · Wants a showing this weekend"
+        }
+      ]
+    },
+    "fallback_text": "Client Activity Insights\nActive clients: 24\nHot prospects: 8\nNeed follow-up: 5\nHot prospects\nSarah Johnson · Austin · Wants a showing this weekend · 2h"
+  },
+  "escalation_card": {
+    "type": "escalation_card",
+    "tool_name": "portal_chat",
+    "v": 1,
+    "data": {
+      "client": {
+        "client_id": "77120",
+        "name": "Sarah Johnson"
+      },
+      "source": "Portal chat",
+      "time": "2 min ago",
+      "badge": {
+        "text": "Needs you",
+        "tone": "warning"
+      },
+      "quote": "Can I back out of my offer after the inspection?",
+      "reply": "Passed to your agent. They’ll reply soon.",
+      "actions": [
+        {
+          "label": "Reply to Sarah",
+          "style": "primary",
+          "kind": "deep_link",
+          "value": "radius://chat/client/77120"
+        }
+      ]
+    },
+    "fallback_text": "Sarah Johnson · Portal chat · 2 min ago\n“Can I back out of my offer after the inspection?”\nMel replied: Passed to your agent. They’ll reply soon."
+  },
+  "listing_picker_card": {
+    "type": "listing_picker_card",
+    "tool_name": "find_listings",
+    "v": 1,
+    "data": {
+      "title": "Your listings",
+      "items": [
+        {
+          "listing_id": "L-1001",
+          "title": "123 Ocean View Drive",
+          "subtitle": "San Francisco · $2.45M · 4 bd · 3 ba",
+          "badge": {
+            "text": "Active",
+            "tone": "success"
+          },
+          "prompt": "Create a marketing package for 123 Ocean View Drive"
+        },
+        {
+          "listing_id": "L-1002",
+          "title": "456 Palm Avenue",
+          "subtitle": "Los Angeles · $1.88M · 3 bd · 2 ba",
+          "badge": {
+            "text": "Pending",
+            "tone": "warning"
+          },
+          "prompt": "Create a marketing package for 456 Palm Avenue"
+        }
+      ],
+      "more": {
+        "label": "Show all 12 listings",
+        "kind": "fill_prompt",
+        "value": "Show all 12 listings"
+      }
+    },
+    "fallback_text": "Your listings\n123 Ocean View Drive · San Francisco · $2.45M · 4 bd · 3 ba · Active\n456 Palm Avenue · Los Angeles · $1.88M · 3 bd · 2 ba · Pending"
+  },
+  "option_picker_card": {
+    "type": "option_picker_card",
+    "v": 1,
+    "data": {
+      "title": "What to create",
+      "multi": true,
+      "sentence": "Create {items}",
+      "options": [
+        {
+          "id": "posts",
+          "icon": "post",
+          "title": "Social posts",
+          "subtitle": "Feed and story",
+          "say": "social posts"
+        },
+        {
+          "id": "reels",
+          "icon": "reel",
+          "title": "Reels",
+          "subtitle": "Short vertical video",
+          "say": "reels"
+        },
+        {
+          "id": "flyer",
+          "icon": "flyer",
+          "title": "Flyer",
+          "subtitle": "Print-ready PDF",
+          "say": "a flyer"
+        }
+      ]
+    },
+    "fallback_text": "What to create\nSocial posts: Feed and story\nReels: Short vertical video\nFlyer: Print-ready PDF"
+  },
+  "style_picker_card": {
+    "type": "style_picker_card",
+    "v": 1,
+    "data": {
+      "multi": true,
+      "options": [
+        {
+          "id": "min",
+          "title": "Modern Minimal",
+          "subtitle": "Clean and contemporary",
+          "image_url": "https://…/min.jpg",
+          "aspect": "4:5"
+        },
+        {
+          "id": "lux",
+          "title": "Luxury Editorial",
+          "subtitle": "Premium and sophisticated",
+          "image_url": "https://…/lux.jpg",
+          "aspect": "4:5"
+        }
+      ]
+    },
+    "fallback_text": "Modern Minimal: Clean and contemporary\nLuxury Editorial: Premium and sophisticated"
+  },
+  "brand_kit_card": {
+    "type": "brand_kit_card",
+    "tool_name": "get_brand",
+    "v": 1,
+    "data": {
+      "preview": {
+        "tag": "Just listed",
+        "address": "123 Ocean View Drive"
+      },
+      "primary_color": "#0E2B30",
+      "accent_color": "#12A867",
+      "logo_url": "https://…/logo.png"
+    },
+    "fallback_text": "Brand kit\nPrimary color: #0E2B30\nAccent color: #12A867"
+  },
+  "asset_package_card": {
+    "type": "asset_package_card",
+    "tool_name": "generate_marketing",
+    "v": 1,
+    "data": {
+      "id": "pkg_01",
+      "title": "Listing marketing package",
+      "subtitle": "123 Ocean View Drive · 6 designs",
+      "assets": [
+        {
+          "kind": "image",
+          "title": "Instagram & Facebook Post",
+          "aspect": "4:5",
+          "url": "https://…/1.jpg"
+        },
+        {
+          "kind": "video",
+          "title": "Instagram Reel & TikTok",
+          "aspect": "9:16",
+          "url": "https://…/2.mp4",
+          "poster_url": "https://…/2.jpg"
+        },
+        {
+          "kind": "pdf",
+          "title": "Property Flyer",
+          "aspect": "17:22",
+          "url": "https://…/3.pdf"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Open",
+          "style": "link",
+          "kind": "open_viewer"
+        }
+      ]
+    },
+    "fallback_text": "Listing marketing package · 123 Ocean View Drive · 6 designs\nInstagram & Facebook Post (image)\nInstagram Reel & TikTok (video)\nProperty Flyer (pdf)"
+  },
+  "social_post_review_card": {
+    "type": "social_post_review_card",
+    "tool_name": "prepare_publish",
+    "v": 1,
+    "data": {
+      "id": "pub_ig_01",
+      "state": "draft",
+      "platform": "instagram",
+      "title": "Instagram",
+      "subtitle": "3 pieces · @jordanlee.homes",
+      "items": [
+        {
+          "kind": "image",
+          "url": "https://…/1.jpg",
+          "aspect": "4:5"
+        }
+      ],
+      "caption": "Just listed. 123 Ocean View Drive, 4 beds, 3 baths, ocean views.",
+      "tags": [
+        "#justlisted",
+        "#sanfrancisco"
+      ],
+      "footnote": "Posts as soon as you approve",
+      "actions": [
+        {
+          "label": "Post to Instagram",
+          "style": "primary",
+          "kind": "approve"
+        }
+      ]
+    },
+    "fallback_text": "Instagram · 3 pieces · @jordanlee.homes\nJust listed. 123 Ocean View Drive, 4 beds, 3 baths, ocean views.\n#justlisted #sanfrancisco"
+  },
+  "email_review_card": {
+    "type": "email_review_card",
+    "tool_name": "prepare_publish",
+    "v": 1,
+    "data": {
+      "id": "pub_email_01",
+      "state": "draft",
+      "title": "Email",
+      "subtitle": "1 email · from jordan@jordanlee.com",
+      "to": {
+        "label": "40 buyers",
+        "emails": [
+          "maya.chen@gmail.com",
+          "james.ortiz@outlook.com"
+        ],
+        "more_count": 38
+      },
+      "subject": "Just listed: 123 Ocean View Drive",
+      "asset": {
+        "kind": "image",
+        "url": "https://…/email.jpg"
+      },
+      "actions": [
+        {
+          "label": "Send email",
+          "style": "primary",
+          "kind": "approve"
+        }
+      ],
+      "empty_actions": [
+        {
+          "label": "Upload CSV",
+          "style": "secondary",
+          "kind": "fill_prompt",
+          "value": "Upload a CSV"
+        },
+        {
+          "label": "Add a client",
+          "style": "secondary",
+          "kind": "fill_prompt",
+          "value": "Add a client"
+        }
+      ]
+    },
+    "fallback_text": "Email · 1 email · from jordan@jordanlee.com\nTo: 40 buyers\nSubject: Just listed: 123 Ocean View Drive"
+  },
+  "website_review_card": {
+    "type": "website_review_card",
+    "tool_name": "prepare_publish",
+    "v": 1,
+    "data": {
+      "id": "pub_web_01",
+      "state": "draft",
+      "title": "Property website",
+      "subtitle": "1 page · public link",
+      "url": "https://jordanlee.radiusagent.com/123-ocean-view",
+      "preview_url": "https://…/site.jpg",
+      "footnote": "Goes live as soon as you tap Publish",
+      "actions": [
+        {
+          "label": "Publish website",
+          "style": "primary",
+          "kind": "approve"
+        },
+        {
+          "label": "Copy link",
+          "style": "secondary",
+          "kind": "open_url"
+        }
+      ]
+    },
+    "fallback_text": "Property website · 1 page · public link\nhttps://jordanlee.radiusagent.com/123-ocean-view"
+  },
+  "status_list_card": {
+    "type": "status_list_card",
+    "tool_name": "publish_marketing",
+    "v": 1,
+    "data": {
+      "state": "partial",
+      "title": "3 of 5 destinations complete",
+      "items": [
+        {
+          "icon": "instagram",
+          "title": "Instagram",
+          "subtitle": "Published",
+          "badge": {
+            "text": "Published",
+            "tone": "success"
+          }
+        },
+        {
+          "icon": "email",
+          "title": "Email",
+          "subtitle": "38 sent, 2 failed: invalid address",
+          "badge": {
+            "text": "Partly sent",
+            "tone": "warning"
+          }
+        },
+        {
+          "icon": "facebook",
+          "title": "Facebook",
+          "subtitle": "Authorization expired",
+          "action": {
+            "label": "Reconnect",
+            "style": "secondary",
+            "kind": "connect",
+            "value": "facebook"
+          }
+        }
+      ]
+    },
+    "fallback_text": "3 of 5 destinations complete\nInstagram: Published\nEmail: Partly sent\nFacebook: Authorization expired"
+  },
+  "ytd_progress_card": {
+    "type": "ytd_progress_card",
+    "tool_name": "deal_impact",
+    "v": 1,
+    "data": {
+      "title": "Your year if 88 Pine Avenue closes",
+      "subtitle": "Year to date, team of 14",
+      "rows": [
+        {
+          "label": "Volume",
+          "from": "$8.4M",
+          "to": "$9.6M",
+          "delta": "+$1.2M"
+        },
+        {
+          "label": "GCI",
+          "from": "$214K",
+          "to": "$250K",
+          "delta": "+$36K"
+        },
+        {
+          "label": "Sides",
+          "from": "14",
+          "to": "15",
+          "delta": "+1"
+        }
+      ],
+      "rank": "Team rank, production 6th → 4th"
+    },
+    "fallback_text": "Your year if 88 Pine Avenue closes · Year to date, team of 14\nVolume: $8.4M → $9.6M (+$1.2M)\nGCI: $214K → $250K (+$36K)\nSides: 14 → 15 (+1)\nTeam rank, production 6th → 4th"
+  },
+  "contact_picker_card": {
+    "type": "contact_picker_card",
+    "v": 1,
+    "data": {
+      "id": "pick_01",
+      "title": "Who should I invite?",
+      "searchable": true,
+      "select_all": {
+        "label": "Select all",
+        "count": 1248
+      },
+      "options": [
+        {
+          "client_id": "88231",
+          "title": "Jordan Lee",
+          "subtitle": "jordan.lee@gmail.com, (555) 201-4478"
+        },
+        {
+          "client_id": "88240",
+          "title": "Priya Shah",
+          "subtitle": "priya.shah@outlook.com, (555) 334-9021"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Invite",
+          "style": "primary",
+          "kind": "approve"
+        }
+      ]
+    },
+    "fallback_text": "Who should I invite?\nJordan Lee · jordan.lee@gmail.com, (555) 201-4478\nPriya Shah · priya.shah@outlook.com, (555) 334-9021"
+  },
+  "result_list_card": {
+    "type": "result_list_card",
+    "tool_name": "send_invites",
+    "v": 1,
+    "data": {
+      "title": "Invites sent",
+      "subtitle": "3 clients, email and text",
+      "items": [
+        {
+          "title": "Jordan Lee",
+          "status": "Email and text sent",
+          "tone": "success"
+        },
+        {
+          "title": "Marcus Reed",
+          "status": "Email sent, no phone on file",
+          "tone": "warning"
+        }
+      ]
+    },
+    "fallback_text": "Invites sent · 3 clients, email and text\nJordan Lee: Email and text sent\nMarcus Reed: Email sent, no phone on file"
+  },
+  "meeting_card": {
+    "type": "meeting",
+    "data": {
+      "success": true,
+      "summary": "Tour with Jordan Lee",
+      "description": "123 Ocean View Dr",
+      "event_id": "evt_1",
+      "meeting_link": "https://meet.google.com/…",
+      "calendar_link": "https://calendar.google.com/…",
+      "agent_email": "agent@…",
+      "client_email": "jordan.lee@gmail.com",
+      "agent_name": "Agent",
+      "client_name": "Jordan Lee",
+      "meeting_time": "2026-10-27T10:00:00Z",
+      "meeting_time_epoch": 1792922400,
+      "attendees": [
+        "jordan.lee@gmail.com"
+      ],
+      "organizer": "agent@…"
+    }
+  },
+  "property_visit_card": {
+    "type": "property_visit",
+    "data": {
+      "success": true,
+      "summary": "Showing at 123 Ocean View Dr",
+      "event_id": "evt_2",
+      "client_name": "Jordan Lee",
+      "property_address": "123 Ocean View Dr",
+      "meeting_time": "2026-10-28T15:00:00Z",
+      "meeting_time_epoch": 1793026800
+    }
+  },
+  "client_card": {
+    "type": "client",
+    "data": {
+      "id": "88231",
+      "name": "Jordan Lee",
+      "type": "buyer",
+      "email": "jordan.lee@gmail.com",
+      "source": "Website",
+      "status": "Active",
+      "sub_text": "Added today"
+    }
+  },
+  "client_note_card": {
+    "type": "client_note",
+    "data": {
+      "id": 501,
+      "u_cust_id": "88231",
+      "title": "Prefers Oak Street",
+      "note": "Wants 3 beds, under $900K",
+      "client_info": {
+        "name": "Jordan Lee"
+      }
+    }
+  },
+  "client_reminder_card": {
+    "type": "client_reminder",
+    "data": {
+      "reminder": {
+        "date": 1792922400,
+        "note": "Call about Oak Street",
+        "type": "call",
+        "u_cust_id": "88231",
+        "event_duration": 30,
+        "client_transaction_id": null
+      },
+      "client_info": {
+        "name": "Jordan Lee"
+      }
+    }
+  },
+  "offer_card": {
+    "type": "offer",
+    "data": {
+      "agent_id": 11123941,
+      "offer_id": 3301,
+      "offer_price": 875000,
+      "property_address": "88 Pine Avenue",
+      "client_name": "Jordan Lee"
+    }
+  },
+  "document_card": {
+    "type": "file",
+    "data": {
+      "name": "CMA - 123 Ocean View.pdf",
+      "size": "1.2 MB",
+      "url": "https://…/cma.pdf",
+      "thumbnail_url": "https://…/cma.jpg"
+    }
+  },
+  "image_card": {
+    "type": "image",
+    "data": {
+      "name": "front.jpg",
+      "size": "420 KB",
+      "url": "https://…/front.jpg"
+    }
+  },
+  "web_sources": {
+    "type": "google_search",
+    "data": [
+      {
+        "url": "https://…",
+        "title": "Austin market report",
+        "snippet": "Median price …"
+      }
+    ],
+    "result": {
+      "source_urls": [
+        "https://…"
+      ]
+    }
+  },
+  "credits_banner": {
+    "type": "insufficient_credits",
+    "data": {
+      "state": "exhausted",
+      "severity": "error",
+      "title": "You're out of credits",
+      "message": "Add credits to keep using Mel.",
+      "show_add_credits": true
+    }
+  }
+}

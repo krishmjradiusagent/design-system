@@ -1,0 +1,56 @@
+<!-- @dsCard group="Lists and rows" height=560 subtitle="c-tx-card-row: static rendition of the review page (light and dark, quiet)" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<style>
+  /* Matrix chrome only */
+  .mx { display: grid; grid-template-columns: repeat(2, minmax(0, 380px)); gap: var(--space-6); justify-content: center; }
+  .mx > div { background: var(--bg-page); border-radius: var(--radius-sheet); padding: var(--space-4); position: relative; }
+</style>
+<style>body{margin:0;background:var(--bg-page);}</style></head>
+<body class="rm-root">
+<!-- REVIEW MATRIX: c-tx-card-row × dark/light × quiet/accented/colorful. -->
+<div class="mx" id="mx"></div>
+<template id="specimen">
+<div class="rm-stack">
+  <div class="rm-section-head"><h2 class="t-section">Active transactions</h2></div>
+  <div class="rm-card rm-card--list">
+    <button type="button" class="c-tx-card-row" aria-label="118 Maple St, Fremont, CA. Buyer. In escrow, close Sep 12">
+      <span class="c-tx-card-row__head"><img class="c-tx-card-row__photo" src="../_assets/transactions/118-maple-st.jpg" alt="" onerror="this.outerHTML='<span class=&quot;c-tx-card-row__photo&quot;><i class=&quot;ph ph-house-line&quot;></i></span>'">
+        <span class="c-tx-card-row__body"><span><span class="c-tx-card-row__address t-address">118 Maple St, Fremont, CA</span><span class="c-tx-card-row__price t-money-sm">$1,150,000<i class="c-tx-card-row__sep"></i><span class="c-tx-card-row__role role-buyer t-meta">Buyer</span></span></span><i class="ph ph-caret-right c-tx-card-row__chev" aria-hidden="true"></i></span></span>
+      <span class="c-tx-card-row__foot"><span class="c-tx-card-row__status tone-info t-chip"><span class="c-tx-card-row__dot"></span>In escrow</span><span class="t-caption t-secondary">Close Sep 12</span></span>
+    </button>
+    <button type="button" class="c-tx-card-row" aria-label="42 Oak Ln, Fremont, CA. Seller. Inspection due">
+      <span class="c-tx-card-row__head"><img class="c-tx-card-row__photo" src="../_assets/transactions/42-oak-ln.jpg" alt="" onerror="this.outerHTML='<span class=&quot;c-tx-card-row__photo&quot;><i class=&quot;ph ph-house-line&quot;></i></span>'">
+        <span class="c-tx-card-row__body"><span><span class="c-tx-card-row__address t-address">42 Oak Ln, Fremont, CA</span><span class="c-tx-card-row__price t-money-sm">$980,000<i class="c-tx-card-row__sep"></i><span class="c-tx-card-row__role role-seller t-meta">Seller</span></span></span><i class="ph ph-caret-right c-tx-card-row__chev" aria-hidden="true"></i></span></span>
+      <span class="c-tx-card-row__foot"><span class="c-tx-card-row__status tone-warning t-chip"><span class="c-tx-card-row__dot"></span>Inspection due</span><span class="t-caption t-secondary">Offer review</span></span>
+    </button>
+  </div>
+</div>
+</template>
+<script>
+/* Demo data — real Radius content from transaction.html / index.html. For previews only. */
+window.RM_DEMO = {
+  transactions: [
+    { id: 'maple', address: '118 Maple St', city: 'Fremont, CA', price: 1150000, commission: 23000, role: 'Buyer', status: 'In escrow', close: 'Sep 12', acceptance: 'Aug 14', client: 'Sarah Reynolds', clientPhoto: '../_assets/clients/av1.jpg', photo: '../_assets/transactions/118-maple-st.jpg', complete: 1, owner: 'me',
+      coAgents: [{ name: 'Jordan Lee' }, { name: 'Maya Chen' }], collaborators: [{ name: 'Dillon Dennis' }, { name: 'Sandeep TC' }, { name: 'James Cooper' }, { name: 'Harry Cooper' }],
+      photos: ['https://images.pexels.com/photos/7587880/pexels-photo-7587880.jpeg?auto=compress&cs=tinysrgb&w=1200', 'https://images.pexels.com/photos/9976121/pexels-photo-9976121.jpeg?auto=compress&cs=tinysrgb&w=1200', 'https://images.pexels.com/photos/10610731/pexels-photo-10610731.jpeg?auto=compress&cs=tinysrgb&w=1200'] },
+    { id: 'oak', address: '42 Oak Ln', city: 'Fremont, CA', price: 980000, commission: 19600, role: 'Seller', status: 'Inspection due', close: 'Sep 15', acceptance: 'Aug 18', client: 'Daniel Ruiz', clientPhoto: '../_assets/clients/av2.jpg', photo: '../_assets/transactions/42-oak-ln.jpg', complete: 2, owner: 'me',
+      coAgents: [{ name: 'Jordan Lee' }], collaborators: [{ name: 'Dillon Dennis' }, { name: 'Sandeep TC' }] },
+    { id: 'alma', address: '640 Alma St', city: 'Palo Alto, CA', price: 1275000, commission: 25500, role: 'Seller', status: 'In escrow', close: 'Sep 20', acceptance: 'Aug 22', client: 'Priya Nair', clientPhoto: '../_assets/clients/av3.jpg', complete: 3, owner: 'jordan', private: true,
+      coAgents: [{ name: 'Maya Chen' }, { name: 'Jordan Lee' }, { name: 'Sam Patel' }], collaborators: [{ name: 'James Cooper' }] },
+    { id: 'miramar', address: '275 Miramar Ave', city: 'San Francisco, CA', price: 1480000, commission: 29600, role: 'Buyer', status: 'Closed', close: 'Sep 2', acceptance: 'Jul 30', client: 'Leo Grant', complete: 6, owner: 'me', coAgents: [], collaborators: [] }
+  ]
+};
+
+</script>
+<script>
+const t = document.getElementById('specimen').innerHTML;
+const cells = [];
+for (const theme of ['light', 'dark']) for (const exp of ['quiet'])
+  cells.push(`<div data-theme="${theme}" data-expression="${exp}"><p class="t-caption t-tertiary" style="margin-bottom:var(--space-3)">${theme} · ${exp}</p>${t}</div>`);
+document.getElementById('mx').innerHTML = cells.join('');
+</script>
+
+
+</body></html>

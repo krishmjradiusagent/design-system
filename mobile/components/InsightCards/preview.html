@@ -1,0 +1,166 @@
+<!-- @dsCard group="Cards and summaries" height=620 subtitle="c-insight-cards: comparison and allocation insights (sample data)" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<style>
+body{margin:0;background:var(--bg-page);}
+.mx{display:grid;grid-template-columns:repeat(2,minmax(0,380px));gap:var(--space-6);justify-content:center;padding:var(--space-4)}
+.mx>.cell{background:var(--bg-page);border-radius:var(--radius-sheet);padding:var(--space-4);position:relative;color:var(--text-primary);min-width:0}
+.mx>.cell>.lab{font-size:12px;margin:0 0 12px;color:var(--text-secondary)}
+</style></head>
+<body class="rm-root">
+<div class="mx"><div class="cell" data-theme="light"><p class="lab t-caption">Light · quiet</p><div data-ic></div></div><div class="cell" data-theme="dark"><p class="lab t-caption">Dark · quiet</p><div data-ic></div></div></div>
+<script>/* Radius Mobile harness. Include LAST on any prototype page:
+   <script src="<path>/harness/harness.js"><\/script>
+   - URL params: ?theme=dark|light  &exp=quiet|accented|colorful  &platform=ios|android  &ts=1|1.2|1.5  &compare=1
+   - compare=1 renders the device twice: dark + light, side by side (use for self-review screenshots).
+   - Fills every empty <span class="mel" data-state="..."> with the correct Mel body + face. Never hand-write Mel SVG. */
+(function () {
+  const q = new URLSearchParams(location.search);
+  const html = document.documentElement;
+  const set = (k, v) => v && (html.dataset[k] = v);
+  set('theme', q.get('theme')); set('expression', q.get('exp')); set('platform', q.get('platform'));
+  if (q.get('ts')) html.style.setProperty('--type-scale', q.get('ts'));
+
+  const FACE = '<span class="mel__body"><svg class="mel__eyes" viewBox="0 0 17 8" aria-hidden="true"><path class="mel__eye" d="M0 8V3a3 3 0 0 1 6 0v5Z"/><path class="mel__eye" d="M11 8V3a3 3 0 0 1 6 0v5Z"/></svg><svg class="mel__smile" viewBox="0 0 17 6.5" aria-hidden="true"><path d="M0 6V3a3 3 0 0 1 6 0v3H4.6V3a1.6 1.6 0 0 0-3.2 0v3Z"/><path d="M11 6V3a3 3 0 0 1 6 0v3h-1.4V3a1.6 1.6 0 0 0-3.2 0v3Z"/></svg></span>';
+  const fillMel = root => root.querySelectorAll('.mel').forEach(m => {
+    if (!m.querySelector('.mel__body')) m.innerHTML = FACE;
+    if (!m.hasAttribute('role')) { m.setAttribute('role', 'img'); m.setAttribute('aria-label', 'MEL, ' + (m.dataset.state || 'idle')); }
+    if (!m.dataset.state) m.dataset.state = 'idle';
+  });
+  fillMel(document);
+
+  // compare mode: clone first device into a light/dark pair
+  const dev = document.querySelector('.rm-device');
+  if (q.get('compare') && dev) {
+    const stage = dev.closest('.rm-stage') || dev.parentElement;
+    const mk = (theme, node) => { const c = document.createElement('div'); c.className = 'rm-stage__col'; c.dataset.theme = theme; c.innerHTML = `<p class="t-caption t-secondary">${theme}</p>`; c.appendChild(node); return c; };
+    const clone = dev.cloneNode(true);
+    stage.innerHTML = ''; stage.appendChild(mk('dark', dev)); stage.appendChild(mk('light', clone));
+  }
+
+  // control bar
+  if (q.get('bar') !== '0' && document.body.classList.contains('rm-harness')) {
+    const bar = document.createElement('div'); bar.className = 'rm-harness-bar'; bar.setAttribute('aria-label', 'Harness controls');
+    const sel = (name, opts, cur) => `<select data-k="${name}" aria-label="${name}">${opts.map(o => `<option ${o == cur ? 'selected' : ''}>${o}</option>`).join('')}</select>`;
+    bar.innerHTML = sel('theme', ['dark', 'light'], q.get('theme') || html.dataset.theme || 'light') + sel('exp', ['quiet', 'accented', 'colorful'], q.get('exp') || 'quiet') + sel('platform', ['ios', 'android'], q.get('platform') || 'ios') + sel('ts', ['1', '1.2', '1.5'], q.get('ts') || '1') + `<button data-compare>${q.get('compare') ? 'single' : 'compare'}</button>`;
+    bar.addEventListener('change', e => { q.set(e.target.dataset.k, e.target.value); location.search = q; });
+    bar.querySelector('[data-compare]').onclick = () => { q.get('compare') ? q.delete('compare') : q.set('compare', '1'); location.search = q; };
+    document.body.appendChild(bar);
+  }
+})();
+</script>
+<script type="module">
+// Vanilla reusable composition; no timers, dependencies, network, or live operations.
+const SVG='http://www.w3.org/2000/svg';
+let nextInstance=0;
+// Phosphor Icons 2.1.7, CaretLeft/CaretRight regular. MIT: PHOSPHOR-LICENSE.
+const carets=[
+ 'M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z',
+ 'M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z'
+];
+const tones=new Set(['info','warning','success','danger']);
+const tone=t=>tones.has(t)?t:'info';
+export const formatValue=(v,unit)=>!Number.isFinite(v)?'No data':unit==='USD'?new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(v):`${Number(v.toFixed(2)).toLocaleString('en-US')}${unit==='percent'?'%':unit?' '+unit:''}`;
+const delta=(v,b,unit)=>`${v-b>0?'+':''}${formatValue(v-b,unit)}`;
+export function validPoints(series={}){return (series.values||[]).map((value,i)=>({value,date:series.dates?.[i]||`Snapshot ${i+1}`,sourceIndex:i})).filter(p=>Number.isFinite(p.value));}
+// Monotone Hermite, nine samples/segment like the supplied comparison source.
+// Unlike unbounded Catmull-Rom, it cannot invent extrema between observations.
+export function smoothValues(values,perSegment=9){
+ if(values.length<3)return values.slice();
+ const d=values.slice(1).map((v,i)=>v-values[i]);
+ const m=values.map((_,i)=>i===0?d[0]:i===values.length-1?d.at(-1):d[i-1]*d[i]<=0?0:2*d[i-1]*d[i]/(d[i-1]+d[i]));
+ const out=[];
+ for(let i=0;i<d.length;i++)for(let j=0;j<perSegment;j++){const t=j/perSegment,t2=t*t,t3=t2*t;out.push((2*t3-3*t2+1)*values[i]+(t3-2*t2+t)*m[i]+(-2*t3+3*t2)*values[i+1]+(t3-t2)*m[i+1]);}
+ return [...out,values.at(-1)];
+}
+export function chartGeometry(series,{smooth=false,threshold}={}){
+ const all=series.flatMap(s=>validPoints(s).map(p=>p.value));if(Number.isFinite(threshold))all.push(threshold);
+ if(!all.length)return {paths:[],points:[],thresholdY:null};
+ const lo=Math.min(...all),hi=Math.max(...all),pad=(hi-lo)*.12||Math.max(Math.abs(lo)*.12,1),min=lo-pad,max=hi+pad;
+ const y=v=>144-(v-min)/(max-min)*104;
+ const x=(i,n)=>n===1?160:12+i/(n-1)*296;
+ return {paths:series.map(s=>{const p=validPoints(s),values=smooth?smoothValues(p.map(q=>q.value)):p.map(q=>q.value);return values.map((v,i)=>`${i?'L':'M'}${x(i,values.length).toFixed(3)},${y(v).toFixed(3)}`).join(' ')}),points:series.map(s=>{const p=validPoints(s);return p.map((q,i)=>({...q,x:x(i,p.length),y:y(q.value)}))}),thresholdY:Number.isFinite(threshold)?y(threshold):null};
+}
+export function allocationShares(segments=[]){const clean=segments.map(s=>({...s,value:Number.isFinite(s.value)?Math.max(0,s.value):0})),total=clean.reduce((n,s)=>n+s.value,0);return clean.map(s=>({...s,pct:total?s.value/total*100:0}));}
+export function mountInsightCards(host,initial={}){
+ if(!host?.ownerDocument)throw new TypeError('A DOM host is required');
+ const doc=host.ownerDocument;let options={...initial},destroyed=false;
+ const instance=`c-insights-${++nextInstance}`;
+ let state={page:0,metric:'spend',selected:null,cursors:{},...initial.state};
+ let cleanups=[];
+ const el=(tag,cls,text)=>{const n=doc.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=String(text);return n;};
+ const listen=(n,type,fn)=>{n.addEventListener(type,fn);cleanups.push(()=>n.removeEventListener(type,fn));};
+ const emit=()=>options.onStateChange?.(getState());
+ const getState=()=>structuredClone(state);
+ const svg=(tag,attrs)=>{const n=doc.createElementNS(SVG,tag);Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,String(v)));return n;};
+ function button(label,fn,secondary=false){const b=el('button',`rm-btn rm-btn--${secondary?'secondary':'ghost'} rm-btn--sm t-caption`,label);b.type='button';listen(b,'click',fn);return b;}
+ function text(parent,value,role='t-meta t-secondary'){const p=el('p',`c-insights__text ${role}`,value);parent.append(p);return p;}
+ function chart(parent,series,page,smooth,threshold){
+  const g=chartGeometry(series,{smooth,threshold}),count=Math.max(0,...g.points.map(p=>p.length));
+  if(!count){text(parent,'No measurements available.');return;}
+  const stage=el('div','c-insights__chart');stage.tabIndex=0;stage.setAttribute('role','group');stage.setAttribute('aria-label','Trend chart. Left and Right arrows inspect dated measurements; Home and End jump to endpoints. Escape hides the cursor.');
+  const view=svg('svg',{viewBox:'0 0 320 166','aria-hidden':'true'});stage.append(view);
+  if(!smooth)for(const y of [40,92,144])view.append(svg('line',{x1:12,x2:308,y1:y,y2:y,class:'c-insights__grid'}));
+  if(g.thresholdY!==null)view.append(svg('line',{x1:12,x2:308,y1:g.thresholdY,y2:g.thresholdY,class:'c-insights__threshold'}));
+  g.paths.forEach((d,i)=>{if(d)view.append(svg('path',{d,class:`c-insights__line c-insights__${tone(series[i].tone||'danger')}`}));if(g.points[i].length===1)view.append(svg('circle',{cx:g.points[i][0].x,cy:g.points[i][0].y,r:3,class:`c-insights__point c-insights__${tone(series[i].tone||'danger')}`}));});
+  const cursor=svg('line',{x1:0,x2:0,y1:36,y2:146,class:'c-insights__cursor',visibility:'hidden'});view.append(cursor);
+  const tip=el('div','c-insights__tooltip t-caption');tip.hidden=true;tip.setAttribute('role','status');stage.append(tip);parent.append(stage);
+  function inspect(index,persist=true){
+   if(index===null){tip.hidden=true;cursor.setAttribute('visibility','hidden');if(persist){state.cursors={...state.cursors,[page.key]:null};emit();}return;}
+   index=Math.max(0,Math.min(count-1,index));tip.replaceChildren();const pct=count===1?.5:index/(count-1);
+   g.points.forEach((ps,i)=>{if(!ps.length)return;const p=ps[Math.min(index,ps.length-1)];text(tip,`${series[i].name} · ${p.date} · ${formatValue(p.value,series[i].unit)}`,'t-caption');});
+   tip.hidden=false;cursor.setAttribute('visibility','visible');cursor.setAttribute('x1',12+pct*296);cursor.setAttribute('x2',12+pct*296);
+   const width=stage.getBoundingClientRect().width,tw=tip.getBoundingClientRect().width;
+   tip.style.left=width?`${Math.max(0,Math.min(width-tw,(12+pct*296)/320*width-tw/2))}px`:'0px';
+   if(persist){state.cursors={...state.cursors,[page.key]:index};emit();}
+  }
+  const pointer=e=>{const r=stage.getBoundingClientRect();if(r.width)inspect(Math.round(Math.max(0,Math.min(1,((e.clientX-r.left)/r.width*320-12)/296))*(count-1)));};
+  listen(stage,'pointerdown',e=>{pointer(e);try{stage.setPointerCapture(e.pointerId);}catch{}});listen(stage,'pointermove',pointer);
+  listen(stage,'pointerleave',()=>inspect(null));listen(stage,'pointercancel',()=>inspect(null));listen(stage,'pointerup',e=>{try{stage.releasePointerCapture(e.pointerId);}catch{}});
+  listen(stage,'keydown',e=>{const current=state.cursors?.[page.key]??count-1;let next;if(e.key==='ArrowLeft')next=current-1;else if(e.key==='ArrowRight')next=current+1;else if(e.key==='Home')next=0;else if(e.key==='End')next=count-1;else if(e.key==='Escape')next=null;else return;e.preventDefault();inspect(next);});
+  if(state.cursors?.[page.key]!=null)inspect(state.cursors[page.key],false);
+  const Observer=doc.defaultView?.ResizeObserver;
+  if(Observer){const observer=new Observer(()=>{if(state.cursors?.[page.key]!=null)inspect(state.cursors[page.key],false);});observer.observe(stage);cleanups.push(()=>observer.disconnect());}
+  const first=g.points.flat().at(0),last=g.points.flat().at(-1),axis=el('div','c-insights__axis t-caption t-secondary');axis.append(el('span',null,first.date),el('span',null,last.date));parent.append(axis);
+  if(Number.isFinite(threshold))text(parent,`Review threshold: ${formatValue(threshold,series[0]?.unit)} · weekly`,'t-caption t-secondary');
+  if(smooth)text(parent,'Weekly snapshots · smooth guide','t-caption t-secondary');
+  const summary=el('details','c-insights__summary');summary.append(el('summary','t-caption t-secondary','Data & chart notes'));
+  text(summary,smooth?'The smooth curve is a visual guide. Cursor values are measured snapshots.':'Cursor values are measured snapshots.','t-caption');
+  series.forEach(s=>text(summary,`${s.name}: ${validPoints(s).map(p=>`${p.date}: ${formatValue(p.value,s.unit)}`).join('; ')||'No data'}.`,'t-caption'));parent.append(summary);return summary;
+ }
+ function render(focus){
+  if(destroyed)return;cleanups.forEach(fn=>fn());cleanups=[];host.replaceChildren();
+  const pages=Array.isArray(options.pages)?options.pages:[];state.page=Math.max(0,Math.min(pages.length-1,Number.isInteger(state.page)?state.page:0));
+  const root=el('section','c-insights');root.setAttribute('aria-label','Simulated insights');host.append(root);
+  const head=el('div','c-insights__head'),heading=el('div','c-insights__heading');text(heading,options.title||'Insights','t-meta t-secondary');
+  const count=el('span','rm-chip rm-chip--pill t-caption t-num',`${pages.length?state.page+1:0} / ${pages.length}`);count.setAttribute('aria-label',`${pages.length?state.page+1:0} of ${pages.length} insights`);heading.append(count);head.append(heading);
+  const nav=el('div','c-insights__nav');for(const [index,[label,direction]] of [['Previous insight',-1],['Next insight',1]].entries()){const b=button(label,event=>{state.page=(state.page+direction+pages.length)%pages.length;emit();render(event.detail===0?label:undefined);});b.setAttribute('aria-label',label);b.replaceChildren();const icon=svg('svg',{viewBox:'0 0 256 256',fill:'currentColor','aria-hidden':'true',focusable:'false',class:'c-insights__pager-icon t-gold'});icon.append(svg('path',{d:carets[index]}));b.append(icon);b.disabled=pages.length<2;const target=el('span','c-insights__pager-target');target.append(b);nav.append(target);}head.append(nav);root.append(head);
+  if(!pages.length){text(root,'No insights available.');return;}
+  const page=pages[state.page];text(root,page.prose,'t-meta t-secondary');const surface=el('article','rm-metric rm-metric--bordered');surface.dataset.variant=page.key;root.append(surface);const card=el('div','c-insights__content');surface.append(card);const cardTitle=text(card,page.title,'t-row-title');
+  if(page.key==='compare'){
+   const legend=el('div','c-insights__legend');(page.series||[]).forEach(s=>{const stat=el('div','c-insights__stat'),label=el('div',`c-insights__label c-insights__${tone(s.tone)} t-caption t-secondary`);label.append(el('i','c-insights__dot'),el('span',null,s.name));stat.append(label);const ps=validPoints(s);text(stat,formatValue(ps.at(-1)?.value,s.unit),'rm-metric__value t-money t-num');text(stat,ps.length?`${delta(ps.at(-1).value,ps[0].value,s.unit)} vs first snapshot`:'No data','t-caption t-secondary');legend.append(stat);});card.append(legend);chart(card,page.series||[],page,true);
+  }else if(page.key==='anomaly'){
+   const metrics=page.metrics||[];const metric=metrics.find(m=>m.key===state.metric)||metrics[0];
+   if(!metric)text(card,'No measurements available.');else{
+    const toolbar=el('div','c-insights__toolbar');toolbar.append(cardTitle);const controls=el('div','c-insights__metric-controls');const tabs=el('div','rm-segmented');tabs.setAttribute('role','tablist');tabs.setAttribute('aria-label','Marketing metric');
+    metrics.forEach((m,index)=>{const b=el('button','rm-btn rm-btn--sm t-caption',m.name);b.id=`${instance}-metric-${index}`;b.type='button';b.setAttribute('role','tab');b.setAttribute('aria-controls',`${instance}-panel`);b.setAttribute('aria-selected',m===metric);b.tabIndex=m===metric?0:-1;const select=event=>{state.metric=m.key;state.cursors={...state.cursors,[page.key]:null};emit();render(event.detail===0?m.name:undefined);};listen(b,'click',select);listen(b,'keydown',e=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();const i=metrics.indexOf(m),n=e.key==='Home'?0:e.key==='End'?metrics.length-1:(i+(e.key==='ArrowLeft'?-1:1)+metrics.length)%metrics.length;state.metric=metrics[n].key;state.cursors={...state.cursors,[page.key]:null};emit();render(metrics[n].name);}});tabs.append(b);});controls.append(tabs);toolbar.append(controls);card.append(toolbar);
+    const panel=el('div','c-insights__content');panel.id=`${instance}-panel`;panel.setAttribute('role','tabpanel');panel.setAttribute('aria-labelledby',`${instance}-metric-${metrics.indexOf(metric)}`);card.append(panel);
+    const summary=chart(panel,[{...metric,tone:'danger'}],page,false,metric.threshold);
+    const ps=validPoints(metric),valueRow=el('div','c-insights__value-row');text(valueRow,formatValue(ps.at(-1)?.value,metric.unit),'rm-metric__value t-money t-num');text(valueRow,`Latest ${metric.name.toLowerCase()}`,'t-caption t-secondary');panel.append(valueRow);if(ps.length&&Number.isFinite(metric.baseline))text(panel,`${delta(ps.at(-1).value,metric.baseline,metric.unit)} vs baseline ${formatValue(metric.baseline,metric.unit)}`,'t-caption t-secondary');if(summary)panel.append(summary);
+   }
+  }else if(page.key==='allocation'){
+   const segments=allocationShares(page.segments),active=segments.find(s=>s.key===state.selected)||segments[0];
+   const valueRow=el('div','c-insights__value-row');text(valueRow,segments.reduce((n,s)=>n+s.value,0),'rm-metric__value t-money t-num');text(valueRow,'Listings','t-caption t-secondary');card.append(valueRow);const bar=el('div','c-insights__segments');bar.setAttribute('role','img');bar.setAttribute('aria-label',segments.map(s=>`${s.name} ${s.pct.toFixed(1)}%`).join(', ')||'No allocation data');segments.forEach(s=>{const part=el('i',`c-insights__segment c-insights__${tone(s.tone)}`);part.style.width=`${s.pct}%`;bar.append(part);});card.append(bar);
+   const choices=el('div','c-insights__choices');segments.forEach(s=>{const b=button(`${s.name} · ${s.pct.toFixed(1)}%`,event=>{state.selected=s.key;emit();render(event.detail===0?s.name:undefined);},s===active);b.dataset.focus=s.name;b.setAttribute('aria-pressed',s===active);choices.append(b);});card.append(choices);
+   const detail=el('div','rm-card rm-card--bordered c-insights__detail');detail.setAttribute('role','status');text(detail,active?`${active.name} · ${active.value} listings · ${active.pct.toFixed(1)}%`:'No allocation data','t-meta');if(active)text(detail,active.detail,'t-caption t-secondary');card.append(detail);
+  }
+  if(page.followUp){const b=button(page.followUpLabel||page.followUp,()=>options.onFollowUp?.(page.followUp),true);b.classList.add('c-insights__followup');b.replaceChildren(el('span','c-insights__followup-label t-gold',page.followUpLabel||page.followUp));root.append(b);}
+  if(focus){const target=[...root.querySelectorAll('button')].find(b=>b.getAttribute('aria-label')===focus||b.textContent===focus||b.dataset.focus===focus);target?.focus({preventScroll:true});}
+ }
+ render();return {getState,update(next={}){if(destroyed)return;options={...options,...next};if(next.state)state={...state,...next.state};render();},destroy(){if(destroyed)return;destroyed=true;cleanups.forEach(fn=>fn());cleanups=[];host.replaceChildren();}};
+}
+
+document.querySelectorAll("[data-ic]").forEach(h=>mountInsightCards(h,{pages:[{"key": "compare", "title": "Open rate vs reply rate", "prose": "Sample data: reply rate is catching up with open rate.", "followUp": "Compare last month", "followUpLabel": "Compare last month", "series": [{"name": "Open rate", "values": [42, 45, 47, 52, 55], "dates": ["Jun", "Jul", "Aug", "Sep", "Oct"], "unit": "percent", "tone": "info"}, {"name": "Reply rate", "values": [8, 9, 12, 13, 16], "dates": ["Jun", "Jul", "Aug", "Sep", "Oct"], "unit": "percent", "tone": "success"}]}, {"key": "allocation", "title": "Listings by status", "prose": "Sample data: most listings are active.", "followUp": "Show pending", "followUpLabel": "Show pending", "segments": [{"key": "a", "name": "Active", "value": 8, "tone": "success", "detail": "On the market"}, {"key": "p", "name": "Pending", "value": 3, "tone": "warning", "detail": "Offer accepted"}, {"key": "c", "name": "Closed", "value": 2, "tone": "info", "detail": "Sold this quarter"}]}]}));
+</script>
+</body></html>

@@ -1,0 +1,22 @@
+{
+  "type": "reminder_card",
+  "tool_name": "create_client_reminder",
+  "v": 1,
+  "data": {
+    "id": "reminder:93",
+    "state": "done",
+    "kind": "reminder",
+    "icon": "phone",
+    "title": "Call Jordan Lee",
+    "when": "2026-10-27T10:00:00-07:00",
+    "when_text": "Tue, Oct 27 · 10:00 AM",
+    "rows": [
+      {
+        "label": "Type",
+        "value": "Call"
+      }
+    ],
+    "actions": []
+  },
+  "fallback_text": "Call Jordan Lee · Tue, Oct 27 · 10:00 AM\nType: Call"
+}

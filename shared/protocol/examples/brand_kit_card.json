@@ -1,0 +1,15 @@
+{
+  "type": "brand_kit_card",
+  "tool_name": "get_brand",
+  "v": 1,
+  "data": {
+    "preview": {
+      "tag": "Just listed",
+      "address": "123 Ocean View Drive"
+    },
+    "primary_color": "#0E2B30",
+    "accent_color": "#12A867",
+    "logo_url": "https://…/logo.png"
+  },
+  "fallback_text": "Brand kit\nPrimary color: #0E2B30\nAccent color: #12A867"
+}

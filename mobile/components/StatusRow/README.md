@@ -1,0 +1,38 @@
+Class prefix `.c-status-row`. Styles ship in `components/bundle.css`; load `c-status-row.css` alone only outside this system. No script.
+
+## 1. Job
+Document row with status chip: audit issues, envelopes, forms on detail pages, recipients.
+
+## 2. Level
+Component · Batch C (documents)
+
+## 3. Source
+`Transactions - office app/transaction.js` / `transaction.css` → `row()` · `formRow()` · `envelopeRow()` · `issueRow()` · `.summary-line`. Structure/spacing 1:1; colors, type, radius, spacing from the new system; borderless; Phosphor icons (PDF image → `ph-file-pdf`).
+
+## 4. Anatomy
+| Part | Class |
+|---|---|
+| Row | `a.c-status-row` tile + title + meta (desc + `.rm-chip.tone-*`) + go |
+| Summary | `.c-status-row-summary` chips |
+
+## 5. Behaviour + tone
+Chip tones: Needs attention / Sent / N missing → warning · In review → info · Completed / Filled → success · Draft → neutral.
+
+## 6. States
+default · selecting · open menu · disabled · empty · long names · Dynamic Type 1.5× · dark/light · quiet/accented/colorful
+
+## 7. Tokens consumed
+Semantic only — see `c-status-row.css` (linted).
+
+## 8. Platform
+| | iOS (HIG) | Android (M3) |
+|---|---|---|
+| Hit area | 44pt | 48dp |
+| Selection | edit mode with leading checkboxes | M3 checkbox + contextual action bar |
+| Menus / pickers | UIMenu, pull-down | M3 menu / exposed dropdown |
+
+## 9. Accessibility
+Real buttons/links/inputs · labels on every checkbox and icon button · menus + listboxes keyboard-operable · progress has role=progressbar · focus ring from foundations.
+
+## 10. Review
+- [x] lint clean · [x] matrix renders · [x] no new tokens/atoms · [ ] Approved by KJ

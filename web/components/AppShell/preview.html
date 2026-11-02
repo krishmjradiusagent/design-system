@@ -1,0 +1,30 @@
+<!-- @dsCard group="Patterns" height=640 width=1200 -->
+<div class="rds" style="padding:0px;background:var(--background);min-height:100%;box-sizing:border-box">
+<div class="rds-shell rds-chat-scope" style="height:600px">
+ <aside class="rds-sidebar" aria-label="Mel">
+  <div class="rds-sidebar__head"><span class="rds-sidebar__brand"><span class="rds-mel-mark" data-state="idle" style="width:26px;height:26px"></span>mel</span><button class="rds-iconbtn" aria-label="Collapse sidebar"><i data-icon="panel-left"></i></button></div>
+  <button class="rds-sidebar__new"><i data-icon="square-pen"></i> New chat</button>
+  <a class="rds-sidebar__nav" href="#"><i data-icon="sparkles"></i> Assistants</a><a class="rds-sidebar__nav" href="#"><i data-icon="users"></i> Clients</a>
+  <div class="rds-sidebar__label">Recents</div>
+  <button class="rds-sidebar__item" aria-current="true">Open house follow-up</button><button class="rds-sidebar__item">November newsletter</button><button class="rds-sidebar__item">CMA for 48 Birch Ln</button>
+  <div class="rds-sidebar__spacer"></div>
+  <div class="rds-sidebar__me"><span class="rds-avatar">JR</span><span><b>Jordan Reyes</b><small><em>1,240 credits</em></small></span></div>
+ </aside>
+ <main class="rds-shell__main">
+  <div class="rds-shell__top"><span class="rds-assistant-pill"><span class="rds-mel-mark" data-still></span>Mel Copilot</span><span style="display:flex;gap:6px"><button class="rds-btn rds-btn--outline rds-btn--sm"><i data-icon="share"></i> Share</button><button class="rds-iconbtn" aria-label="More"><i data-icon="more-horizontal"></i></button></span></div>
+  <div class="rds-conversation"><div class="rds-conversation__col">
+   <div class="rds-msg rds-msg--user"><div class="rds-msg__content">Follow up with everyone from Saturday's open house</div></div>
+   <div class="rds-msg rds-msg--assistant"><div class="rds-msg__content"><p>I found 14 visitors and drafted a thank-you for each. Three have no email, so I'll text them.</p></div></div>
+   <div class="rds-confirm"><div class="rds-confirm__head"><span class="rds-mel-mark" data-state="attention" style="width:26px;height:26px"></span><div><p class="rds-confirm__title">Send 14 messages?</p><p class="rds-confirm__desc">11 emails and 3 texts from your number.</p></div></div><div class="rds-confirm__actions"><button class="rds-btn rds-btn--primary rds-btn--sm" data-rds-confirm="approved">Send 14</button><button class="rds-btn rds-btn--outline rds-btn--sm">Review first</button></div></div>
+   <div class="rds-suggestions"><button class="rds-suggestion">Show me the drafts</button><button class="rds-suggestion">Only email the first-time buyers</button></div>
+  </div></div>
+  <div class="rds-dock"><div class="rds-prompt">
+ <textarea class="rds-prompt__field" rows="1" placeholder="Ask Mel anything" aria-label="Message Mel"></textarea>
+ <div class="rds-prompt__toolbar">
+  <div class="rds-prompt__tools"><button class="rds-iconbtn" aria-label="Attach"><i data-icon="plus"></i></button><button class="rds-prompt__model">Marketing Design <i data-icon="chevron-down" class="rds-ic--sm"></i></button></div>
+  <div class="rds-prompt__right"><button class="rds-iconbtn" aria-label="Dictate"><i data-icon="mic"></i></button><button class="rds-prompt__submit" aria-label="Talk to Mel"><i data-icon="send"></i></button></div>
+ </div></div></div>
+ </main>
+</div>
+</div>
+<script>window.RadiusUI && RadiusUI.init(document.body);</script>

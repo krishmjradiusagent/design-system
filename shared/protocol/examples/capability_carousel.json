@@ -1,0 +1,35 @@
+{
+  "type": "capability_carousel",
+  "v": 1,
+  "data": {
+    "items": [
+      {
+        "skill": "marketing",
+        "title": "Marketing",
+        "text": "Posts, reels, flyers and emails for any listing.",
+        "preview": {
+          "kind": "image"
+        }
+      },
+      {
+        "skill": "crm",
+        "title": "CRM",
+        "text": "Import contacts, track leads",
+        "preview": {
+          "kind": "stats",
+          "stats": [
+            {
+              "label": "Imported",
+              "value": "1,216"
+            },
+            {
+              "label": "Buyers",
+              "value": "812"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "fallback_text": "Marketing: Posts, reels, flyers and emails for any listing.\nCRM: Import contacts, track leads"
+}

@@ -1,0 +1,15 @@
+{
+  "type": "google_search",
+  "data": [
+    {
+      "url": "https://…",
+      "title": "Austin market report",
+      "snippet": "Median price …"
+    }
+  ],
+  "result": {
+    "source_urls": [
+      "https://…"
+    ]
+  }
+}

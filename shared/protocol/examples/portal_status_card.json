@@ -1,0 +1,26 @@
+{
+  "type": "portal_status_card",
+  "tool_name": "build_portal",
+  "v": 1,
+  "data": {
+    "title": "Client Portal",
+    "state": "failed",
+    "rows": [
+      {
+        "label": "Your logo and colors are saved",
+        "badge": {
+          "text": "Not built",
+          "tone": "danger"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "label": "Try again",
+        "style": "primary",
+        "kind": "retry"
+      }
+    ]
+  },
+  "fallback_text": "Client Portal\nYour logo and colors are saved: Not built"
+}

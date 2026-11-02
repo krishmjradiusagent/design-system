@@ -1,0 +1,51 @@
+{
+  "v": 3,
+  "assetGroups": {
+    "Other": {
+      "files": {},
+      "name": "Other",
+      "order": []
+    },
+    "agent-profile": {
+      "files": {},
+      "name": "agent-profile",
+      "order": []
+    },
+    "fonts": {
+      "files": {},
+      "name": "fonts",
+      "order": []
+    },
+    "notes": {
+      "files": {},
+      "name": "notes",
+      "order": []
+    }
+  },
+  "blobs": {},
+  "createdOnFiles": {
+    "at": "2026-10-13T03:50:11.340Z",
+    "v": 1
+  },
+  "docs": {
+    "readme": "project/README.md",
+    "sections": []
+  },
+  "groups": [
+    "agent-profile",
+    "Other",
+    "fonts",
+    "notes"
+  ],
+  "layout": "files",
+  "libraries": [],
+  "namespace": "RadiusUI",
+  "sections": {},
+  "title": "Radius UI Design System",
+  "lastChange": {
+    "at": "2026-11-02T17:00:00Z",
+    "by": "KJ",
+    "via": "Claude (Cowork)",
+    "note": "Header-row layout (KJ rule) on client_note_card, offer_card, message_draft_card: tile + caption (+ chevron when the card is a tap) in one row; title and text full width below. Same rule as Radius Mobile."
+  }
+}

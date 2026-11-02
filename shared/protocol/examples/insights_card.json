@@ -1,0 +1,36 @@
+{
+  "type": "insights_card",
+  "tool_name": "client_insights",
+  "v": 1,
+  "data": {
+    "title": "Client Activity Insights",
+    "stats": [
+      {
+        "label": "Active clients",
+        "value": "24",
+        "tone": "info"
+      },
+      {
+        "label": "Hot prospects",
+        "value": "8",
+        "tone": "danger"
+      },
+      {
+        "label": "Need follow-up",
+        "value": "5",
+        "tone": "warning"
+      }
+    ],
+    "list_title": "Hot prospects",
+    "items": [
+      {
+        "client_id": "77120",
+        "initials": "SJ",
+        "title": "Sarah Johnson",
+        "time": "2h",
+        "subtitle": "Austin · Wants a showing this weekend"
+      }
+    ]
+  },
+  "fallback_text": "Client Activity Insights\nActive clients: 24\nHot prospects: 8\nNeed follow-up: 5\nHot prospects\nSarah Johnson · Austin · Wants a showing this weekend · 2h"
+}

@@ -1,0 +1,15 @@
+<!-- @dsCard group="Overlays" height=300 -->
+<div class="rds" style="padding:24px;background:var(--background);min-height:100%;box-sizing:border-box">
+<div style="display:flex;gap:24px;align-items:flex-start">
+ <div data-rds-root data-rds-floating style="position:relative" data-open>
+  <button class="rds-btn rds-btn--outline" data-rds-trigger aria-expanded="true"><i data-icon="clock"></i> Schedule</button>
+  <div class="rds-popover rds-floating" role="dialog" aria-label="Schedule send" style="width:280px;display:block">
+   <div style="display:flex;flex-direction:column;gap:12px"><div class="ui-body-strong">Send later</div>
+    <div class="rds-field"><label class="rds-label rds-label--muted" for="pd">Date</label><input id="pd" class="rds-input rds-input--sm" value="Sat, Nov 14"></div>
+    <div class="rds-field"><label class="rds-label rds-label--muted" for="pt">Time</label><input id="pt" class="rds-input rds-input--sm" value="9:00 AM"></div>
+    <button class="rds-btn rds-btn--primary rds-btn--sm">Schedule</button></div>
+  </div>
+ </div>
+</div>
+</div>
+<script>window.RadiusUI && RadiusUI.init(document.body);</script>

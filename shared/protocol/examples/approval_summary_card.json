@@ -1,0 +1,69 @@
+{
+  "type": "approval_summary_card",
+  "tool_name": "prepare_launch",
+  "v": 1,
+  "data": {
+    "id": "launch_01",
+    "state": "draft",
+    "title": "Campaign Launch Summary",
+    "badge": {
+      "text": "Awaiting approval",
+      "tone": "warning"
+    },
+    "rows": [
+      {
+        "icon": "megaphone",
+        "tone": "warning",
+        "label": "Campaign",
+        "value": "Buyer Engagement"
+      },
+      {
+        "icon": "users",
+        "tone": "info",
+        "label": "Audience",
+        "value": "Active buyer segment"
+      },
+      {
+        "icon": "target",
+        "tone": "danger",
+        "label": "Goals",
+        "value": "Collect criteria + book showings"
+      },
+      {
+        "icon": "chat",
+        "tone": "success",
+        "label": "Channels",
+        "chips": [
+          {
+            "text": "Email",
+            "tone": "info"
+          },
+          {
+            "text": "Text",
+            "tone": "success"
+          }
+        ]
+      },
+      {
+        "icon": "list",
+        "tone": "neutral",
+        "label": "Sequence",
+        "value": "4 touchpoints · 14 days"
+      },
+      {
+        "icon": "calendar",
+        "tone": "neutral",
+        "label": "Start",
+        "value": "After approval"
+      }
+    ],
+    "actions": [
+      {
+        "label": "Approve & Launch",
+        "style": "primary",
+        "kind": "approve"
+      }
+    ]
+  },
+  "fallback_text": "Campaign Launch Summary · Awaiting approval\nCampaign: Buyer Engagement\nAudience: Active buyer segment\nGoals: Collect criteria + book showings\nSequence: 4 touchpoints · 14 days\nStart: After approval"
+}

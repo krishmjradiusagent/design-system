@@ -1,0 +1,21 @@
+<!-- @dsCard group="Forms" height=300 -->
+<div class="rds" style="padding:24px;background:var(--background);min-height:100%;box-sizing:border-box">
+<div style="display:flex;gap:16px;align-items:flex-start">
+<div class="rds-field" style="width:240px"><span class="rds-label" id="sl1">Assistant</span>
+ <div class="rds-select" data-rds-root data-rds-floating>
+  <button class="rds-select__trigger" data-rds-trigger aria-haspopup="listbox" aria-labelledby="sl1" data-placeholder><span class="rds-select__value">Choose an assistant</span><i data-icon="chevron-down"></i></button>
+  <div class="rds-menu rds-floating" role="listbox" style="width:100%">
+   <button class="rds-menu__item" role="option">Marketing Design <span class="rds-menu__check"><i data-icon="check"></i></span></button>
+   <button class="rds-menu__item" role="option">CRM <span class="rds-menu__check"><i data-icon="check"></i></span></button>
+   <button class="rds-menu__item" role="option">Campaign <span class="rds-menu__check"><i data-icon="check"></i></span></button>
+   <div class="rds-menu__sep"></div>
+   <button class="rds-menu__item" role="option" aria-disabled="true">Compliance (coming soon)</button>
+  </div></div></div>
+<div class="rds-field" style="width:240px"><span class="rds-label">Open state</span>
+ <div class="rds-select" data-open>
+  <button class="rds-select__trigger"><span class="rds-select__value">CRM</span><i data-icon="chevron-down"></i></button>
+  <div class="rds-menu rds-floating" role="listbox" style="width:100%"><div class="rds-menu__label">Assistants</div><button class="rds-menu__item" role="option">Marketing Design <span class="rds-menu__check"><i data-icon="check"></i></span></button><button class="rds-menu__item" role="option" aria-selected="true">CRM <span class="rds-menu__check"><i data-icon="check"></i></span></button><button class="rds-menu__item" role="option">Campaign <span class="rds-menu__check"><i data-icon="check"></i></span></button></div>
+ </div></div>
+</div>
+</div>
+<script>window.RadiusUI && RadiusUI.init(document.body);</script>

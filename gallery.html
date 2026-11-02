@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radius Components</title>
+<style>
+  :root { --bg:#f5f7f6; --card:#fff; --ink:#0e2b30; --muted:#4a5e61; --line:#dce8e4; --accent:#0b7a4d; --tint:#e2f5ea; --warn:#9a3412; --warn-bg:#fdf1e1; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#121414; --card:#1b1e1e; --ink:#fff; --muted:#c6cecc; --line:#343a39; --accent:#3ddc97; --tint:#173b41; --warn:#fdba74; --warn-bg:#3a2a14; color-scheme: dark; } }
+  :root[data-theme="dark"] { --bg:#121414; --card:#1b1e1e; --ink:#fff; --muted:#c6cecc; --line:#343a39; --accent:#3ddc97; --tint:#173b41; --warn:#fdba74; --warn-bg:#3a2a14; color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.45 "Mona Sans", -apple-system, system-ui, sans-serif; }
+  @font-face { font-family: "Mona Sans"; src: url("web/fonts/MonaSans-VF.ttf"); font-weight: 200 900; }
+  header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--card); border-bottom: 1px solid var(--line); padding: 12px 16px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  h1 { font-size: 16px; margin: 0 12px 0 0; font-weight: 650; }
+  nav { display: flex; gap: 4px; flex-wrap: wrap; }
+  nav button, .btn { font: inherit; border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 999px; padding: 6px 12px; cursor: pointer; min-height: 32px; }
+  nav button[aria-current="true"] { background: var(--ink); color: var(--card); border-color: var(--ink); }
+  .btn--primary { background: var(--ink); color: var(--card); border-color: var(--ink); }
+  input[type=search], select, textarea, input[type=text], input[type=password] { font: inherit; color: var(--ink); background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; }
+  input[type=search] { min-width: 220px; flex: 1; max-width: 360px; }
+  main { padding: 16px; max-width: 1480px; margin: 0 auto; }
+  .count { color: var(--muted); }
+  h2 { font-size: 15px; margin: 24px 0 10px; font-weight: 650; }
+  .grid--cards { grid-template-columns: 1fr !important; }
+  .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 640px), 1fr)); }
+  .tile { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+  .tile__h { padding: 10px 14px; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; border-bottom: 1px solid var(--line); }
+  .tile__h b { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
+  .tile__h span { color: var(--muted); font-size: 12px; }
+  .tag { font-size: 11px; padding: 1px 8px; border-radius: 999px; background: var(--tint); color: var(--accent); }
+  .tag--warn { background: var(--warn-bg); color: var(--warn); }
+  .pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); }
+  .pair > div { min-width: 0; border-right: 1px solid var(--line); }
+  .pair > div:last-child { border-right: 0; }
+  .lab { font-size: 11px; color: var(--muted); padding: 6px 12px 0; text-transform: uppercase; letter-spacing: .06em; }
+  .frame { width: 100%; border: 0; display: block; background: #fff; }
+  .ph { height: 240px; display: grid; place-items: center; color: var(--muted); font-size: 12px; }
+  .note { color: var(--muted); padding: 14px; }
+  .open { margin-left: auto; color: var(--accent); font-size: 12px; text-decoration: none; }
+  @media (max-width: 900px) { .pair { grid-template-columns: 1fr; } .pair > div { border-right: 0; border-bottom: 1px solid var(--line); } }
+  /* builder */
+  .b-grid { display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 1fr); gap: 16px; }
+  @media (max-width: 1000px) { .b-grid { grid-template-columns: 1fr; } }
+  .panel { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .panel label { font-size: 12px; color: var(--muted); display: flex; flex-direction: column; gap: 4px; }
+  textarea { width: 100%; min-height: 320px; font: 12px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; resize: vertical; }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .msg { font-size: 12px; color: var(--muted); }
+  .msg--warn { color: var(--warn); }
+  details { border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; }
+  summary { cursor: pointer; font-weight: 600; }
+  .files pre { max-height: 220px; overflow: auto; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px; font: 11px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; white-space: pre-wrap; word-break: break-all; margin: 4px 0 10px; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+  .muted { color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Radius Components</h1>
+  <nav id="tabs">
+    <button data-tab="cards" aria-current="true">Mel cards · 54</button>
+    <button data-tab="web">Web components</button>
+    <button data-tab="mobile">Mobile components</button>
+    <button data-tab="builder">Builder</button>
+  </nav>
+  <input id="q" type="search" placeholder="Search name, group, text">
+  <span id="count" class="count"></span>
+</header>
+<main id="main"></main>
+
+<script src="gallery/data.js"></script>
+<script src="gallery/builder.js"></script>
+<script>
+(function () {
+  'use strict';
+  var G = window.RADIUS_GALLERY, B = window.RadiusBuilder;
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var main = $('#main');
+  var state = { tab: 'cards', q: '' };
+  try { var saved = JSON.parse(localStorage.getItem('rg-state') || '{}'); if (saved.tab) state.tab = saved.tab; } catch (e) {}
+  var byName = { web: {}, mobile: {} };
+  G.web.forEach(function (c) { byName.web[c.name] = c; });
+  G.mobile.forEach(function (c) { byName.mobile[c.name] = c; });
+
+  // ---------- render one preview into an iframe (lazy)
+  var PH_LOCAL = 'vendor/phosphor/';
+  function srcdoc(ds, html) {
+    html = html.split('https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css').join(PH_LOCAL + 'regular.css')
+               .split('https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css').join(PH_LOCAL + 'fill.css');
+    var css = ds === 'web'
+      ? '<link rel="stylesheet" href="web/tokens.css"><link rel="stylesheet" href="web/components/bundle.css"><script src="web/components/bundle.js"><\/script>'
+      : '<link rel="stylesheet" href="mobile/components/bundle.css"><link rel="stylesheet" href="' + PH_LOCAL + 'regular.css"><link rel="stylesheet" href="' + PH_LOCAL + 'fill.css">';
+    var base = '<base href="' + new URL('.', location.href).href + '">';
+    if (/<head[^>]*>/i.test(html)) return html.replace(/<head[^>]*>/i, function (m) { return m + base + css; });
+    return '<!doctype html><html><head><meta charset="utf-8">' + base + css + '<style>html,body{margin:0}</style></head><body>' + html + '</body></html>';
+  }
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { mount(e.target); io.unobserve(e.target); } });
+  }, { rootMargin: '600px' }) : null;
+  function slot(ds, comp) {
+    var d = document.createElement('div');
+    d.className = 'ph'; d.textContent = 'Loading ' + comp.name + '…';
+    d._ds = ds; d._c = comp; d.style.height = Math.min(comp.height || 360, 900) + 'px';
+    if (io) io.observe(d); else setTimeout(function () { mount(d); });
+    return d;
+  }
+  function mount(ph) {
+    var f = document.createElement('iframe');
+    f.className = 'frame'; f.title = ph._ds + ' ' + ph._c.name; f.loading = 'lazy';
+    f.style.height = ph.style.height;
+    f.srcdoc = srcdoc(ph._ds, ph._c.html);
+    f.onload = function () { setTimeout(function () { try {
+      var d = f.contentDocument, els = d.body.querySelectorAll('*'), bottom = 0, n = Math.min(els.length, 3000);
+      for (var i = 0; i < n; i++) { var r = els[i].getBoundingClientRect(); if (r.height && r.bottom > bottom) bottom = r.bottom; }
+      if (bottom > 40) f.style.height = Math.min(Math.ceil(bottom) + 24, 2400) + 'px';
+    } catch (e) {} }, 150); };
+    ph.replaceWith(f);
+  }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function match(txt) { return !state.q || txt.toLowerCase().indexOf(state.q) >= 0; }
+
+  // ---------- tabs
+  function cards() {
+    var n = 0, groups = {};
+    G.cards.forEach(function (c) { (groups[c.group] = groups[c.group] || []).push(c); });
+    Object.keys(groups).forEach(function (g) {
+      var list = groups[g].filter(function (c) { return match(c.type + ' ' + c.what + ' ' + g); });
+      if (!list.length) return;
+      var h2 = document.createElement('h2'); h2.textContent = g; main.appendChild(h2);
+      var grid = document.createElement('div'); grid.className = 'grid grid--cards'; main.appendChild(grid);
+      list.forEach(function (c) {
+        n++;
+        var t = document.createElement('section'); t.className = 'tile';
+        var tag = c.source === 'superseded' ? '<span class="tag tag--warn">superseded</span>' : '<span class="tag">' + esc(c.source) + '</span>';
+        t.innerHTML = '<div class="tile__h"><b>' + esc(c.type) + '</b>' + tag + '<span>' + esc(c.what) + '</span><a class="open" href="#" data-ex="' + esc(c.type) + '">Open in builder</a></div>';
+        if (c.source === 'superseded') {
+          t.insertAdjacentHTML('beforeend', '<div class="note">Not built on purpose. The app emits <code>reminder_card</code> (kind <code>' + (c.type === 'meeting_card' ? 'meeting' : c.type === 'property_visit_card' ? 'showing' : 'reminder') + '</code>) instead.</div>');
+        } else {
+          var pair = document.createElement('div'); pair.className = 'pair';
+          ['web', 'mobile'].forEach(function (ds) {
+            var col = document.createElement('div');
+            col.innerHTML = '<div class="lab">' + (ds === 'web' ? 'Web · Radius UI' : 'Mobile · light + dark') + '</div>';
+            var comp = byName[ds][c.type];
+            col.appendChild(comp ? slot(ds, comp) : Object.assign(document.createElement('div'), { className: 'note', textContent: 'Missing on ' + ds }));
+            pair.appendChild(col);
+          });
+          t.appendChild(pair);
+        }
+        grid.appendChild(t);
+      });
+    });
+    return n;
+  }
+  function list(ds) {
+    var cardSet = {}; G.cards.forEach(function (c) { cardSet[c.type] = 1; });
+    var items = G[ds].filter(function (c) { return match(c.name + ' ' + c.group + ' ' + c.subtitle + ' ' + c.summary); });
+    items.sort(function (a, b) { return (cardSet[b.name] || 0) - (cardSet[a.name] || 0) || a.group.localeCompare(b.group) || a.name.localeCompare(b.name); });
+    var groups = {}; items.forEach(function (c) { var g = cardSet[c.name] ? 'Mel chat cards' : c.group; (groups[g] = groups[g] || []).push(c); });
+    Object.keys(groups).forEach(function (g) {
+      var h2 = document.createElement('h2'); h2.textContent = g + ' · ' + groups[g].length; main.appendChild(h2);
+      var grid = document.createElement('div'); grid.className = 'grid'; main.appendChild(grid);
+      groups[g].forEach(function (c) {
+        var t = document.createElement('section'); t.className = 'tile';
+        t.innerHTML = '<div class="tile__h"><b>' + esc(c.name) + '</b>' + (c.proposal ? '<span class="tag tag--warn">proposal</span>' : '') + '<span>' + esc(c.subtitle || c.summary) + '</span><a class="open" href="#" data-open="' + ds + '|' + esc(c.name) + '">Open</a></div>';
+        t.appendChild(slot(ds, c));
+        grid.appendChild(t);
+      });
+    });
+    return items.length;
+  }
+
+  // ---------- builder
+  function builder(prefill) {
+    var types = Object.keys(G.examples);
+    main.innerHTML = '<div class="b-grid"><div class="panel">' +
+      '<p class="muted" style="margin:0">Paste a Mel card payload (or pick an example). The builder lays it out with existing Radius parts only, on web and mobile, light and dark. Download or copy the files and send them to the design owner for approval. Everything it makes is marked <b>proposal</b>.</p>' +
+      '<label>Start from an example<select id="b-ex"><option value="">Blank</option>' + types.map(function (t) { return '<option>' + t + '</option>'; }).join('') + '</select></label>' +
+      '<label>Component name (JSON type)<input id="b-name" type="text" placeholder="e.g. open_house_card"></label>' +
+      '<label>Payload JSON<textarea id="b-json" spellcheck="false"></textarea></label>' +
+      '<div class="row"><button class="btn btn--primary" id="b-run">Build</button><button class="btn" id="b-dl-web">Download web files</button><button class="btn" id="b-dl-mob">Download mobile files</button></div>' +
+      '<div id="b-msg" class="msg"></div>' +
+      '<details><summary>AI mode (optional)</summary><p class="msg">Asks Claude to lay out the card with the same rules and class list. Your key stays in this browser. Works when you open this page from the repo; a hosted page may block the request. Output is checked for unknown classes.</p>' +
+      '<label>Anthropic API key<input id="b-key" type="password" autocomplete="off" placeholder="sk-ant-…"></label>' +
+      '<label>Model<input id="b-model" type="text" value="claude-sonnet-4-5"></label>' +
+      '<button class="btn" id="b-ai">Build with AI</button></details>' +
+      '<details><summary>Developers: same thing from the command line</summary><p class="msg"><code>node tools/new-component.mjs --name open_house_card --payload payload.json</code><br>Writes <code>web/components/&lt;name&gt;/</code> and <code>mobile/components/&lt;name&gt;/</code> (preview.html + README.md), then rebuilds the gallery. Add <code>--ai</code> with <code>ANTHROPIC_API_KEY</code> set to use AI mode.</p></details>' +
+      '</div><div class="panel" id="b-out"><p class="muted" style="margin:0">Preview shows here.</p></div></div>';
+    var ex = $('#b-ex'), name = $('#b-name'), json = $('#b-json'), msg = $('#b-msg'), out = $('#b-out');
+    try { $('#b-key').value = sessionStorage.getItem('rg-key') || ''; } catch (e) {}
+    var last = null;
+    function load(t) {
+      if (!t) { json.value = JSON.stringify({ type: 'new_card', v: 1, data: { id: 'new_01', state: 'draft', title: 'Title', subtitle: 'Subtitle', rows: [{ label: 'Label', value: 'Value' }], actions: [{ label: 'Approve', style: 'primary', kind: 'approve' }] }, fallback_text: 'Title' }, null, 2); name.value = 'new_card'; return; }
+      json.value = JSON.stringify(G.examples[t], null, 2); name.value = t;
+    }
+    function show(res, aiNote) {
+      last = res;
+      out.innerHTML = '<div class="row"><b>' + esc(res.name) + '</b><span class="tag tag--warn">proposal</span>' + (aiNote ? '<span class="tag">' + esc(aiNote) + '</span>' : '') + '</div>' +
+        (res.unmapped && res.unmapped.length ? '<div class="msg msg--warn">Not placed (decide or drop): ' + res.unmapped.map(function (k) { return '<code>data.' + esc(k) + '</code>'; }).join(', ') + '</div>' : '') +
+        '<div class="lab">Web · Radius UI</div><div id="o-web"></div><div class="lab">Mobile · light + dark</div><div id="o-mob"></div>' +
+        '<details class="files"><summary>Files (copy into the repo)</summary>' +
+        [['web', 'preview.html'], ['web', 'README.md'], ['mobile', 'preview.html'], ['mobile', 'README.md']].map(function (f, i) {
+          return '<div class="row" style="margin-top:8px"><code>' + f[0] + '/components/' + esc(res.name) + '/' + f[1] + '</code><button class="btn" data-copy="' + i + '">Copy</button></div><pre id="f' + i + '">' + esc(res[f[0]][f[1]]) + '</pre>';
+        }).join('') + '</details>';
+      out.querySelectorAll('[data-copy]').forEach(function (b) {
+        b.onclick = function () {
+          var pre = $('#f' + b.dataset.copy);
+          var done = function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1500); };
+          var sel = function () { var r = document.createRange(); r.selectNodeContents(pre); var s2 = getSelection(); s2.removeAllRanges(); s2.addRange(r); b.textContent = 'Selected, press Cmd/Ctrl+C'; };
+          try { navigator.clipboard.writeText(pre.textContent).then(done, sel); } catch (e) { sel(); }
+        };
+      });
+      $('#o-web').appendChild(slot('web', { name: res.name, height: 360, html: res.web['preview.html'] }));
+      $('#o-mob').appendChild(slot('mobile', { name: res.name, height: 420, html: res.mobile['preview.html'] }));
+    }
+    function parse() { try { return JSON.parse(json.value); } catch (e) { msg.className = 'msg msg--warn'; msg.textContent = 'JSON error: ' + e.message; return null; } }
+    function nm(p) { return (name.value || (p && p.type) || 'new_card').trim().toLowerCase().replace(/[^a-z0-9_]+/g, '_'); }
+    $('#b-run').onclick = function () {
+      var p = parse(); if (!p) return;
+      var exists = byName.web[nm(p)] || byName.mobile[nm(p)];
+      msg.className = 'msg' + (exists ? ' msg--warn' : '');
+      msg.textContent = exists ? '"' + nm(p) + '" already exists in the design system. Use the existing component; this build is only a comparison.' : 'Built from existing parts. Review, then download.';
+      show(B.generate(p, { name: nm(p) }));
+    };
+    function dl(files, folder) {
+      Object.keys(files).forEach(function (f, i) {
+        setTimeout(function () {
+          var a = document.createElement('a');
+          a.href = URL.createObjectURL(new Blob([files[f]], { type: 'text/plain' }));
+          a.download = folder + '__' + f; document.body.appendChild(a); a.click(); a.remove();
+        }, i * 300);
+      });
+      msg.className = 'msg'; msg.textContent = 'Downloaded. Put them in ' + folder.replace('__', '/') + '/ (file names start with the folder).';
+    }
+    $('#b-dl-web').onclick = function () { if (!last) $('#b-run').click(); if (last) dl(last.web, 'web__components__' + last.name); };
+    $('#b-dl-mob').onclick = function () { if (!last) $('#b-run').click(); if (last) dl(last.mobile, 'mobile__components__' + last.name); };
+    $('#b-ai').onclick = function () {
+      var p = parse(); if (!p) return;
+      var key = $('#b-key').value.trim(); if (!key) { msg.className = 'msg msg--warn'; msg.textContent = 'Add an API key, or use Build (no AI).'; return; }
+      try { sessionStorage.setItem('rg-key', key); } catch (e) {}
+      var n = nm(p), base = B.generate(p, { name: n });
+      msg.className = 'msg'; msg.textContent = 'Asking Claude…';
+      fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', 'x-api-key': key, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
+        body: JSON.stringify({ model: $('#b-model').value.trim(), max_tokens: 4000, messages: [{ role: 'user', content: B.aiPrompt(p, n, G.classes) }] })
+      }).then(function (r) { return r.json(); }).then(function (j) {
+        var txt = (j.content || []).map(function (c) { return c.text || ''; }).join('');
+        var m = /\{[\s\S]*\}/.exec(txt); if (!m) throw new Error(j.error ? j.error.message : 'No JSON in reply');
+        var o = JSON.parse(m[0]);
+        var badW = B.unknownClasses(o.web_html, G.classes.web), badM = B.unknownClasses(o.mobile_html, G.classes.mobile);
+        base.web['preview.html'] = '<!-- @dsCard group="Mel chat cards" height=420 subtitle="Proposal · AI" -->\n' + o.web_html + '\n';
+        base.mobile['preview.html'] = base.mobile['preview.html'].split(B.mobileCard(base.parts)).join(o.mobile_html);
+        base.web['README.md'] += '\n## AI notes\n\n' + (o.notes || '') + '\n';
+        base.mobile['README.md'] += '\n## AI notes\n\n' + (o.notes || '') + '\n';
+        show(base, 'AI');
+        msg.className = (badW.length || badM.length) ? 'msg msg--warn' : 'msg';
+        msg.textContent = (badW.length || badM.length) ? 'Unknown classes (not in the design system): ' + badW.concat(badM).join(', ') + '. Fix before approval.' : 'AI build uses only design-system classes.';
+      }).catch(function (e) { msg.className = 'msg msg--warn'; msg.textContent = 'AI request failed: ' + e.message + '. Use Build (no AI), or run the CLI.'; });
+    };
+    ex.onchange = function () { load(ex.value); $('#b-run').click(); };
+    if (prefill) { ex.value = prefill; load(prefill); $('#b-run').click(); } else load('');
+    return 0;
+  }
+
+  // ---------- router
+  function render(prefill) {
+    main.innerHTML = '';
+    document.querySelectorAll('#tabs button').forEach(function (b) { b.setAttribute('aria-current', String(b.dataset.tab === state.tab)); });
+    $('#q').style.display = state.tab === 'builder' ? 'none' : '';
+    var n = state.tab === 'cards' ? cards() : state.tab === 'web' ? list('web') : state.tab === 'mobile' ? list('mobile') : builder(prefill);
+    $('#count').textContent = state.tab === 'builder' ? '' : n + ' shown';
+    try { localStorage.setItem('rg-state', JSON.stringify({ tab: state.tab })); } catch (e) {}
+  }
+  $('#tabs').onclick = function (e) { var b = e.target.closest('button'); if (b) { state.tab = b.dataset.tab; render(); } };
+  var timer; $('#q').oninput = function (e) { clearTimeout(timer); timer = setTimeout(function () { state.q = e.target.value.trim().toLowerCase(); render(); }, 150); };
+  main.addEventListener('click', function (e) {
+    var o = e.target.closest('[data-open]'); if (!o) return;
+    e.preventDefault(); var k = o.dataset.open.split('|'), c = byName[k[0]][k[1]];
+    var w = window.open(URL.createObjectURL(new Blob([srcdoc(k[0], c.html)], { type: 'text/html' })), '_blank', 'noopener');
+    if (!w) { $('#count').textContent = 'Popups are blocked here. Open gallery.html from the repo to open single components.'; }
+  });
+  main.addEventListener('click', function (e) { var a = e.target.closest('[data-ex]'); if (a) { e.preventDefault(); state.tab = 'builder'; render(a.dataset.ex); scrollTo(0, 0); } });
+  render();
+})();
+</script>
+</body>
+</html>

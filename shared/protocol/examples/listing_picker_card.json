@@ -1,0 +1,36 @@
+{
+  "type": "listing_picker_card",
+  "tool_name": "find_listings",
+  "v": 1,
+  "data": {
+    "title": "Your listings",
+    "items": [
+      {
+        "listing_id": "L-1001",
+        "title": "123 Ocean View Drive",
+        "subtitle": "San Francisco · $2.45M · 4 bd · 3 ba",
+        "badge": {
+          "text": "Active",
+          "tone": "success"
+        },
+        "prompt": "Create a marketing package for 123 Ocean View Drive"
+      },
+      {
+        "listing_id": "L-1002",
+        "title": "456 Palm Avenue",
+        "subtitle": "Los Angeles · $1.88M · 3 bd · 2 ba",
+        "badge": {
+          "text": "Pending",
+          "tone": "warning"
+        },
+        "prompt": "Create a marketing package for 456 Palm Avenue"
+      }
+    ],
+    "more": {
+      "label": "Show all 12 listings",
+      "kind": "fill_prompt",
+      "value": "Show all 12 listings"
+    }
+  },
+  "fallback_text": "Your listings\n123 Ocean View Drive · San Francisco · $2.45M · 4 bd · 3 ba · Active\n456 Palm Avenue · Los Angeles · $1.88M · 3 bd · 2 ba · Pending"
+}

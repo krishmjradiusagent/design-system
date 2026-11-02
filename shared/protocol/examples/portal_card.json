@@ -1,0 +1,22 @@
+{
+  "type": "portal_card",
+  "tool_name": "build_portal",
+  "v": 1,
+  "data": {
+    "url": "https://yourname.radiusagent.com",
+    "badge": {
+      "text": "Live",
+      "tone": "success"
+    },
+    "title": "Your Client Portal Is Ready",
+    "actions": [
+      {
+        "label": "Open",
+        "style": "secondary",
+        "kind": "open_url",
+        "value": "https://yourname.radiusagent.com"
+      }
+    ]
+  },
+  "fallback_text": "Your Client Portal Is Ready\nhttps://yourname.radiusagent.com"
+}

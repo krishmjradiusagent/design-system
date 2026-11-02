@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radius component preview</title>
+<style>
+  body { margin: 0; font: 14px/1.4 -apple-system, system-ui, sans-serif; background: #f5f6f6; color: #0e2b30; }
+  header { display: flex; gap: 8px; align-items: center; padding: 10px 16px; background: #fff; border-bottom: 1px solid #dce8e4; position: sticky; top: 0; z-index: 2; }
+  select, input { font: inherit; padding: 6px 8px; border: 1px solid #dce8e4; border-radius: 8px; }
+  #msg { color: #9a3412; }
+  iframe { display: block; width: 100%; border: 0; background: #fff; }
+</style>
+</head>
+<body>
+<header>
+  <select id="ds"><option value="web">web (Radius UI)</option><option value="mobile">mobile (Radius Mobile)</option></select>
+  <input id="c" list="names" placeholder="component, e.g. stats_card" size="28">
+  <datalist id="names"></datalist>
+  <span id="msg"></span>
+</header>
+<iframe id="f" title="Component preview"></iframe>
+<script>
+/* Serve the repo root with any static server, then open:
+   tools/preview.html?ds=web&c=stats_card   or   tools/preview.html?ds=mobile&c=stats_card
+   Web previews get tokens.css + bundle.css + bundle.js. Mobile previews get bundle.css (tokens included). */
+const q = new URLSearchParams(location.search);
+const $ = id => document.getElementById(id);
+$('ds').value = q.get('ds') || 'web';
+$('c').value = q.get('c') || 'stats_card';
+async function load() {
+  const ds = $('ds').value, c = $('c').value.trim();
+  history.replaceState(null, '', `?ds=${ds}&c=${encodeURIComponent(c)}`);
+  const base = new URL(`../${ds}/`, location.href).href;
+  const r = await fetch(`${base}components/${c}/preview.html`);
+  if (!r.ok) { $('msg').textContent = `Not found: ${ds}/components/${c}/preview.html`; return; }
+  $('msg').textContent = '';
+  let html = await r.text();
+  const hm = /height=(\d+)/.exec(html);
+  const css = ds === 'web'
+    ? `<link rel="stylesheet" href="${base}tokens.css"><link rel="stylesheet" href="${base}components/bundle.css"><script src="${base}components/bundle.js"><\/script>`
+    : `<link rel="stylesheet" href="${base}components/bundle.css">`;
+  if (/<head[^>]*>/i.test(html)) html = html.replace(/<head[^>]*>/i, m => `${m}<base href="${base}components/${c}/">${css}`);
+  else html = `<!doctype html><html><head><meta charset="utf-8"><base href="${base}components/${c}/">${css}<style>html,body{margin:0}</style></head><body>${html}</body></html>`;
+  const f = $('f');
+  f.style.height = (hm ? +hm[1] + 40 : 600) + 'px';
+  f.srcdoc = html;
+  f.onload = () => { try { f.style.height = Math.max(f.contentDocument.body.scrollHeight + 24, 200) + 'px'; } catch (e) {} };
+}
+async function names() {
+  // Fill the datalist from the catalog doc (cheap, no build step).
+  try {
+    const t = await (await fetch('../docs/radius-cards/05-card-catalog.md')).text();
+    const set = [...new Set([...t.matchAll(/components\/([A-Za-z_]+)\//g)].map(m => m[1]))];
+    $('names').innerHTML = set.map(n => `<option value="${n}">`).join('');
+  } catch (e) {}
+}
+$('ds').onchange = load; $('c').onchange = load;
+names(); load();
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!-- @dsCard group="Mel chat core" height=520 width=1000 -->
+<div class="rds" style="padding:24px;background:var(--background);min-height:100%;box-sizing:border-box">
+<div data-rds-chat style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;align-items:start">
+ <div><p class="ui-caption rds-muted" style="margin:0 0 8px">style: standard · more · destructive</p>
+  <div class="rds-prompt-rows"><button type="button" class="rds-prompt-row"><i data-icon="prompt-glyph" class="rds-prompt-row__glyph"></i><span class="rds-prompt-row__text">Find Jordan Lee</span></button><button type="button" class="rds-prompt-row"><i data-icon="prompt-glyph" class="rds-prompt-row__glyph"></i><span class="rds-prompt-row__text">Draft a message to Jordan</span></button><button type="button" class="rds-prompt-row"><i data-icon="prompt-glyph" class="rds-prompt-row__glyph"></i><span class="rds-prompt-row__text">Show my top buyers this month</span></button><button type="button" class="rds-prompt-row rds-prompt-row--more"><i data-icon="prompt-glyph" class="rds-prompt-row__glyph"></i><span class="rds-prompt-row__text">Show more ideas</span></button><button type="button" class="rds-prompt-row rds-prompt-row--destructive"><i data-icon="prompt-glyph" class="rds-prompt-row__glyph"></i><span class="rds-prompt-row__text">Stop the campaign</span></button></div>
+ </div>
+ <div style="display:flex;flex-direction:column;gap:16px">
+  <p class="ui-caption rds-muted" style="margin:0 0 8px">Tap a row: it fills the composer, it never sends</p>
+  <div class="rds-prompt" style="max-width:560px"><textarea class="rds-prompt__field" rows="1" placeholder="Ask Mel anything" aria-label="Message Mel"></textarea><div class="rds-prompt__toolbar"><div class="rds-prompt__tools"><button class="rds-iconbtn" aria-label="Attach"><i data-icon="plus"></i></button></div><div class="rds-prompt__right"><button class="rds-prompt__submit" data-auto disabled aria-label="Send"><i data-icon="arrow-up"></i></button></div></div></div>
+  <p class="ui-caption rds-muted" style="margin:0 0 8px">Chips (under a page card, web)</p>
+  <div class="rds-follow-chips"><button type="button" class="rds-follow-chip">Only October</button><button type="button" class="rds-follow-chip">Who is closest to goal?</button></div>
+ </div>
+</div>
+</div>
+<script>window.RadiusUI && RadiusUI.init(document.body);</script>

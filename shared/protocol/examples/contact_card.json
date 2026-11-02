@@ -1,0 +1,36 @@
+{
+  "type": "contact_card",
+  "tool_name": "find_client",
+  "v": 1,
+  "data": {
+    "id": "client_88231",
+    "name": "Jordan Lee",
+    "initials": "JL",
+    "subtitle": "Buyer · Active",
+    "rows": [
+      {
+        "label": "Phone",
+        "value": "(555) 014 2290"
+      },
+      {
+        "label": "Email",
+        "value": "jordan.lee@gmail.com"
+      },
+      {
+        "label": "Looking for",
+        "value": "3 beds · Oak Street · under $900K"
+      },
+      {
+        "label": "Last contact",
+        "value": "12 days ago"
+      }
+    ],
+    "link": {
+      "title": "Open Jordan in CRM",
+      "subtitle": "Notes, activity and family",
+      "kind": "deep_link",
+      "value": "radius://crm/client/88231"
+    }
+  },
+  "fallback_text": "Jordan Lee · Buyer · Active\nPhone: (555) 014 2290\nEmail: jordan.lee@gmail.com\nLooking for: 3 beds · Oak Street · under $900K\nLast contact: 12 days ago"
+}

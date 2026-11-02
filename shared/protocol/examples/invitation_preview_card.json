@@ -1,0 +1,36 @@
+{
+  "type": "invitation_preview_card",
+  "tool_name": "draft_invites",
+  "v": 1,
+  "data": {
+    "id": "invite_01",
+    "state": "draft",
+    "title": "Client Invitation",
+    "subtitle": "312 clients · Email and text",
+    "badge": {
+      "text": "Draft",
+      "tone": "neutral"
+    },
+    "sections": [
+      {
+        "channel": "email",
+        "title": "Email Invitation",
+        "subject": "Your personalized home search experience is ready",
+        "body": "Hi Sarah, …"
+      },
+      {
+        "channel": "text",
+        "title": "Text Invitation",
+        "body": "Hi Sarah, your agent set up a home search app for you: …"
+      }
+    ],
+    "actions": [
+      {
+        "label": "Approve & Send Invites",
+        "style": "primary",
+        "kind": "approve"
+      }
+    ]
+  },
+  "fallback_text": "Client Invitation · 312 clients · Email and text\nEmail: Your personalized home search experience is ready\nText: Hi Sarah, your agent set up a home search app for you: …"
+}

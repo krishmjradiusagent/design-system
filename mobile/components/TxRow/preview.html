@@ -1,0 +1,141 @@
+<!-- @dsCard group="Lists and rows" height=560 subtitle="c-tx-row: static rendition of the review page (light and dark, quiet)" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<style>
+  /* Matrix chrome only */
+  .mx { display: grid; grid-template-columns: repeat(2, minmax(0, 380px)); gap: var(--space-6); justify-content: center; }
+  .mx > div { background: var(--bg-page); border-radius: var(--radius-sheet); padding: var(--space-4); position: relative; }
+</style>
+<style>body{margin:0;background:var(--bg-page);}</style></head>
+<body class="rm-root">
+<!-- REVIEW MATRIX: c-tx-row × dark/light × quiet/accented/colorful. -->
+<div class="mx" id="mx"></div>
+<template id="specimen">
+<div class="rm-stack rm-stack--tight"><p class="t-caption t-secondary">Swipe a row left · tap amount to switch price/earnings · tap status to change</p><div class="rm-on-page"><div class="c-tx-row" data-id="maple">
+  <div class="c-tx-row__actions" aria-label="Transaction actions">
+    <button type="button" class="rm-btn rm-btn--secondary" data-action="edit" aria-label="Edit transaction"><i class="ph ph-pencil-simple"></i></button>
+    <button type="button" class="rm-btn rm-btn--destructive" data-action="delete" aria-label="Delete transaction"><i class="ph ph-trash"></i></button>
+    <button type="button" class="rm-btn rm-btn--secondary" data-action="privacy" aria-label="Make private"><i class="ph ph-lock-simple"></i></button>
+  </div>
+  <div class="c-tx-row__main" role="group" aria-label="118 Maple St, Fremont, In escrow">
+    <img class="c-tx-row__photo" src="../_assets/transactions/118-maple-st.jpg" alt="" onerror="this.outerHTML='<span class=&quot;c-tx-row__photo&quot;><i class=&quot;ph ph-house-line&quot;></i></span>'">
+    <button type="button" class="c-tx-row__open" aria-haspopup="dialog"><span class="c-tx-row__address t-row-title">118 Maple St, CA</span><span class="c-tx-row__meta t-caption">Closes Sep 12</span></button>
+    <span class="c-tx-row__summary"><button type="button" class="c-tx-row__amount t-money-sm" data-price="$1,150,000" data-earnings="$23,000" aria-label="Sale price $1,150,000. Tap to switch">$1,150,000</button><span class="c-status-control" data-c-status="In escrow"></span></span>
+  </div>
+</div>
+<div class="c-tx-row" data-id="oak">
+  <div class="c-tx-row__actions" aria-label="Transaction actions">
+    <button type="button" class="rm-btn rm-btn--secondary" data-action="edit" aria-label="Edit transaction"><i class="ph ph-pencil-simple"></i></button>
+    <button type="button" class="rm-btn rm-btn--destructive" data-action="delete" aria-label="Delete transaction"><i class="ph ph-trash"></i></button>
+    <button type="button" class="rm-btn rm-btn--secondary" data-action="privacy" aria-label="Make private"><i class="ph ph-lock-simple"></i></button>
+  </div>
+  <div class="c-tx-row__main" role="group" aria-label="42 Oak Ln, Fremont, Inspection due">
+    <img class="c-tx-row__photo" src="../_assets/transactions/42-oak-ln.jpg" alt="" onerror="this.outerHTML='<span class=&quot;c-tx-row__photo&quot;><i class=&quot;ph ph-house-line&quot;></i></span>'">
+    <button type="button" class="c-tx-row__open" aria-haspopup="dialog"><span class="c-tx-row__address t-row-title">42 Oak Ln, CA</span><span class="c-tx-row__meta t-caption">Closes Sep 15</span></button>
+    <span class="c-tx-row__summary"><button type="button" class="c-tx-row__amount t-money-sm" data-price="$980,000" data-earnings="$19,600" aria-label="Sale price $980,000. Tap to switch">$980,000</button><span class="c-status-control" data-c-status="Inspection due"></span></span>
+  </div>
+</div>
+<div class="c-tx-row" data-id="alma">
+  <div class="c-tx-row__actions" aria-label="Transaction actions">
+    <button type="button" class="rm-btn rm-btn--secondary" data-action="edit" aria-label="Edit transaction"><i class="ph ph-pencil-simple"></i></button>
+    <button type="button" class="rm-btn rm-btn--destructive" data-action="delete" aria-label="Delete transaction"><i class="ph ph-trash"></i></button>
+    <button type="button" class="rm-btn rm-btn--secondary" data-action="privacy" aria-label="Make private"><i class="ph ph-lock-simple"></i></button>
+  </div>
+  <div class="c-tx-row__main" role="group" aria-label="640 Alma St, Palo Alto, Closing soon">
+    <span class="c-tx-row__photo" aria-hidden="true"><i class="ph ph-house-line"></i></span>
+    <button type="button" class="c-tx-row__open" aria-haspopup="dialog"><span class="c-tx-row__address t-row-title">640 Alma St, CA</span><span class="c-tx-row__meta t-caption">Private · Closes Sep 20</span></button>
+    <span class="c-tx-row__summary"><button type="button" class="c-tx-row__amount t-money-sm" data-price="$1,275,000" data-earnings="$25,500" aria-label="Sale price $1,275,000. Tap to switch">$1,275,000</button><span class="c-status-control" data-c-status="Closing soon"></span></span>
+  </div>
+</div></div></div>
+</template>
+<script>
+/* Demo data — real Radius content from transaction.html / index.html. For previews only. */
+window.RM_DEMO = {
+  transactions: [
+    { id: 'maple', address: '118 Maple St', city: 'Fremont, CA', price: 1150000, commission: 23000, role: 'Buyer', status: 'In escrow', close: 'Sep 12', acceptance: 'Aug 14', client: 'Sarah Reynolds', clientPhoto: '../_assets/clients/av1.jpg', photo: '../_assets/transactions/118-maple-st.jpg', complete: 1, owner: 'me',
+      coAgents: [{ name: 'Jordan Lee' }, { name: 'Maya Chen' }], collaborators: [{ name: 'Dillon Dennis' }, { name: 'Sandeep TC' }, { name: 'James Cooper' }, { name: 'Harry Cooper' }],
+      photos: ['https://images.pexels.com/photos/7587880/pexels-photo-7587880.jpeg?auto=compress&cs=tinysrgb&w=1200', 'https://images.pexels.com/photos/9976121/pexels-photo-9976121.jpeg?auto=compress&cs=tinysrgb&w=1200', 'https://images.pexels.com/photos/10610731/pexels-photo-10610731.jpeg?auto=compress&cs=tinysrgb&w=1200'] },
+    { id: 'oak', address: '42 Oak Ln', city: 'Fremont, CA', price: 980000, commission: 19600, role: 'Seller', status: 'Inspection due', close: 'Sep 15', acceptance: 'Aug 18', client: 'Daniel Ruiz', clientPhoto: '../_assets/clients/av2.jpg', photo: '../_assets/transactions/42-oak-ln.jpg', complete: 2, owner: 'me',
+      coAgents: [{ name: 'Jordan Lee' }], collaborators: [{ name: 'Dillon Dennis' }, { name: 'Sandeep TC' }] },
+    { id: 'alma', address: '640 Alma St', city: 'Palo Alto, CA', price: 1275000, commission: 25500, role: 'Seller', status: 'In escrow', close: 'Sep 20', acceptance: 'Aug 22', client: 'Priya Nair', clientPhoto: '../_assets/clients/av3.jpg', complete: 3, owner: 'jordan', private: true,
+      coAgents: [{ name: 'Maya Chen' }, { name: 'Jordan Lee' }, { name: 'Sam Patel' }], collaborators: [{ name: 'James Cooper' }] },
+    { id: 'miramar', address: '275 Miramar Ave', city: 'San Francisco, CA', price: 1480000, commission: 29600, role: 'Buyer', status: 'Closed', close: 'Sep 2', acceptance: 'Jul 30', client: 'Leo Grant', complete: 6, owner: 'me', coAgents: [], collaborators: [] }
+  ]
+};
+
+</script>
+<script>
+const t = document.getElementById('specimen').innerHTML;
+const cells = [];
+for (const theme of ['light', 'dark']) for (const exp of ['quiet'])
+  cells.push(`<div data-theme="${theme}" data-expression="${exp}"><p class="t-caption t-tertiary" style="margin-bottom:var(--space-3)">${theme} · ${exp}</p>${t}</div>`);
+document.getElementById('mx').innerHTML = cells.join('');
+</script>
+<script>
+/* c-status-control — markup: <span class="c-status-control" data-c-status="In escrow"></span>
+   Optional data-c-statuses='[...]' (detail page uses 7: Active listing, Offer accepted, In escrow, Inspection due, Closing soon, Closed, Cancelled).
+   Optional data-c-tone-target="closest selector" → also sets the matching tone-* class on that ancestor (status card tint).
+   Emits 'c-status-change' {status} on the root. Keyboard: Enter/Space opens, ↑↓ moves, Esc closes. */
+(function () {
+  const STATUSES = ['Offer accepted', 'In escrow', 'Inspection due', 'Closing soon', 'Closed'];
+  const TONE = s => s === 'Inspection due' ? 'tone-warning' : s === 'Cancelled' ? 'tone-danger' : ['Closed', 'Active listing'].includes(s) ? 'tone-success' : 'tone-info';
+  let uid = 0;
+  function render(root) {
+    const list = root.dataset.cStatuses ? JSON.parse(root.dataset.cStatuses) : STATUSES;
+    const status = root.dataset.cStatus || list[0];
+    const id = root.dataset.cMenuId || ('c-status-menu-' + (++uid));
+    root.dataset.cMenuId = id;
+    const tgt = root.dataset.cToneTarget && root.closest(root.dataset.cToneTarget);
+    if (tgt) { tgt.classList.remove('tone-info', 'tone-warning', 'tone-success', 'tone-danger'); tgt.classList.add(TONE(status)); }
+    root.innerHTML = `<button type="button" class="c-status-control__trigger" aria-haspopup="menu" aria-expanded="false" aria-controls="${id}" aria-label="Status: ${status}. Change status">
+      <span class="c-status-control__pill ${TONE(status)} t-chip"><span class="c-status-control__dot"></span>${status}</span><i class="ph ph-caret-down" aria-hidden="true"></i></button>
+      <div class="c-status-control__menu" id="${id}" role="menu" aria-label="Change status" popover="manual">
+      ${list.map(s => `<button type="button" role="menuitemradio" class="c-status-control__option t-body" aria-checked="${s === status}" data-value="${s}">${s}<i class="ph ph-check" aria-hidden="true"></i></button>`).join('')}</div>`;
+    const trig = root.querySelector('.c-status-control__trigger'), menu = root.querySelector('[role="menu"]');
+    const items = [...menu.querySelectorAll('[role="menuitemradio"]')];
+    const isOpen = () => menu.matches(':popover-open');
+    const place = () => { const r = trig.getBoundingClientRect(), mw = Math.max(200, menu.offsetWidth), mh = menu.offsetHeight, below = r.bottom + 8 + mh < innerHeight; menu.style.left = Math.max(8, Math.min(innerWidth - mw - 8, r.right - mw)) + 'px'; menu.style.top = (below ? r.bottom + 8 : r.top - 8 - mh) + 'px'; };
+    const close = (focus) => { if (isOpen()) menu.hidePopover(); trig.setAttribute('aria-expanded', 'false'); if (focus) trig.focus(); };
+    const open = () => { document.querySelectorAll('.c-status-control__menu:popover-open').forEach(m => m.hidePopover()); menu.showPopover(); place(); trig.setAttribute('aria-expanded', 'true'); (items.find(i => i.getAttribute('aria-checked') === 'true') || items[0]).focus(); };
+    trig.addEventListener('click', e => { e.stopPropagation(); isOpen() ? close(true) : open(); });
+    menu.addEventListener('click', e => { e.stopPropagation(); const b = e.target.closest('[data-value]'); if (!b) return; root.dataset.cStatus = b.dataset.value; render(root); root.dispatchEvent(new CustomEvent('c-status-change', { bubbles: true, detail: { status: b.dataset.value } })); root.querySelector('.c-status-control__trigger').focus(); });
+    menu.addEventListener('keydown', e => { const i = items.indexOf(document.activeElement); if (e.key === 'ArrowDown') { e.preventDefault(); items[(i + 1) % items.length].focus(); } if (e.key === 'ArrowUp') { e.preventDefault(); items[(i - 1 + items.length) % items.length].focus(); } if (e.key === 'Escape') { e.preventDefault(); close(true); } });
+  }
+  document.addEventListener('click', () => document.querySelectorAll('.c-status-control__menu:popover-open').forEach(m => { m.hidePopover(); m.previousElementSibling.setAttribute('aria-expanded', 'false'); }));
+  addEventListener('scroll', () => document.querySelectorAll('.c-status-control__menu:popover-open').forEach(m => m.hidePopover()), true);
+  window.cStatusControl = { init: (scope = document) => scope.querySelectorAll('[data-c-status]').forEach(render), tone: TONE, statuses: STATUSES };
+  document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', () => window.cStatusControl.init()) : window.cStatusControl.init();
+})();
+
+</script>
+<script>
+/* c-tx-row — swipe + amount toggle. Markup: see c-tx-row.html. Needs c-status-control.js for the status pill.
+   Events: 'c-tx-open' {id}, 'c-tx-action' {id, action: edit|delete|privacy}, 'c-tx-amount-mode' {mode: price|earnings} */
+(function () {
+  let swipe = null, suppress = null;
+  const width = row => row.querySelector('.c-tx-row__actions').getBoundingClientRect().width + 8;
+  const reset = (except) => document.querySelectorAll('.c-tx-row.is-revealed').forEach(r => { if (r === except) return; r.classList.remove('is-revealed'); r.querySelector('.c-tx-row__main').style.transform = ''; r.querySelector('.c-tx-row__actions').inert = true; });
+  const reveal = row => { reset(row); row.classList.add('is-revealed'); row.querySelector('.c-tx-row__actions').inert = false; row.querySelector('.c-tx-row__main').style.transform = `translateX(-${width(row)}px)`; };
+  function bind(row) {
+    if (row.dataset.cBound) return; row.dataset.cBound = '1';
+    const main = row.querySelector('.c-tx-row__main'), actions = row.querySelector('.c-tx-row__actions');
+    actions.inert = true;
+    main.addEventListener('pointerdown', e => { if (!e.isPrimary || e.button !== 0 || e.target.closest('.c-tx-row__amount, .c-status-control')) return; swipe = { row, id: e.pointerId, x: e.clientX, y: e.clientY, h: false, start: row.classList.contains('is-revealed') ? -width(row) : 0, dx: 0 }; });
+    main.addEventListener('pointermove', e => { if (!swipe || swipe.row !== row || swipe.id !== e.pointerId) return; const dx = e.clientX - swipe.x, dy = e.clientY - swipe.y; if (!swipe.h) { if (Math.abs(dy) > 10 && Math.abs(dy) > Math.abs(dx)) { swipe = null; return; } if (Math.abs(dx) < 10) return; swipe.h = true; main.setPointerCapture(e.pointerId); } e.preventDefault(); swipe.dx = dx; main.style.transition = 'none'; main.style.transform = `translateX(${Math.max(-width(row), Math.min(0, swipe.start + dx))}px)`; }, { passive: false });
+    const finish = e => { if (!swipe || swipe.row !== row || swipe.id !== e.pointerId) return; const s = swipe; swipe = null; main.style.transition = ''; if (s.h) { suppress = main; setTimeout(() => { if (suppress === main) suppress = null; }, 400); (e.type !== 'pointercancel' && s.start + s.dx < -45) ? reveal(row) : reset(); } };
+    main.addEventListener('pointerup', finish); main.addEventListener('pointercancel', finish);
+    main.addEventListener('keydown', e => { if (e.target.closest('.c-tx-row__amount, .c-status-control')) return; if (e.key === 'ArrowLeft') { e.preventDefault(); reveal(row); actions.querySelector('button').focus(); } if (e.key === 'Escape' || e.key === 'ArrowRight') { e.preventDefault(); reset(); } });
+    row.querySelector('.c-tx-row__open').addEventListener('click', e => { if (suppress === main) { e.preventDefault(); return; } if (row.classList.contains('is-revealed')) { reset(); return; } row.dispatchEvent(new CustomEvent('c-tx-open', { bubbles: true, detail: { id: row.dataset.id } })); });
+    actions.addEventListener('click', e => { const b = e.target.closest('[data-action]'); if (!b || b.disabled) return; row.dispatchEvent(new CustomEvent('c-tx-action', { bubbles: true, detail: { id: row.dataset.id, action: b.dataset.action } })); reset(); });
+    const amt = row.querySelector('.c-tx-row__amount');
+    amt && amt.addEventListener('click', e => { e.stopPropagation(); const mode = document.documentElement.dataset.cTxAmount === 'earnings' ? 'price' : 'earnings'; document.documentElement.dataset.cTxAmount = mode; document.querySelectorAll('.c-tx-row__amount').forEach(a => { a.textContent = a.dataset[mode]; a.setAttribute('aria-label', (mode === 'price' ? 'Sale price ' : 'Estimated earnings ') + a.dataset[mode] + '. Tap to switch'); }); row.dispatchEvent(new CustomEvent('c-tx-amount-mode', { bubbles: true, detail: { mode } })); });
+  }
+  document.addEventListener('pointerdown', e => { if (!e.target.closest('.c-tx-row')) reset(); });
+  window.cTxRow = { init: (scope = document) => scope.querySelectorAll('.c-tx-row').forEach(bind), reset };
+  document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', () => window.cTxRow.init()) : window.cTxRow.init();
+})();
+
+</script>
+
+</body></html>

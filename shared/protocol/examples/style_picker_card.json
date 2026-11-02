@@ -1,0 +1,24 @@
+{
+  "type": "style_picker_card",
+  "v": 1,
+  "data": {
+    "multi": true,
+    "options": [
+      {
+        "id": "min",
+        "title": "Modern Minimal",
+        "subtitle": "Clean and contemporary",
+        "image_url": "https://…/min.jpg",
+        "aspect": "4:5"
+      },
+      {
+        "id": "lux",
+        "title": "Luxury Editorial",
+        "subtitle": "Premium and sophisticated",
+        "image_url": "https://…/lux.jpg",
+        "aspect": "4:5"
+      }
+    ]
+  },
+  "fallback_text": "Modern Minimal: Clean and contemporary\nLuxury Editorial: Premium and sophisticated"
+}

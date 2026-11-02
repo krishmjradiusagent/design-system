@@ -1,0 +1,40 @@
+{
+  "type": "change_card",
+  "tool_name": "update_client",
+  "v": 1,
+  "data": {
+    "id": "change_01",
+    "state": "draft",
+    "title": "Jordan Lee · preferences",
+    "changes": [
+      {
+        "label": "Beds",
+        "from": "2",
+        "to": "3"
+      },
+      {
+        "label": "Area",
+        "from": "Oak Street",
+        "to": null
+      },
+      {
+        "label": "Budget",
+        "from": "Under $900K",
+        "to": null
+      }
+    ],
+    "actions": [
+      {
+        "label": "Save it",
+        "style": "primary",
+        "kind": "approve"
+      },
+      {
+        "label": "Undo",
+        "style": "link",
+        "kind": "undo"
+      }
+    ]
+  },
+  "fallback_text": "Jordan Lee · preferences\nBeds: 2 → 3\nArea: no change\nBudget: no change"
+}

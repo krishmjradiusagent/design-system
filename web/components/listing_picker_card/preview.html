@@ -1,0 +1,15 @@
+<!-- @dsCard group="Mel chat cards" height=560 width=640 -->
+<div class="rds" style="padding:24px;background:var(--background);min-height:100%;box-sizing:border-box">
+<div data-rds-chat style="display:flex;flex-direction:column;gap:16px">
+<section class="rds-qcard" aria-label="Pick a listing">
+ <p class="rds-qcard__title">Pick a listing</p><p class="rds-qcard__help">Pick one</p>
+ <div class="rds-qcard__opts" role="group"><button type="button" class="rds-qcard__opt" aria-pressed="false" data-prompt="Create a marketing package for 123 Ocean View Drive"><span class="rds-qcard__key">A</span><span class="rds-qcard__t"><b>123 Ocean View Drive</b><span>San Francisco · $2.45M · 4 bd · 3 ba</span></span><span class="rds-qcard__tag" data-tone="ok">Active</span></button><button type="button" class="rds-qcard__opt" aria-pressed="false" data-prompt="Create a marketing package for 456 Palm Avenue"><span class="rds-qcard__key">B</span><span class="rds-qcard__t"><b>456 Palm Avenue</b><span>Los Angeles · $1.88M · 3 bd · 2 ba</span></span><span class="rds-qcard__tag" data-tone="warn">Pending</span></button><button type="button" class="rds-qcard__opt" aria-pressed="false" data-prompt="Create a marketing package for 789 Hillcrest Lane"><span class="rds-qcard__key">C</span><span class="rds-qcard__t"><b>789 Hillcrest Lane</b><span>San Jose · $1.3M · 4 bd · 2.5 ba</span></span><span class="rds-qcard__tag" data-tone="info">Coming soon</span></button>
+  <button type="button" class="rds-qcard__opt" aria-pressed="false" data-prompt="Show all 12 listings"><span class="rds-qcard__key">D</span><span class="rds-qcard__t"><b>Show all 12 listings</b></span></button>
+  <button type="button" class="rds-qcard__opt rds-qcard__own" data-rds-own aria-pressed="false"><span class="rds-qcard__key">E</span><span class="rds-qcard__t"><b>Type your own</b></span></button>
+  <div class="rds-qcard__field" hidden><span class="rds-qcard__key">E</span><input type="text" placeholder="Type your own" aria-label="Type your own answer"></div>
+ </div>
+</section>
+<div class="rds-prompt" style="max-width:560px"><textarea class="rds-prompt__field" rows="1" placeholder="Ask Mel anything" aria-label="Message Mel"></textarea><div class="rds-prompt__toolbar"><div class="rds-prompt__tools"><button class="rds-iconbtn" aria-label="Attach"><i data-icon="plus"></i></button></div><div class="rds-prompt__right"><button class="rds-prompt__submit" data-auto disabled aria-label="Send"><i data-icon="arrow-up"></i></button></div></div></div>
+</div>
+</div>
+<script>window.RadiusUI && RadiusUI.init(document.body);</script>

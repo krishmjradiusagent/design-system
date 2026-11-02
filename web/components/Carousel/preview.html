@@ -1,0 +1,14 @@
+<!-- @dsCard group="Layout" height=300 -->
+<div class="rds" style="padding:24px;background:var(--background);min-height:100%;box-sizing:border-box">
+<div class="rds-carousel" style="max-width:520px;margin:0 20px">
+ <div class="rds-carousel__viewport"><div class="rds-carousel__track">
+  <div class="rds-carousel__slide"><div class="rds-placeholder" style="height:200px">Slide 1 · Just listed</div></div>
+  <div class="rds-carousel__slide"><div class="rds-placeholder" style="height:200px;background:var(--gradient-sky)">Slide 2 · Open house</div></div>
+  <div class="rds-carousel__slide"><div class="rds-placeholder" style="height:200px">Slide 3 · Just sold</div></div>
+ </div></div>
+ <button class="rds-btn rds-btn--icon rds-btn--sm rds-carousel__nav rds-carousel__nav--prev" data-rds-slide="prev" aria-label="Previous"><i data-icon="chevron-left"></i></button>
+ <button class="rds-btn rds-btn--icon rds-btn--sm rds-carousel__nav rds-carousel__nav--next" data-rds-slide="next" aria-label="Next"><i data-icon="chevron-right"></i></button>
+ <div class="rds-carousel__dots"><button class="rds-carousel__dot" data-rds-slide="0" aria-label="Slide 1"></button><button class="rds-carousel__dot" data-rds-slide="1" aria-label="Slide 2"></button><button class="rds-carousel__dot" data-rds-slide="2" aria-label="Slide 3"></button></div>
+</div>
+</div>
+<script>window.RadiusUI && RadiusUI.init(document.body);</script>

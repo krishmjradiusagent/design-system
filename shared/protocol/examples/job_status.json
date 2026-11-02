@@ -1,0 +1,13 @@
+{
+  "type": "job_status",
+  "v": 1,
+  "data": {
+    "id": "job_01",
+    "state": "working",
+    "label": "Designing",
+    "done": 2,
+    "total": 6,
+    "unit": "ready"
+  },
+  "fallback_text": "Designing · 2 of 6 ready"
+}

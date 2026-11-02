@@ -1,0 +1,402 @@
+<!-- @dsCard group="Cards and summaries" height=560 subtitle="c-quick-view: static rendition of the review page (light and dark, quiet)" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+
+<style>body{margin:0;background:var(--bg-page);}</style></head>
+<body class="rm-root">
+<div class="rm-stage"><div class="rm-device"><div class="rm-device__viewport">
+<main class="rm-screen" aria-label="Transactions">
+  <div class="rm-statusbar t-caption"><span>9:41</span><span><i class="ph ph-cell-signal-full"></i> <i class="ph ph-battery-high"></i></span></div>
+  <header class="rm-screen__header"><h1 class="t-large-title rm-grow">Transactions</h1><button class="rm-btn rm-btn--glass" aria-label="Filter"><i class="ph ph-sliders-horizontal"></i></button></header>
+  <div class="rm-content">
+    <section class="rm-section rm-on-page">
+<div class="c-tx-row" data-id="maple">
+  <div class="c-tx-row__actions" aria-label="Transaction actions">
+    <button type="button" class="rm-btn rm-btn--secondary" data-action="edit" aria-label="Edit transaction"><i class="ph ph-pencil-simple"></i></button>
+    <button type="button" class="rm-btn rm-btn--destructive" data-action="delete" aria-label="Delete transaction"><i class="ph ph-trash"></i></button>
+    <button type="button" class="rm-btn rm-btn--secondary" data-action="privacy" aria-label="Make private"><i class="ph ph-lock-simple"></i></button>
+  </div>
+  <div class="c-tx-row__main" role="group" aria-label="118 Maple St, Fremont, In escrow">
+    <img class="c-tx-row__photo" src="../_assets/transactions/118-maple-st.jpg" alt="" onerror="this.outerHTML='<span class=&quot;c-tx-row__photo&quot;><i class=&quot;ph ph-house-line&quot;></i></span>'">
+    <button type="button" class="c-tx-row__open" aria-haspopup="dialog"><span class="c-tx-row__address t-row-title">118 Maple St, CA</span><span class="c-tx-row__meta t-caption">Closes Sep 12</span></button>
+    <span class="c-tx-row__summary"><button type="button" class="c-tx-row__amount t-money-sm" data-price="$1,150,000" data-earnings="$23,000" aria-label="Sale price $1,150,000. Tap to switch">$1,150,000</button><span class="c-status-control" data-c-status="In escrow"></span></span>
+  </div>
+</div>
+<div class="c-tx-row" data-id="oak">
+  <div class="c-tx-row__actions" aria-label="Transaction actions">
+    <button type="button" class="rm-btn rm-btn--secondary" data-action="edit" aria-label="Edit transaction"><i class="ph ph-pencil-simple"></i></button>
+    <button type="button" class="rm-btn rm-btn--destructive" data-action="delete" aria-label="Delete transaction"><i class="ph ph-trash"></i></button>
+    <button type="button" class="rm-btn rm-btn--secondary" data-action="privacy" aria-label="Make private"><i class="ph ph-lock-simple"></i></button>
+  </div>
+  <div class="c-tx-row__main" role="group" aria-label="42 Oak Ln, Fremont, Inspection due">
+    <img class="c-tx-row__photo" src="../_assets/transactions/42-oak-ln.jpg" alt="" onerror="this.outerHTML='<span class=&quot;c-tx-row__photo&quot;><i class=&quot;ph ph-house-line&quot;></i></span>'">
+    <button type="button" class="c-tx-row__open" aria-haspopup="dialog"><span class="c-tx-row__address t-row-title">42 Oak Ln, CA</span><span class="c-tx-row__meta t-caption">Closes Sep 15</span></button>
+    <span class="c-tx-row__summary"><button type="button" class="c-tx-row__amount t-money-sm" data-price="$980,000" data-earnings="$19,600" aria-label="Sale price $980,000. Tap to switch">$980,000</button><span class="c-status-control" data-c-status="Inspection due"></span></span>
+  </div>
+</div>
+<div class="c-tx-row" data-id="alma">
+  <div class="c-tx-row__actions" aria-label="Transaction actions">
+    <button type="button" class="rm-btn rm-btn--secondary" data-action="edit" aria-label="Edit transaction"><i class="ph ph-pencil-simple"></i></button>
+    <button type="button" class="rm-btn rm-btn--destructive" data-action="delete" aria-label="Delete transaction"><i class="ph ph-trash"></i></button>
+    <button type="button" class="rm-btn rm-btn--secondary" data-action="privacy" aria-label="Make private"><i class="ph ph-lock-simple"></i></button>
+  </div>
+  <div class="c-tx-row__main" role="group" aria-label="640 Alma St, Palo Alto, Closing soon">
+    <span class="c-tx-row__photo" aria-hidden="true"><i class="ph ph-house-line"></i></span>
+    <button type="button" class="c-tx-row__open" aria-haspopup="dialog"><span class="c-tx-row__address t-row-title">640 Alma St, CA</span><span class="c-tx-row__meta t-caption">Private · Closes Sep 20</span></button>
+    <span class="c-tx-row__summary"><button type="button" class="c-tx-row__amount t-money-sm" data-price="$1,275,000" data-earnings="$25,500" aria-label="Sale price $1,275,000. Tap to switch">$1,275,000</button><span class="c-status-control" data-c-status="Closing soon"></span></span>
+  </div>
+</div>
+    </section>
+  </div>
+</main>
+<div class="c-quick-view__scrim" hidden></div>
+<section class="rm-sheet c-quick-view" role="dialog" aria-modal="true" aria-labelledby="qv-title" hidden>
+  <div class="c-quick-view__grab"><div class="rm-sheet__grab"></div></div>
+  <header class="c-quick-view__head">
+    <div class="c-quick-view__title"><h2 id="qv-title" class="t-sheet-title" data-qv="title"></h2><span class="c-quick-view__sub t-caption" data-qv="sub"></span></div>
+    <button type="button" class="rm-btn rm-btn--glass" data-qv="close" aria-label="Close transaction quick view"><i class="ph ph-x"></i></button>
+  </header>
+  <div class="c-quick-view__body" data-qv="body"></div>
+  <footer class="c-quick-view__cta">
+    <div class="c-quick-view__menu" role="menu" aria-label="Transaction actions" data-qv="menu" hidden></div>
+    <button type="button" class="rm-btn rm-btn--primary t-body-strong" data-qv="view">View transaction</button>
+    <button type="button" class="rm-btn rm-btn--glass" data-qv="more" aria-label="More transaction actions" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-dots-three"></i></button>
+  </footer>
+</section>
+<div class="c-task-sheet__scrim" hidden></div>
+<section class="rm-sheet c-task-sheet" role="dialog" aria-modal="true" aria-labelledby="task-title" hidden>
+  <div style="padding-top:var(--space-sheet-head-top)"><div class="rm-sheet__grab"></div></div>
+  <header class="c-task-sheet__head"><div><h2 id="task-title" class="t-sheet-title">Add task</h2><span class="c-task-sheet__sub t-caption" data-c-sub></span></div><button type="button" class="rm-btn rm-btn--glass" data-c-close aria-label="Close"><i class="ph ph-x"></i></button></header>
+  <div class="c-task-sheet__body"><div class="c-field-group">
+    <div class="c-text-field"><label class="c-text-field__label t-caption" data-required for="tk-title">Title</label><input class="c-text-field__input t-body" id="tk-title" name="title" placeholder="Title" required></div>
+    <input type="hidden" name="transaction">
+    <div class="c-text-field" data-c-fixed-tx hidden><label class="c-text-field__label t-caption" for="tk-tx">Transaction</label><input class="c-text-field__input t-body" id="tk-tx" readonly></div>
+    <div data-c-pick-tx hidden><div class="c-dropdown" data-name="transaction" data-label="Transaction" data-placeholder="Search and select a transaction" data-searchable="Search transactions" data-c-dropdown='[["maple","118 Maple St, Fremont, CA"],["oak","42 Oak Ln, Fremont, CA"],["alma","640 Alma St, Palo Alto, CA"]]'></div></div>
+    <div class="c-dropdown" data-name="assignee" data-label="Assign to" data-value="krish" data-searchable="Search agents" data-c-dropdown='[["krish","Krish (me)"],["daniel","Daniel Ruiz"],["priya","Priya Nair"],["tom","Tom Okafor"],["maya","Maya Chen"],["jordan","Jordan Lee"]]'></div>
+    <div class="c-field-row">
+      <div class="c-text-field"><label class="c-text-field__label t-caption" data-required for="tk-due">Due date</label><input class="c-text-field__input t-body" id="tk-due" name="due" type="date" required></div>
+      <div class="c-dropdown" data-name="type" data-label="Type" data-placeholder="Select type" data-c-dropdown='[["Call","Call"],["Comment","Comment"],["Commission Approval","Commission Approval"],["Commission Breakdown","Commission Breakdown"],["Email","Email"],["Follow Up Call","Follow Up Call"],["Sign","Sign"]]'></div>
+    </div>
+  </div></div>
+  <footer class="c-task-sheet__foot"><button type="button" class="rm-btn rm-btn--secondary t-body-strong" data-c-close>Cancel</button><button type="button" class="rm-btn rm-btn--primary t-body-strong" data-c-add disabled>Add task</button></footer>
+</section>
+<section class="c-gallery" role="dialog" aria-modal="true" aria-labelledby="gal-title" hidden>
+  <header class="c-gallery__head"><button type="button" class="rm-btn rm-btn--glass" data-c-gallery-back aria-label="Back to quick view"><i class="ph ph-caret-left"></i></button><h2 id="gal-title" class="c-gallery__title t-sheet-title" data-c-gallery-title>Photos</h2><span></span></header>
+  <div class="c-gallery__body" data-c-gallery-body></div>
+</section>
+</div></div></div>
+
+<script>
+/* Demo data — real Radius content from transaction.html / index.html. For previews only. */
+window.RM_DEMO = {
+  transactions: [
+    { id: 'maple', address: '118 Maple St', city: 'Fremont, CA', price: 1150000, commission: 23000, role: 'Buyer', status: 'In escrow', close: 'Sep 12', acceptance: 'Aug 14', client: 'Sarah Reynolds', clientPhoto: '../_assets/clients/av1.jpg', photo: '../_assets/transactions/118-maple-st.jpg', complete: 1, owner: 'me',
+      coAgents: [{ name: 'Jordan Lee' }, { name: 'Maya Chen' }], collaborators: [{ name: 'Dillon Dennis' }, { name: 'Sandeep TC' }, { name: 'James Cooper' }, { name: 'Harry Cooper' }],
+      photos: ['https://images.pexels.com/photos/7587880/pexels-photo-7587880.jpeg?auto=compress&cs=tinysrgb&w=1200', 'https://images.pexels.com/photos/9976121/pexels-photo-9976121.jpeg?auto=compress&cs=tinysrgb&w=1200', 'https://images.pexels.com/photos/10610731/pexels-photo-10610731.jpeg?auto=compress&cs=tinysrgb&w=1200'] },
+    { id: 'oak', address: '42 Oak Ln', city: 'Fremont, CA', price: 980000, commission: 19600, role: 'Seller', status: 'Inspection due', close: 'Sep 15', acceptance: 'Aug 18', client: 'Daniel Ruiz', clientPhoto: '../_assets/clients/av2.jpg', photo: '../_assets/transactions/42-oak-ln.jpg', complete: 2, owner: 'me',
+      coAgents: [{ name: 'Jordan Lee' }], collaborators: [{ name: 'Dillon Dennis' }, { name: 'Sandeep TC' }] },
+    { id: 'alma', address: '640 Alma St', city: 'Palo Alto, CA', price: 1275000, commission: 25500, role: 'Seller', status: 'In escrow', close: 'Sep 20', acceptance: 'Aug 22', client: 'Priya Nair', clientPhoto: '../_assets/clients/av3.jpg', complete: 3, owner: 'jordan', private: true,
+      coAgents: [{ name: 'Maya Chen' }, { name: 'Jordan Lee' }, { name: 'Sam Patel' }], collaborators: [{ name: 'James Cooper' }] },
+    { id: 'miramar', address: '275 Miramar Ave', city: 'San Francisco, CA', price: 1480000, commission: 29600, role: 'Buyer', status: 'Closed', close: 'Sep 2', acceptance: 'Jul 30', client: 'Leo Grant', complete: 6, owner: 'me', coAgents: [], collaborators: [] }
+  ]
+};
+
+</script>
+<script>
+/* c-status-control — markup: <span class="c-status-control" data-c-status="In escrow"></span>
+   Optional data-c-statuses='[...]' (detail page uses 7: Active listing, Offer accepted, In escrow, Inspection due, Closing soon, Closed, Cancelled).
+   Optional data-c-tone-target="closest selector" → also sets the matching tone-* class on that ancestor (status card tint).
+   Emits 'c-status-change' {status} on the root. Keyboard: Enter/Space opens, ↑↓ moves, Esc closes. */
+(function () {
+  const STATUSES = ['Offer accepted', 'In escrow', 'Inspection due', 'Closing soon', 'Closed'];
+  const TONE = s => s === 'Inspection due' ? 'tone-warning' : s === 'Cancelled' ? 'tone-danger' : ['Closed', 'Active listing'].includes(s) ? 'tone-success' : 'tone-info';
+  let uid = 0;
+  function render(root) {
+    const list = root.dataset.cStatuses ? JSON.parse(root.dataset.cStatuses) : STATUSES;
+    const status = root.dataset.cStatus || list[0];
+    const id = root.dataset.cMenuId || ('c-status-menu-' + (++uid));
+    root.dataset.cMenuId = id;
+    const tgt = root.dataset.cToneTarget && root.closest(root.dataset.cToneTarget);
+    if (tgt) { tgt.classList.remove('tone-info', 'tone-warning', 'tone-success', 'tone-danger'); tgt.classList.add(TONE(status)); }
+    root.innerHTML = `<button type="button" class="c-status-control__trigger" aria-haspopup="menu" aria-expanded="false" aria-controls="${id}" aria-label="Status: ${status}. Change status">
+      <span class="c-status-control__pill ${TONE(status)} t-chip"><span class="c-status-control__dot"></span>${status}</span><i class="ph ph-caret-down" aria-hidden="true"></i></button>
+      <div class="c-status-control__menu" id="${id}" role="menu" aria-label="Change status" popover="manual">
+      ${list.map(s => `<button type="button" role="menuitemradio" class="c-status-control__option t-body" aria-checked="${s === status}" data-value="${s}">${s}<i class="ph ph-check" aria-hidden="true"></i></button>`).join('')}</div>`;
+    const trig = root.querySelector('.c-status-control__trigger'), menu = root.querySelector('[role="menu"]');
+    const items = [...menu.querySelectorAll('[role="menuitemradio"]')];
+    const isOpen = () => menu.matches(':popover-open');
+    const place = () => { const r = trig.getBoundingClientRect(), mw = Math.max(200, menu.offsetWidth), mh = menu.offsetHeight, below = r.bottom + 8 + mh < innerHeight; menu.style.left = Math.max(8, Math.min(innerWidth - mw - 8, r.right - mw)) + 'px'; menu.style.top = (below ? r.bottom + 8 : r.top - 8 - mh) + 'px'; };
+    const close = (focus) => { if (isOpen()) menu.hidePopover(); trig.setAttribute('aria-expanded', 'false'); if (focus) trig.focus(); };
+    const open = () => { document.querySelectorAll('.c-status-control__menu:popover-open').forEach(m => m.hidePopover()); menu.showPopover(); place(); trig.setAttribute('aria-expanded', 'true'); (items.find(i => i.getAttribute('aria-checked') === 'true') || items[0]).focus(); };
+    trig.addEventListener('click', e => { e.stopPropagation(); isOpen() ? close(true) : open(); });
+    menu.addEventListener('click', e => { e.stopPropagation(); const b = e.target.closest('[data-value]'); if (!b) return; root.dataset.cStatus = b.dataset.value; render(root); root.dispatchEvent(new CustomEvent('c-status-change', { bubbles: true, detail: { status: b.dataset.value } })); root.querySelector('.c-status-control__trigger').focus(); });
+    menu.addEventListener('keydown', e => { const i = items.indexOf(document.activeElement); if (e.key === 'ArrowDown') { e.preventDefault(); items[(i + 1) % items.length].focus(); } if (e.key === 'ArrowUp') { e.preventDefault(); items[(i - 1 + items.length) % items.length].focus(); } if (e.key === 'Escape') { e.preventDefault(); close(true); } });
+  }
+  document.addEventListener('click', () => document.querySelectorAll('.c-status-control__menu:popover-open').forEach(m => { m.hidePopover(); m.previousElementSibling.setAttribute('aria-expanded', 'false'); }));
+  addEventListener('scroll', () => document.querySelectorAll('.c-status-control__menu:popover-open').forEach(m => m.hidePopover()), true);
+  window.cStatusControl = { init: (scope = document) => scope.querySelectorAll('[data-c-status]').forEach(render), tone: TONE, statuses: STATUSES };
+  document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', () => window.cStatusControl.init()) : window.cStatusControl.init();
+})();
+
+</script>
+<script>
+/* c-tracker-card — markup: <article class="c-tracker-card" data-c-tracker="2"></article> (number = steps complete, 0–6) */
+(function () {
+  const LABELS = ['Checklist compliant', 'Agent CDA approved', 'Team lead CDA approved', 'Group lead CDA approved', 'Commission received', 'Agent payment'];
+  let uid = 0;
+  function render(el) {
+    const done = Math.max(0, Math.min(LABELS.length, Number(el.dataset.cTracker) || 0)), id = 'c-tracker-' + (++uid);
+    const stage = done === LABELS.length ? 'Payment complete' : LABELS[done];
+    el.setAttribute('aria-label', 'Commission tracker');
+    el.innerHTML = `<div class="c-tracker-card__summary">
+      <svg class="c-tracker-card__ring" viewBox="0 0 40 40" role="progressbar" aria-label="Commission progress" aria-valuemin="0" aria-valuemax="${LABELS.length}" aria-valuenow="${done}">
+        <circle class="c-tracker-card__track" cx="20" cy="20" r="16"/><circle class="c-tracker-card__fill" cx="20" cy="20" r="16" pathLength="100" stroke-dasharray="${done / LABELS.length * 100} 100"/>
+        <text x="20" y="20" dy=".35em" text-anchor="middle">${done}/${LABELS.length}</text></svg>
+      <div class="c-tracker-card__copy"><span class="t-caption t-secondary">Commission tracker</span><span class="t-row-title">${stage}</span></div>
+      <button type="button" class="c-tracker-card__toggle" aria-label="View full tracker" aria-expanded="false" aria-controls="${id}"><i class="ph ph-caret-down" aria-hidden="true"></i></button></div>
+      <ol class="c-tracker-card__steps" id="${id}" hidden>${LABELS.map((l, i) => { const s = i < done ? 'done' : i === done ? 'current' : 'pending'; return `<li class="c-tracker-card__step" data-state="${s}"><span class="c-tracker-card__marker ${s === 'done' ? 'tone-success' : s === 'current' ? 'tone-info' : ''}" aria-hidden="true"><i class="ph ${s === 'done' ? 'ph-check' : s === 'current' ? 'ph-clock' : 'ph-circle'}"></i></span><span class="c-tracker-card__label t-meta">${l}</span><span class="rm-end t-caption t-tertiary">${s === 'done' ? 'Done' : s === 'current' ? 'In progress' : ''}</span></li>`; }).join('')}</ol>`;
+    const btn = el.querySelector('.c-tracker-card__toggle'), list = el.querySelector('ol');
+    btn.addEventListener('click', () => { const open = btn.getAttribute('aria-expanded') !== 'true'; btn.setAttribute('aria-expanded', open); list.hidden = !open; });
+  }
+  window.cTrackerCard = { init: (scope = document) => scope.querySelectorAll('[data-c-tracker]').forEach(render), labels: LABELS };
+  document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', () => window.cTrackerCard.init()) : window.cTrackerCard.init();
+})();
+
+</script>
+<script>
+/* c-tx-row — swipe + amount toggle. Markup: see c-tx-row.html. Needs c-status-control.js for the status pill.
+   Events: 'c-tx-open' {id}, 'c-tx-action' {id, action: edit|delete|privacy}, 'c-tx-amount-mode' {mode: price|earnings} */
+(function () {
+  let swipe = null, suppress = null;
+  const width = row => row.querySelector('.c-tx-row__actions').getBoundingClientRect().width + 8;
+  const reset = (except) => document.querySelectorAll('.c-tx-row.is-revealed').forEach(r => { if (r === except) return; r.classList.remove('is-revealed'); r.querySelector('.c-tx-row__main').style.transform = ''; r.querySelector('.c-tx-row__actions').inert = true; });
+  const reveal = row => { reset(row); row.classList.add('is-revealed'); row.querySelector('.c-tx-row__actions').inert = false; row.querySelector('.c-tx-row__main').style.transform = `translateX(-${width(row)}px)`; };
+  function bind(row) {
+    if (row.dataset.cBound) return; row.dataset.cBound = '1';
+    const main = row.querySelector('.c-tx-row__main'), actions = row.querySelector('.c-tx-row__actions');
+    actions.inert = true;
+    main.addEventListener('pointerdown', e => { if (!e.isPrimary || e.button !== 0 || e.target.closest('.c-tx-row__amount, .c-status-control')) return; swipe = { row, id: e.pointerId, x: e.clientX, y: e.clientY, h: false, start: row.classList.contains('is-revealed') ? -width(row) : 0, dx: 0 }; });
+    main.addEventListener('pointermove', e => { if (!swipe || swipe.row !== row || swipe.id !== e.pointerId) return; const dx = e.clientX - swipe.x, dy = e.clientY - swipe.y; if (!swipe.h) { if (Math.abs(dy) > 10 && Math.abs(dy) > Math.abs(dx)) { swipe = null; return; } if (Math.abs(dx) < 10) return; swipe.h = true; main.setPointerCapture(e.pointerId); } e.preventDefault(); swipe.dx = dx; main.style.transition = 'none'; main.style.transform = `translateX(${Math.max(-width(row), Math.min(0, swipe.start + dx))}px)`; }, { passive: false });
+    const finish = e => { if (!swipe || swipe.row !== row || swipe.id !== e.pointerId) return; const s = swipe; swipe = null; main.style.transition = ''; if (s.h) { suppress = main; setTimeout(() => { if (suppress === main) suppress = null; }, 400); (e.type !== 'pointercancel' && s.start + s.dx < -45) ? reveal(row) : reset(); } };
+    main.addEventListener('pointerup', finish); main.addEventListener('pointercancel', finish);
+    main.addEventListener('keydown', e => { if (e.target.closest('.c-tx-row__amount, .c-status-control')) return; if (e.key === 'ArrowLeft') { e.preventDefault(); reveal(row); actions.querySelector('button').focus(); } if (e.key === 'Escape' || e.key === 'ArrowRight') { e.preventDefault(); reset(); } });
+    row.querySelector('.c-tx-row__open').addEventListener('click', e => { if (suppress === main) { e.preventDefault(); return; } if (row.classList.contains('is-revealed')) { reset(); return; } row.dispatchEvent(new CustomEvent('c-tx-open', { bubbles: true, detail: { id: row.dataset.id } })); });
+    actions.addEventListener('click', e => { const b = e.target.closest('[data-action]'); if (!b || b.disabled) return; row.dispatchEvent(new CustomEvent('c-tx-action', { bubbles: true, detail: { id: row.dataset.id, action: b.dataset.action } })); reset(); });
+    const amt = row.querySelector('.c-tx-row__amount');
+    amt && amt.addEventListener('click', e => { e.stopPropagation(); const mode = document.documentElement.dataset.cTxAmount === 'earnings' ? 'price' : 'earnings'; document.documentElement.dataset.cTxAmount = mode; document.querySelectorAll('.c-tx-row__amount').forEach(a => { a.textContent = a.dataset[mode]; a.setAttribute('aria-label', (mode === 'price' ? 'Sale price ' : 'Estimated earnings ') + a.dataset[mode] + '. Tap to switch'); }); row.dispatchEvent(new CustomEvent('c-tx-amount-mode', { bubbles: true, detail: { mode } })); });
+  }
+  document.addEventListener('pointerdown', e => { if (!e.target.closest('.c-tx-row')) reset(); });
+  window.cTxRow = { init: (scope = document) => scope.querySelectorAll('.c-tx-row').forEach(bind), reset };
+  document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', () => window.cTxRow.init()) : window.cTxRow.init();
+})();
+
+</script>
+<script>
+/* c-menu — attach(trigger, menu, {align:'end'|'start', place:'below'|'above', matchWidth:bool, keepOpen:bool}). Menu element needs popover="manual" + class c-menu.
+   Handles: open/close, placement (flips if no room), ↑↓ focus, Esc, outside click, scroll close, aria-expanded. */
+(function () {
+  const openMenus = new Set();
+  function attach(trigger, menu, opts = {}) {
+    if (trigger.dataset.cMenuBound) return; trigger.dataset.cMenuBound = '1';
+    const items = () => [...menu.querySelectorAll('.c-menu__item:not([disabled]):not(.c-menu__item--static)')];
+    const isOpen = () => menu.matches(':popover-open');
+    const place = () => { if (opts.matchWidth) menu.style.minWidth = Math.max(200, trigger.getBoundingClientRect().width) + 'px'; const r = trigger.getBoundingClientRect(), mw = menu.offsetWidth, mh = menu.offsetHeight; const up = opts.place === 'above' ? r.top - 8 - mh > 0 : !(r.bottom + 8 + mh < innerHeight); menu.style.top = (up ? r.top - 8 - mh : r.bottom + 8) + 'px'; const left = opts.align === 'start' ? r.left : r.right - mw; menu.style.left = Math.max(8, Math.min(innerWidth - mw - 8, left)) + 'px'; };
+    const close = (focus) => { if (isOpen()) menu.hidePopover(); openMenus.delete(api); trigger.setAttribute('aria-expanded', 'false'); if (focus) trigger.focus(); };
+    const open = () => { openMenus.forEach(m => m.close()); menu.showPopover(); place(); openMenus.add(api); trigger.setAttribute('aria-expanded', 'true'); const sel = menu.querySelector('[aria-checked="true"]') || items()[0]; sel && sel.focus(); };
+    const api = { close, open, isOpen, trigger, menu };
+    trigger.setAttribute('aria-expanded', 'false');
+    trigger.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); isOpen() ? close(true) : open(); });
+    menu.addEventListener('click', e => { e.stopPropagation(); const it = e.target.closest('.c-menu__item'); if (it && !it.classList.contains('c-menu__item--static') && !opts.keepOpen) close(true); });
+    menu.addEventListener('keydown', e => { const list = items(), i = list.indexOf(document.activeElement); if (e.key === 'ArrowDown') { e.preventDefault(); list[(i + 1) % list.length]?.focus(); } if (e.key === 'ArrowUp') { e.preventDefault(); list[(i - 1 + list.length) % list.length]?.focus(); } if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); close(true); } });   // stop: Esc closes only the menu, not the sheet behind it
+    return api;
+  }
+  document.addEventListener('click', () => openMenus.forEach(m => m.close(false)));
+  addEventListener('scroll', () => openMenus.forEach(m => m.close(false)), true);
+  addEventListener('resize', () => openMenus.forEach(m => m.close(false)));
+  window.cMenu = { attach };
+})();
+
+</script>
+<script>
+/* c-dropdown — <div class="c-dropdown" data-c-dropdown='[["private","Only me"],["team","Share with team"]]' data-label="Access" data-value="private" data-placeholder="Choose access" data-name="access"></div>
+   Renders label, trigger (aria-haspopup=listbox), listbox options, hidden input[name]. Emits 'c-dropdown-change' {name, value, label}. Needs c-menu.js.
+   Searchable: add data-searchable="Search agents" → search box + 'No matches' inside the list (task pickers).
+   Variant: add class c-dropdown--inline for the gold inline text trigger (upload rows). data-disabled disables. */
+(function () {
+  let uid = 0;
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  function render(root) {
+    const opts = JSON.parse(root.dataset.cDropdown || '[]'), val = root.dataset.value || '', id = 'c-dd-' + (++uid), cur = opts.find(o => o[0] === val);
+    const label = root.dataset.label, inline = root.classList.contains('c-dropdown--inline');
+    root.innerHTML = `${label && !inline ? `<label class="c-dropdown__label t-caption" for="${id}-btn">${esc(label)}</label>` : ''}
+      <input type="hidden" name="${esc(root.dataset.name || id)}" value="${esc(val)}">
+      <button type="button" class="c-dropdown__trigger ${inline ? 't-meta' : 't-body'}" id="${id}-btn" aria-haspopup="listbox" aria-controls="${id}" ${inline && label ? `aria-label="${esc(label)}: ${esc(cur ? cur[1] : 'not set')}"` : ''} ${cur ? '' : 'data-empty'} ${root.dataset.disabled !== undefined ? 'disabled' : ''}><span>${esc(cur ? cur[1] : (root.dataset.placeholder || 'Choose'))}</span><i class="ph ph-caret-down" aria-hidden="true"></i></button>
+      <div class="c-menu" id="${id}" role="listbox" aria-labelledby="${id}-btn" popover="manual">${root.dataset.searchable !== undefined ? `<div class="c-dropdown__search"><i class="ph ph-magnifying-glass" aria-hidden="true"></i><input class="t-body" type="search" placeholder="${esc(root.dataset.searchable || 'Search')}" aria-label="${esc(root.dataset.searchable || 'Search')}"></div><p class="c-dropdown__empty t-meta" hidden>No matches</p>` : ''}${opts.map(([v, l]) => `<button type="button" role="option" class="c-menu__item t-body" aria-selected="${v === val}" data-value="${esc(v)}">${esc(l)}<i class="ph ph-check" aria-hidden="true"></i></button>`).join('')}</div>`;
+    const btn = root.querySelector('.c-dropdown__trigger'), menu = root.querySelector('.c-menu');
+    window.cMenu.attach(btn, menu, { align: 'start', matchWidth: !root.classList.contains('c-dropdown--inline') });
+    const q = menu.querySelector('.c-dropdown__search input');
+    if (q) {
+      q.addEventListener('click', e => e.stopPropagation());
+      q.addEventListener('input', () => { let n = 0; menu.querySelectorAll('[role="option"]').forEach(o => { o.hidden = !o.textContent.toLowerCase().includes(q.value.toLowerCase().trim()); if (!o.hidden) n++; }); menu.querySelector('.c-dropdown__empty').hidden = n > 0; });
+      q.addEventListener('keydown', e => { if (e.key === 'ArrowDown') { e.preventDefault(); menu.querySelector('[role="option"]:not([hidden])')?.focus(); } });
+      btn.addEventListener('click', () => setTimeout(() => { if (menu.matches(':popover-open')) { q.value = ''; q.dispatchEvent(new Event('input')); q.focus(); } }));
+    }
+    menu.addEventListener('click', e => { const b = e.target.closest('[data-value]'); if (!b) return; root.dataset.value = b.dataset.value; render(root); root.querySelector('.c-dropdown__trigger').focus(); root.dispatchEvent(new CustomEvent('c-dropdown-change', { bubbles: true, detail: { name: root.dataset.name, value: b.dataset.value, label: b.textContent.trim() } })); });
+  }
+  window.cDropdown = { init: (s = document) => s.querySelectorAll('[data-c-dropdown]').forEach(render) };
+  document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', () => window.cDropdown.init()) : window.cDropdown.init();
+})();
+
+</script>
+<script>
+/* c-task-sheet — cTaskSheet.open(sheet, {transaction:{id,label}|null, opener}). Validity: title + transaction + due + type → enables Add task.
+   Add task emits 'c-task-add' {title, transaction, assignee, due, type} and closes. Esc / scrim / Cancel / close. Needs c-dropdown.js + c-menu.js. */
+(function () {
+  const v = (s, n) => (s.querySelector(`[name="${n}"]`)?.value || '').trim();   // tolerant: pickers may render after open()
+  const val = s => ({ title: v(s, 'title'), transaction: v(s, 'transaction'), assignee: v(s, 'assignee'), due: v(s, 'due'), type: v(s, 'type') });
+  const check = s => { const v = val(s); s.querySelector('[data-c-add]').disabled = !(v.title && v.transaction && v.due && v.type); };
+  function bind(s) {
+    if (s.dataset.cBound) return; s.dataset.cBound = '1';
+    s.addEventListener('input', () => check(s)); s.addEventListener('c-dropdown-change', () => setTimeout(() => check(s)));
+    s.querySelectorAll('[data-c-close]').forEach(b => b.addEventListener('click', () => close(s)));
+    s.previousElementSibling?.classList.contains('c-task-sheet__scrim') && s.previousElementSibling.addEventListener('click', () => close(s));
+    s.addEventListener('keydown', e => { if (e.key === 'Escape' && !document.querySelector('.c-menu:popover-open')) close(s); });
+    s.querySelector('[data-c-add]').addEventListener('click', () => { s.dispatchEvent(new CustomEvent('c-task-add', { bubbles: true, detail: val(s) })); close(s); });
+  }
+  function open(s, o = {}) {
+    bind(s); s._opener = o.opener || document.activeElement;
+    const fixed = s.querySelector('[data-c-fixed-tx]'), pick = s.querySelector('[data-c-pick-tx]');
+    if (o.transaction) { fixed.hidden = false; pick.hidden = true; fixed.querySelector('input[readonly]').value = o.transaction.label; s.querySelector('[name="transaction"]').value = o.transaction.id; s.querySelector('[data-c-sub]').textContent = o.transaction.label; }
+    else { fixed.hidden = true; pick.hidden = false; s.querySelector('[data-c-sub]').textContent = 'Create a task for a transaction.'; }
+    const due = s.querySelector('[name="due"]'); due.min = new Date().toISOString().slice(0, 10); if (!due.value) due.value = due.min;
+    s.classList.toggle('c-task-sheet--page', s.parentElement.clientHeight < 640 || s.parentElement.clientWidth < 350);
+    s.hidden = false; const sc = s.previousElementSibling; if (sc?.classList.contains('c-task-sheet__scrim')) sc.hidden = false;
+    check(s); requestAnimationFrame(() => s.querySelector('[name="title"]').focus({ preventScroll: true }));
+  }
+  function close(s) { s.hidden = true; const sc = s.previousElementSibling; if (sc?.classList.contains('c-task-sheet__scrim')) sc.hidden = true; s._opener?.focus?.(); }
+  window.cTaskSheet = { open, close };
+})();
+
+</script>
+<script>
+/* c-gallery — cGallery.open(galleryEl, {title, photos:[url], index, opener}); back button / Esc closes and returns focus. Background gets inert while open. */
+(function () {
+  function open(g, o) {
+    g._opener = o.opener || document.activeElement;
+    g.querySelector('[data-c-gallery-title]').textContent = o.title || 'Photos';
+    const body = g.querySelector('[data-c-gallery-body]');
+    body.innerHTML = (o.photos || []).map((src, i) => `<img src="${src}" alt="${(o.title || 'Property')} photo ${i + 1}" loading="lazy">`).join('');
+    g.hidden = false; g._inert = [...g.parentElement.children].filter(el => el !== g && !el.inert); g._inert.forEach(el => el.inert = true);
+    requestAnimationFrame(() => { const t = body.children[o.index || 0]; if (t) body.scrollTop = t.offsetTop - body.offsetTop; g.querySelector('[data-c-gallery-back]').focus(); });
+    if (!g.dataset.cBound) { g.dataset.cBound = '1'; g.querySelector('[data-c-gallery-back]').addEventListener('click', () => close(g)); g.addEventListener('keydown', e => { if (e.key === 'Escape') close(g); }); }
+  }
+  function close(g) { g.hidden = true; (g._inert || []).forEach(el => el.inert = false); g._opener?.focus?.(); }
+  window.cGallery = { open, close };
+})();
+
+</script>
+<script>
+/* c-toast — cToast.show(container, message, {tone:'success'|'error'|'', placement:'top', action:'Undo', onAction, ms:4500}).
+   One toast per container; role=status (polite). Container = the screen viewport (position: relative). */
+(function () {
+  function show(container, message, o = {}) {
+    let t = container.querySelector(':scope > .c-toast');
+    if (!t) { t = document.createElement('div'); t.className = 'c-toast t-meta'; t.setAttribute('role', 'status'); t.setAttribute('aria-live', 'polite'); container.appendChild(t); }
+    t.className = 'c-toast t-meta' + (o.tone ? ' c-toast--' + o.tone : '') + (o.placement === 'top' ? ' c-toast--top' : '');
+    t.innerHTML = (o.tone ? `<i class="ph-fill ${o.tone === 'error' ? 'ph-warning-circle' : 'ph-check-circle'}" aria-hidden="true"></i>` : '') + `<span></span>` + (o.action ? `<button type="button" class="c-toast__action t-meta">${o.action}</button>` : '');
+    t.querySelector('span').textContent = message;
+    if (o.action) t.querySelector('button').onclick = () => { o.onAction && o.onAction(); hide(t); };
+    requestAnimationFrame(() => t.classList.add('is-shown'));
+    clearTimeout(t._timer); t._timer = setTimeout(() => hide(t), o.ms || 4500);
+    return t;
+  }
+  function hide(t) { t.classList.remove('is-shown'); }
+  window.cToast = { show, hide };
+})();
+
+</script>
+<script>
+/* c-quick-view — body: photo rail → summary metrics → people → follow-up actions → tracker.
+   open/close + actions menu + fill from data.
+   cQuickView.open(sheetEl, tx)  — tx: {id,address,city,price,commission,role,status,close,acceptance,client,clientPhoto,agent,coAgents[],collaborators[],complete,photos[],owner}
+   Events: 'c-qv-view' {id}, 'c-qv-action' {id, action}. Esc / scrim / close button / swipe-down on grab close it. Focus returns to the opener. */
+(function () {
+  const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+  const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const initials = n => String(n || '').replace(/\(.*?\)/g, '').trim().split(/\s+/).filter(Boolean).map(w => w[0]).slice(0, 2).join('').toUpperCase();
+  const avatar = (name, photo) => photo ? `<img class="c-person-tile__avatar" src="${esc(photo)}" alt="" onerror="this.outerHTML='<span class=&quot;c-person-tile__avatar t-badge&quot; aria-hidden=&quot;true&quot;>${initials(name)}</span>'">` : `<span class="c-person-tile__avatar t-badge" aria-hidden="true">${initials(name)}</span>`;
+  const metric = (label, value, icon, tone) => `<article class="rm-metric rm-metric--compact ${tone || ''}"><span class="rm-metric__label t-caption"><i class="ph ph-${icon}" aria-hidden="true"></i>${label}</span><strong class="rm-metric__value t-money-sm">${value}</strong></article>`;
+  const person = (role, name, photo, group) => { const a = (group || []).slice(0, 2), more = (group || []).length - a.length; return `<div class="rm-metric rm-metric--compact c-person-tile"><span class="t-caption t-secondary">${esc(role)}</span><span class="c-person-tile__line">${group ? `<span class="c-person-tile__group">${a.map(p => avatar(p.name, p.photo)).join('')}</span>${more ? `<span class="c-person-tile__more t-badge">+${more}</span>` : ''}<span class="c-person-tile__name t-caption">${group.length} ${esc(group.length === 1 ? role.toLowerCase().replace(/s$/, '') : role.toLowerCase())}</span>` : `${avatar(name, photo)}<span class="c-person-tile__name t-caption">${esc(name)}</span>`}</span></div>`; };
+  const photo = (src, i, n, addr) => `<button class="c-image-rail__item" type="button" data-index="${i}" aria-label="View photo ${i + 1} of ${n} for ${esc(addr)}">${src ? `<img src="${esc(src)}" alt="" onerror="this.remove()">` : ''}<i class="ph ph-house-line" aria-hidden="true"></i>${i === 0 ? `<span class="c-image-rail__count t-caption"><i class="ph ph-images" aria-hidden="true"></i>${n}</span>` : ''}</button>`;
+  let opener = null;
+  function fill(sheet, t) {
+    const rate = (t.commission / t.price * 100).toFixed(1) + '%', photos = t.photos && t.photos.length ? t.photos : [null, null, null];
+    sheet.dataset.id = t.id;
+    sheet.querySelector('[data-qv="title"]').textContent = `${t.address}, ${t.city}`;
+    sheet.querySelector('[data-qv="sub"]').textContent = `${t.role} · ${t.status === 'Closed' ? 'Closed' : 'Closes'} ${t.close}`;
+    sheet.querySelector('[data-qv="body"]').innerHTML =
+      `<section class="c-image-rail" aria-label="Property images">${photos.map((p, i) => photo(p, i, photos.length, t.address)).join('')}</section>
+       <section class="c-quick-metrics" aria-label="Transaction summary">
+         ${metric('Sale price', money.format(t.price), 'currency-dollar', 'tone-sapphire')}
+         ${metric('Gross commission', money.format(t.commission), 'chart-line-up', 'tone-gold')}
+         ${metric('Commission rate', rate, 'percent', '')}
+         ${metric('Closing date', esc(t.close), 'calendar-blank', 'tone-teal')}
+         ${metric('Acceptance date', esc(t.acceptance), 'calendar-check', 'tone-slate')}
+         ${metric('Status', `<span class="c-status-control" data-c-status="${esc(t.status)}"></span>`, 'flag', '')}
+       </section>
+       <section class="c-quick-metrics" aria-label="Transaction people">
+         ${person(t.role, t.client, t.clientPhoto)}${person('Agent', t.agent || 'Krish (me)', '')}
+         ${person('Co-agents', '', '', t.coAgents || [])}${person('Collaborators', '', '', t.collaborators || [])}
+       </section>
+       <nav class="c-follow-up-actions" aria-label="Follow-up actions">
+         <button type="button" class="c-follow-up-action c-follow-up-action--breakdown t-body" data-action="breakdown"><i class="ph ph-receipt" aria-hidden="true"></i><span class="c-follow-up-action__label">Commission breakdown</span></button>
+         ${['Closed', 'Cancelled'].includes(t.status) ? '' : `<div class="c-follow-up-actions__pair"><button type="button" class="c-follow-up-action c-follow-up-action--accept t-body" data-action="accept"><i class="ph ph-check-circle" aria-hidden="true"></i><span class="c-follow-up-action__label">Accept contract</span></button><button type="button" class="c-follow-up-action c-follow-up-action--cancel t-body" data-action="cancel"><i class="ph ph-x-circle" aria-hidden="true"></i><span class="c-follow-up-action__label">Cancel contract</span></button></div>`}
+       </nav>
+       <article class="c-tracker-card" data-c-tracker="${Number(t.complete) || 0}"></article>`;
+    const closedOrCancelled = ['Closed', 'Cancelled'].includes(t.status);
+    sheet.querySelector('[data-qv="menu"]').innerHTML =
+      `<button type="button" role="menuitem" class="c-quick-view__menu-item t-body" data-action="task"><i class="ph ph-list-plus" aria-hidden="true"></i>Add task</button>
+       <button type="button" role="menuitem" class="c-quick-view__menu-item t-body" data-action="breakdown"><i class="ph ph-receipt" aria-hidden="true"></i>Commission breakdown</button>
+       <button type="button" role="menuitem" class="c-quick-view__menu-item t-body" data-action="privacy" ${t.owner && t.owner !== 'me' ? 'disabled title="Only the owner can change privacy"' : ''}><i class="ph ph-${t.private ? 'lock-open' : 'lock-simple'}" aria-hidden="true"></i>${t.private ? 'Mark public' : 'Mark private'}</button>
+       ${closedOrCancelled ? '' : `<button type="button" role="menuitem" class="c-quick-view__menu-item c-quick-view__menu-item--success t-body" data-action="accept"><i class="ph ph-check-circle" aria-hidden="true"></i>Accept contract</button>
+       <button type="button" role="menuitem" class="c-quick-view__menu-item c-quick-view__menu-item--danger t-body" data-action="cancel"><i class="ph ph-x-circle" aria-hidden="true"></i>Cancel contract</button>`}`;
+    sheet.querySelector('.c-follow-up-actions').addEventListener('click', e => { const b = e.target.closest('[data-action]'); if (b) sheet.dispatchEvent(new CustomEvent('c-qv-action', { bubbles: true, detail: { id: sheet.dataset.id, action: b.dataset.action } })); });
+    window.cStatusControl && window.cStatusControl.init(sheet);
+    window.cTrackerCard && window.cTrackerCard.init(sheet);
+  }
+  function bind(sheet) {
+    if (sheet.dataset.cBound) return; sheet.dataset.cBound = '1';
+    const scrim = sheet.previousElementSibling && sheet.previousElementSibling.classList.contains('c-quick-view__scrim') ? sheet.previousElementSibling : null;
+    const menu = sheet.querySelector('[data-qv="menu"]'), more = sheet.querySelector('[data-qv="more"]');
+    const closeMenu = f => { menu.hidden = true; more.setAttribute('aria-expanded', 'false'); if (f) more.focus(); };
+    sheet.querySelector('[data-qv="close"]').addEventListener('click', () => close(sheet));
+    scrim && scrim.addEventListener('click', () => close(sheet));
+    sheet.addEventListener('keydown', e => { if (e.key === 'Escape') { e.preventDefault(); menu.hidden ? close(sheet) : closeMenu(true); } });
+    more.addEventListener('click', e => { e.stopPropagation(); menu.hidden = !menu.hidden; more.setAttribute('aria-expanded', String(!menu.hidden)); if (!menu.hidden) menu.querySelector('button:not([disabled])').focus(); });
+    menu.addEventListener('click', e => { const b = e.target.closest('[data-action]'); if (!b) return; sheet.dispatchEvent(new CustomEvent('c-qv-action', { bubbles: true, detail: { id: sheet.dataset.id, action: b.dataset.action } })); closeMenu(true); });
+    sheet.addEventListener('click', e => { if (!e.target.closest('[data-qv="menu"], [data-qv="more"]')) closeMenu(false); });
+    sheet.querySelector('[data-qv="view"]').addEventListener('click', () => sheet.dispatchEvent(new CustomEvent('c-qv-view', { bubbles: true, detail: { id: sheet.dataset.id } })));
+    const grab = sheet.querySelector('.c-quick-view__grab'); let y0 = null;
+    grab.addEventListener('pointerdown', e => { y0 = e.clientY; grab.setPointerCapture(e.pointerId); });
+    grab.addEventListener('pointermove', e => { if (y0 === null) return; const dy = Math.max(0, e.clientY - y0); sheet.style.transition = 'none'; sheet.style.transform = `translateY(${dy}px)`; });
+    grab.addEventListener('pointerup', e => { const dy = e.clientY - (y0 ?? e.clientY); y0 = null; sheet.style.transition = ''; sheet.style.transform = ''; if (dy > 80) close(sheet); });
+  }
+  function open(sheet, t, from) { bind(sheet); fill(sheet, t); opener = from || document.activeElement; const scrim = sheet.previousElementSibling; if (scrim && scrim.classList.contains('c-quick-view__scrim')) scrim.hidden = false; sheet.hidden = false; requestAnimationFrame(() => sheet.querySelector('[data-qv="close"]').focus()); }
+  function close(sheet) { const scrim = sheet.previousElementSibling; if (scrim && scrim.classList.contains('c-quick-view__scrim')) scrim.hidden = true; sheet.hidden = true; if (opener && opener.focus) opener.focus(); }
+  window.cQuickView = { open, close, bind };
+})();
+
+</script>
+<script>
+document.querySelectorAll('.rm-device__viewport').forEach(vp => {
+  vp.addEventListener('c-tx-open', e => {
+    const t = RM_DEMO.transactions.find(x => x.id === e.detail.id);
+    window.cQuickView.open(vp.querySelector('.c-quick-view'), t, e.target.querySelector('.c-tx-row__open'));
+  });
+  vp.addEventListener('click', e => { const ph = e.target.closest('.c-image-rail__item'); if (!ph) return; const t = RM_DEMO.transactions.find(x => x.id === vp.querySelector('.c-quick-view').dataset.id); cGallery.open(vp.querySelector('.c-gallery'), { title: t.address + ' photos', photos: t.photos || [], index: Number(ph.dataset.index), opener: ph }); });
+  vp.addEventListener('c-qv-action', e => { const t = RM_DEMO.transactions.find(x => x.id === e.detail.id); if (e.detail.action === 'task') cTaskSheet.open(vp.querySelector('.c-task-sheet'), { transaction: { id: t.id, label: t.address + ', ' + t.city } }); else cToast.show(vp, { accept: 'Contract accepted', cancel: 'Contract cancelled', breakdown: 'Opens commission breakdown', privacy: 'Privacy updated' }[e.detail.action] || 'Done', { tone: e.detail.action === 'cancel' ? 'error' : 'success' }); });
+  vp.addEventListener('c-task-add', e => cToast.show(vp, 'Task added: ' + e.detail.title, { tone: 'success' }));
+});
+</script>
+</body></html>

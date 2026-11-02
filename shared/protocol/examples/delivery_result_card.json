@@ -1,0 +1,26 @@
+{
+  "type": "delivery_result_card",
+  "tool_name": "campaign_report",
+  "v": 1,
+  "data": {
+    "title": "Buyer Engagement",
+    "subtitle": "Day 1 · Introduction",
+    "rows": [
+      {
+        "label": "Sent",
+        "value": "79",
+        "tone": "success"
+      },
+      {
+        "label": "Bounced",
+        "value": "2",
+        "tone": "danger"
+      },
+      {
+        "label": "Next",
+        "value": "Day 3 text, Thursday"
+      }
+    ]
+  },
+  "fallback_text": "Buyer Engagement · Day 1 · Introduction\nSent: 79\nBounced: 2\nNext: Day 3 text, Thursday"
+}

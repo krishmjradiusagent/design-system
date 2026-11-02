@@ -1,0 +1,12 @@
+<!-- @dsCard group="Overlays" height=340 -->
+<div class="rds" style="padding:0px;background:var(--background);min-height:100%;box-sizing:border-box">
+<div style="position:relative;height:300px;border-radius:var(--radius-xl);overflow:hidden;border:1px solid var(--border);background:var(--mel-cloud)">
+ <div class="rds-overlay rds-overlay--inline" data-open data-rds-modal>
+  <div class="rds-dialog rds-dialog--static" role="alertdialog" aria-modal="true" aria-labelledby="at1" aria-describedby="ad1" style="max-width:420px">
+   <div class="rds-dialog__header"><h2 class="rds-dialog__title" id="at1">Stop this campaign?</h2><p class="rds-dialog__desc" id="ad1">48 clients won't get the remaining 3 emails. You can restart it later.</p></div>
+   <div class="rds-dialog__footer"><button class="rds-btn rds-btn--outline">Keep running</button><button class="rds-btn rds-btn--destructive">Stop campaign</button></div>
+  </div>
+ </div>
+</div>
+</div>
+<script>window.RadiusUI && RadiusUI.init(document.body);</script>

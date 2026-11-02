@@ -1,0 +1,25 @@
+{
+  "type": "message_draft_card",
+  "tool_name": "draft_message",
+  "v": 1,
+  "data": {
+    "id": "draft_01",
+    "state": "draft",
+    "channel": "text",
+    "to": {
+      "name": "Jordan Lee",
+      "client_id": "88231"
+    },
+    "subject": null,
+    "body": "Hi Jordan, two homes near Oak Street match your budget. Want to tour on Saturday?",
+    "footnote": "Sends from your Radius number",
+    "actions": [
+      {
+        "label": "Send",
+        "style": "primary",
+        "kind": "approve"
+      }
+    ]
+  },
+  "fallback_text": "Text to Jordan Lee\nHi Jordan, two homes near Oak Street match your budget. Want to tour on Saturday?"
+}

@@ -1,0 +1,218 @@
+<!-- @dsCard group="Lists and rows" height=420 subtitle="c-task-rows: done, running, pending and failed rows (supplied statuses, static)" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<style>
+body{margin:0;background:var(--bg-page);}
+.mx{display:grid;grid-template-columns:repeat(2,minmax(0,380px));gap:var(--space-6);justify-content:center;padding:var(--space-4)}
+.mx>.cell{background:var(--bg-page);border-radius:var(--radius-sheet);padding:var(--space-4);position:relative;color:var(--text-primary);min-width:0}
+.mx>.cell>.lab{font-size:12px;margin:0 0 12px;color:var(--text-secondary)}
+</style></head>
+<body class="rm-root">
+<div class="mx"><div class="cell" data-theme="light"><p class="lab t-caption">Light · quiet</p><div data-tr></div></div><div class="cell" data-theme="dark"><p class="lab t-caption">Dark · quiet</p><div data-tr></div></div></div>
+<script>/* Radius Mobile harness. Include LAST on any prototype page:
+   <script src="<path>/harness/harness.js"><\/script>
+   - URL params: ?theme=dark|light  &exp=quiet|accented|colorful  &platform=ios|android  &ts=1|1.2|1.5  &compare=1
+   - compare=1 renders the device twice: dark + light, side by side (use for self-review screenshots).
+   - Fills every empty <span class="mel" data-state="..."> with the correct Mel body + face. Never hand-write Mel SVG. */
+(function () {
+  const q = new URLSearchParams(location.search);
+  const html = document.documentElement;
+  const set = (k, v) => v && (html.dataset[k] = v);
+  set('theme', q.get('theme')); set('expression', q.get('exp')); set('platform', q.get('platform'));
+  if (q.get('ts')) html.style.setProperty('--type-scale', q.get('ts'));
+
+  const FACE = '<span class="mel__body"><svg class="mel__eyes" viewBox="0 0 17 8" aria-hidden="true"><path class="mel__eye" d="M0 8V3a3 3 0 0 1 6 0v5Z"/><path class="mel__eye" d="M11 8V3a3 3 0 0 1 6 0v5Z"/></svg><svg class="mel__smile" viewBox="0 0 17 6.5" aria-hidden="true"><path d="M0 6V3a3 3 0 0 1 6 0v3H4.6V3a1.6 1.6 0 0 0-3.2 0v3Z"/><path d="M11 6V3a3 3 0 0 1 6 0v3h-1.4V3a1.6 1.6 0 0 0-3.2 0v3Z"/></svg></span>';
+  const fillMel = root => root.querySelectorAll('.mel').forEach(m => {
+    if (!m.querySelector('.mel__body')) m.innerHTML = FACE;
+    if (!m.hasAttribute('role')) { m.setAttribute('role', 'img'); m.setAttribute('aria-label', 'MEL, ' + (m.dataset.state || 'idle')); }
+    if (!m.dataset.state) m.dataset.state = 'idle';
+  });
+  fillMel(document);
+
+  // compare mode: clone first device into a light/dark pair
+  const dev = document.querySelector('.rm-device');
+  if (q.get('compare') && dev) {
+    const stage = dev.closest('.rm-stage') || dev.parentElement;
+    const mk = (theme, node) => { const c = document.createElement('div'); c.className = 'rm-stage__col'; c.dataset.theme = theme; c.innerHTML = `<p class="t-caption t-secondary">${theme}</p>`; c.appendChild(node); return c; };
+    const clone = dev.cloneNode(true);
+    stage.innerHTML = ''; stage.appendChild(mk('dark', dev)); stage.appendChild(mk('light', clone));
+  }
+
+  // control bar
+  if (q.get('bar') !== '0' && document.body.classList.contains('rm-harness')) {
+    const bar = document.createElement('div'); bar.className = 'rm-harness-bar'; bar.setAttribute('aria-label', 'Harness controls');
+    const sel = (name, opts, cur) => `<select data-k="${name}" aria-label="${name}">${opts.map(o => `<option ${o == cur ? 'selected' : ''}>${o}</option>`).join('')}</select>`;
+    bar.innerHTML = sel('theme', ['dark', 'light'], q.get('theme') || html.dataset.theme || 'light') + sel('exp', ['quiet', 'accented', 'colorful'], q.get('exp') || 'quiet') + sel('platform', ['ios', 'android'], q.get('platform') || 'ios') + sel('ts', ['1', '1.2', '1.5'], q.get('ts') || '1') + `<button data-compare>${q.get('compare') ? 'single' : 'compare'}</button>`;
+    bar.addEventListener('change', e => { q.set(e.target.dataset.k, e.target.value); location.search = q; });
+    bar.querySelector('[data-compare]').onclick = () => { q.get('compare') ? q.delete('compare') : q.set('compare', '1'); location.search = q; };
+    document.body.appendChild(bar);
+  }
+})();
+</script>
+<script type="module">
+// Plain DOM component. Scripted status changes are opt-in demo behavior only.
+export const TICKS = [600, 900, 2400, 1400, 2400, 600];
+const BOUNDARIES = TICKS.slice(0, -1).map((_, i) => TICKS.slice(0, i + 1).reduce((a, b) => a + b, 0));
+let instance = 0;
+// Phosphor Icons 2.1.7, regular paths, MIT. No runtime icon dependency.
+const PATHS = {
+ check: 'M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z',
+ x: 'M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z',
+ chevron: 'M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z',
+ retry: 'M240,56v48a8,8,0,0,1-8,8H184a8,8,0,0,1,0-16H211.4L184.81,71.64l-.25-.24a80,80,0,1,0-1.67,114.78,8,8,0,0,1,11,11.63A95.44,95.44,0,0,1,128,224h-1.32A96,96,0,1,1,195.75,60L224,85.8V56a8,8,0,1,1,16,0Z'
+};
+export function mountTaskRows(host, options = {}) {
+ const doc = host.ownerDocument, win = doc.defaultView;
+ const id = 'task-rows-' + ++instance;
+ const make = (tag, cls, text) => {
+  const node = doc.createElement(tag); node.className = cls;
+  if (text != null) node.textContent = String(text);
+  return node;
+ };
+ const svg = (name) => {
+  const node = doc.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  node.setAttribute('viewBox', '0 0 256 256'); node.setAttribute('fill', 'currentColor');
+  node.setAttribute('aria-hidden', 'true'); node.setAttribute('focusable', 'false');
+  const path = doc.createElementNS(node.namespaceURI, 'path');
+  path.setAttribute('d', PATHS[name]); node.append(path); return node;
+ };
+ let config = {...options}, rows = config.rows || [], destroyed = false;
+ const manualOpen = Object.assign(Object.create(null), config.state?.manualOpen || {});
+ let tick = Math.max(0, Math.min(5, Number(config.state?.tick) || 0));
+ const startedAt = Number.isFinite(config.state?.startedAt) ? config.state.startedAt : Date.now();
+ const media = win?.matchMedia?.('(prefers-reduced-motion: reduce)');
+ let reduced = Boolean(config.reducedMotion ?? media?.matches);
+ const timers = new Set(), entries = new Map();
+ let detailId = 0;
+ const root = make('div', 'c-task-rows');
+ host.append(root);
+ function status(row) {
+  if (row.status !== 'sequence') return row.status;
+  return config.demo ? tick < 3 ? 'pending' : tick === 3 ? 'failed' : 'done' : 'pending';
+ }
+ function snapshot() { return {tick, startedAt, manualOpen: {...manualOpen}}; }
+ function notify() { if (!destroyed) config.onStateChange?.(snapshot()); }
+ function clearTimers() { for (const timer of timers) clearTimeout(timer); timers.clear(); }
+ function paint(entry, row) {
+  const state = status(row), copy = {completed:'Completed', failed:'Failed', running:'Running', pending:'Pending', ...config.labels};
+  const open = Object.hasOwn(manualOpen, row.key) ? manualOpen[row.key] : Boolean(config.demo && row.key === 'index' && tick === 2);
+  entry.button.setAttribute('aria-expanded', String(open));
+  entry.button.setAttribute('aria-label', [row.label, row.amount, copy[state === 'done' ? 'completed' : state]].filter(Boolean).join(', '));
+  entry.row.dataset.open = String(open); entry.row.dataset.status = state;
+  entry.panel.setAttribute('aria-hidden', String(!open));
+  entry.panel.toggleAttribute('inert', !open);
+  if (entry.state !== state) {
+   entry.badge.replaceChildren(); entry.pill.replaceChildren();
+   entry.badge.className = 'c-task-rows__badge';
+   if (state === 'done' || state === 'failed') {
+    entry.badge.classList.add('c-task-rows__badge--pop', state === 'done' ? 'tone-success' : 'tone-danger');
+    entry.badge.append(svg(state === 'done' ? 'check' : 'x'));
+   } else {
+    const ring = doc.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    ring.setAttribute('viewBox', '0 0 24 24'); ring.setAttribute('aria-hidden', 'true');
+    ring.classList.add('c-task-rows__ring');
+    if (state === 'running') ring.classList.add('c-task-rows__ring--active');
+    for (const active of [false, true]) {
+     if (active && state !== 'running') continue;
+     const circle = doc.createElementNS(ring.namespaceURI, 'circle');
+     for (const [key, val] of Object.entries({cx:12,cy:12,r:11,fill:'none','stroke-width':2})) circle.setAttribute(key, val);
+     if (active) {circle.setAttribute('stroke-dasharray', '19.352 49.763'); circle.setAttribute('stroke-linecap', 'round'); circle.classList.add('c-task-rows__arc');}
+     ring.append(circle);
+    }
+    entry.badge.append(ring, make('span', 'c-task-rows__step t-caption t-num', row.step));
+   }
+   entry.pill.hidden = !(state === 'done' || state === 'failed');
+   entry.pill.className = 'rm-chip rm-chip--pill t-chip ' + (state === 'failed' ? 'tone-danger' : 'tone-success');
+   if (!entry.pill.hidden) {
+    entry.pill.append(make('span', '', state === 'done' ? copy.completed : copy.failed));
+    if (state === 'failed') {const retry = svg('retry'); retry.classList.add('c-task-rows__retry'); entry.pill.append(retry);}
+   }
+   entry.state = state;
+  }
+  entry.label.textContent = String(row.label ?? '');
+  entry.amount.textContent = String(row.amount ?? '');
+ }
+ function render() {
+  root.className = 'c-task-rows c-task-rows--list rm-card rm-card--list' + (config.className ? ' ' + config.className : '');
+  root.dataset.reducedMotion = String(reduced);
+  const valid = new Set();
+  rows.forEach((row, index) => {
+   if (!row || typeof row.key !== 'string' || valid.has(row.key)) throw new TypeError('Task rows require unique string keys');
+   valid.add(row.key);
+   let entry = entries.get(row.key);
+   if (!entry) {
+    const surface = make('div', 'c-task-rows__row');
+    surface.style.setProperty('--c-task-rows-delay', index * 80 + 'ms');
+    const button = make('button', 'rm-item c-task-rows__header'); button.type = 'button';
+    const badge = make('span', 'c-task-rows__badge'); badge.setAttribute('aria-hidden', 'true');
+    const body = make('span', 'rm-item__body');
+    const label = make('span', 'c-task-rows__title t-row-title');
+    const meta = make('span', 'c-task-rows__meta');
+    const amount = make('span', 't-meta t-secondary t-num');
+    const pill = make('span', 'rm-chip rm-chip--pill t-chip');
+    meta.append(amount, pill); body.append(label, meta);
+    const chevron = svg('chevron'); chevron.classList.add('c-task-rows__chevron', 'rm-item__chev');
+    const panel = make('div', 'c-task-rows__details'); panel.id = id + '-' + detailId++;
+    const clip = make('div', 'c-task-rows__clip');
+    const content = make('div', 'c-task-rows__detail-content');
+    const rail = make('span', 'c-task-rows__rail'); rail.setAttribute('aria-hidden', 'true');
+    const lines = make('div', 'c-task-rows__lines');
+    content.append(rail, lines); clip.append(content); panel.append(clip);
+    button.setAttribute('aria-controls', panel.id);
+    button.append(badge, body, chevron); surface.append(button, panel);
+    entry = {row:surface, button, badge, label, amount, pill, panel, lines};
+    button.addEventListener('click', () => {
+     if (destroyed) return;
+     const open = button.getAttribute('aria-expanded') !== 'true';
+     manualOpen[row.key] = open; render();
+     config.onToggleRow?.(row.key, open); notify();
+    });
+    entries.set(row.key, entry); root.append(surface);
+   }
+   // Rebuild details only when their data changes, preserving enter animations on status ticks.
+   const details = JSON.stringify(row.details || []);
+   if (entry.details !== details) {
+    entry.lines.replaceChildren();
+    (row.details || []).forEach((detail, j) => {
+     const line = make('div', 'c-task-rows__line');
+     line.style.setProperty('--c-task-rows-detail-delay', 120 + j * 100 + 'ms');
+     line.append(make('span', 't-meta t-secondary', detail.label), make('span', 'c-task-rows__detail-meta t-meta t-tertiary t-num', detail.meta));
+     entry.lines.append(line);
+    }); entry.details = details;
+   }
+   paint(entry, row);
+   // Move only if necessary: do not restart animations on ordinary status changes.
+   if (root.children[index] !== entry.row) root.insertBefore(entry.row, root.children[index] || null);
+  });
+  for (const [key, entry] of entries) if (!valid.has(key)) {entry.row.remove(); entries.delete(key);}
+ }
+ function schedule() {
+  clearTimers();
+  if (!config.demo) return;
+  if (reduced) {tick = 5; render(); notify(); return;}
+  const elapsed = Math.max(0, Date.now() - startedAt);
+  tick = Math.max(tick, BOUNDARIES.filter(time => time <= elapsed).length);
+  render(); notify();
+  BOUNDARIES.forEach((time, index) => {
+   if (index + 1 <= tick) return;
+   const timer = setTimeout(() => {
+    timers.delete(timer); if (destroyed) return;
+    tick = index + 1; render(); notify();
+   }, Math.max(0, time - elapsed));
+   timers.add(timer);
+  });
+ }
+ function motionChange(event) {reduced = Boolean(config.reducedMotion ?? event.matches); render(); schedule();}
+ media?.addEventListener?.('change', motionChange);
+ render(); schedule();
+ return {
+  getState: snapshot,
+  update(next = {}) {if (destroyed) return; config = {...config, ...next}; rows = config.rows || []; for (const entry of entries.values()) entry.state = null; render(); schedule();},
+  destroy() {if (destroyed) return; destroyed = true; clearTimers(); media?.removeEventListener?.('change', motionChange); root.remove(); entries.clear();}
+ };
+}
+
+document.querySelectorAll("[data-tr]").forEach(h=>mountTaskRows(h,{rows:[{"key": "a", "label": "Prepare disclosure packet", "amount": "3 forms", "status": "done", "details": [{"label": "Residential purchase agreement", "meta": "Signed"}, {"label": "Seller disclosure", "meta": "Signed"}]}, {"key": "b", "label": "Request inspection report", "amount": "1 report", "status": "running", "details": [{"label": "Inspector assigned", "meta": "Today"}]}, {"key": "c", "label": "Send closing checklist", "amount": "1 email", "status": "pending", "details": [{"label": "Waiting on lender", "meta": "Pending"}]}, {"key": "d", "label": "Upload appraisal", "amount": "1 file", "status": "failed", "details": [{"label": "Upload did not finish", "meta": "Failed"}]}],reducedMotion:true,state:{tick:5,manualOpen:{a:true}}}));
+</script>
+</body></html>

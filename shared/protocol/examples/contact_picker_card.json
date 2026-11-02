@@ -1,0 +1,33 @@
+{
+  "type": "contact_picker_card",
+  "v": 1,
+  "data": {
+    "id": "pick_01",
+    "title": "Who should I invite?",
+    "searchable": true,
+    "select_all": {
+      "label": "Select all",
+      "count": 1248
+    },
+    "options": [
+      {
+        "client_id": "88231",
+        "title": "Jordan Lee",
+        "subtitle": "jordan.lee@gmail.com, (555) 201-4478"
+      },
+      {
+        "client_id": "88240",
+        "title": "Priya Shah",
+        "subtitle": "priya.shah@outlook.com, (555) 334-9021"
+      }
+    ],
+    "actions": [
+      {
+        "label": "Invite",
+        "style": "primary",
+        "kind": "approve"
+      }
+    ]
+  },
+  "fallback_text": "Who should I invite?\nJordan Lee · jordan.lee@gmail.com, (555) 201-4478\nPriya Shah · priya.shah@outlook.com, (555) 334-9021"
+}

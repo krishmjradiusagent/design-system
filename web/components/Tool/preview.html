@@ -1,0 +1,10 @@
+<!-- @dsCard group="Agentic chat" height=330 -->
+<div class="rds" style="padding:24px;background:var(--background);min-height:100%;box-sizing:border-box">
+<div style="display:flex;flex-direction:column;gap:10px;max-width:560px">
+ <div class="rds-tool" data-rds-root><button class="rds-tool__head" data-rds-trigger><span class="rds-tool__icon"><i data-icon="users" class="rds-ic--sm"></i></span><span class="rds-tool__name">Searched clients<small>“open house 12 Oak St”</small></span><span class="rds-badge rds-badge--success">14 found</span><i data-icon="chevron-down" class="chev"></i></button><div class="rds-tool__body"><span class="rds-tool__section-label">Input</span><pre class="rds-tool__code">{"query": "open house 12 Oak St"}</pre></div></div>
+ <div class="rds-tool" data-rds-root data-open><button class="rds-tool__head" data-rds-trigger aria-expanded="true"><span class="rds-tool__icon"><i data-icon="mail" class="rds-ic--sm"></i></span><span class="rds-tool__name">Gmail · create drafts</span><span class="rds-badge rds-badge--info"><span class="rds-spinner" style="width:10px;height:10px"></span> Running</span><i data-icon="chevron-down" class="chev"></i></button>
+  <div class="rds-tool__body"><span class="rds-tool__section-label">Input</span><pre class="rds-tool__code">{"to": 14, "template": "open-house-thanks"}</pre><span class="rds-tool__section-label">Output</span><pre class="rds-tool__code">11 of 14 drafted…</pre></div></div>
+ <div class="rds-tool" data-rds-root><button class="rds-tool__head" data-rds-trigger><span class="rds-tool__icon" style="background:var(--danger-muted);color:var(--danger)"><i data-icon="phone" class="rds-ic--sm"></i></span><span class="rds-tool__name">Text 3 visitors</span><span class="rds-badge rds-badge--danger">Failed</span><i data-icon="chevron-down" class="chev"></i></button><div class="rds-tool__body"><span class="rds-field__error">Twilio not connected. Connect it in Settings.</span></div></div>
+</div>
+</div>
+<script>window.RadiusUI && RadiusUI.init(document.body);</script>

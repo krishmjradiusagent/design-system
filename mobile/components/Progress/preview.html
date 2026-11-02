@@ -1,0 +1,44 @@
+<!-- @dsCard group="Import" height=560 subtitle="c-progress: segmented steps and import bar; set step, run import, indeterminate" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<style>body{margin:0;background:var(--bg-page)}.mx{display:grid;grid-template-columns:repeat(2,minmax(0,380px));gap:var(--space-6);justify-content:center;padding:var(--space-4)}
+.mx>.cell{background:var(--bg-page);border-radius:var(--radius-sheet);padding:var(--space-4);color:var(--text-primary);min-width:0}.lab{margin:var(--space-4) 0 var(--space-2);color:var(--text-secondary)}.lab:first-child{margin-top:0}.hd{margin:0 0 var(--space-3)}.hd p{margin:0}
+.demo{display:flex;gap:var(--space-2);margin-top:var(--space-3)}.demo .rm-btn{flex:1}</style></head><body class="rm-root"><div class="mx"><div class="cell" data-theme="light" data-pc><p class="lab t-caption">Light · Steps</p><div class="c-progress c-progress--steps"><ol class="c-progress__steps" aria-label="Step 2 of 3"><li data-state="done"><span class="c-progress__label t-meta">Upload</span></li><li data-state="current" aria-current="step"><span class="c-progress__label t-meta">Map columns</span></li><li data-state="todo"><span class="c-progress__label t-meta">Review</span></li></ol></div><div class="demo"><button class="rm-btn rm-btn--secondary" data-act="back">Back</button><button class="rm-btn rm-btn--primary" data-act="next">Next step</button></div><p class="lab t-caption">Import bar</p><div class="c-progress c-progress--bar" data-state="active"><div class="c-progress__track" role="progressbar" aria-label="Importing contacts" aria-valuemin="0" aria-valuemax="1248" aria-valuenow="812"><i class="c-progress__fill" style="width:65%"></i></div><div class="c-progress__meta"><span class="c-progress__count t-body-strong">812 of 1,248</span><span class="c-progress__pct t-meta">65%</span></div></div><div class="demo"><button class="rm-btn rm-btn--secondary" data-act="run">Run import</button><button class="rm-btn rm-btn--secondary" data-act="unk">Unknown total</button></div></div><div class="cell" data-theme="dark" data-pc><p class="lab t-caption">Dark · Steps</p><div class="c-progress c-progress--steps"><ol class="c-progress__steps" aria-label="Step 2 of 3"><li data-state="done"><span class="c-progress__label t-meta">Upload</span></li><li data-state="current" aria-current="step"><span class="c-progress__label t-meta">Map columns</span></li><li data-state="todo"><span class="c-progress__label t-meta">Review</span></li></ol></div><div class="demo"><button class="rm-btn rm-btn--secondary" data-act="back">Back</button><button class="rm-btn rm-btn--primary" data-act="next">Next step</button></div><p class="lab t-caption">Import bar</p><div class="c-progress c-progress--bar" data-state="active"><div class="c-progress__track" role="progressbar" aria-label="Importing contacts" aria-valuemin="0" aria-valuemax="1248" aria-valuenow="812"><i class="c-progress__fill" style="width:65%"></i></div><div class="c-progress__meta"><span class="c-progress__count t-body-strong">812 of 1,248</span><span class="c-progress__pct t-meta">65%</span></div></div><div class="demo"><button class="rm-btn rm-btn--secondary" data-act="run">Run import</button><button class="rm-btn rm-btn--secondary" data-act="unk">Unknown total</button></div></div></div><script>/* c-progress — cProgress.setStep(root, n)         flow bar: n is 1-based, steps before n become done
+               cProgress.setValue(root, value, max) import bar: updates fill, counts, aria. value===null makes it indeterminate
+               cProgress.complete(root)             sets 100% and data-state="done"
+   Events: root dispatches "c-progress:change" with detail {step} or {value, max, percent}. */
+(function () {
+  const fmt = n => Number(n).toLocaleString('en-US');
+  function setStep(root, n) {
+    const items = [...root.querySelectorAll('.c-progress__steps > li')];
+    items.forEach((li, i) => {
+      const st = i + 1 < n ? 'done' : i + 1 === n ? 'current' : 'todo';
+      li.dataset.state = st;
+      st === 'current' ? li.setAttribute('aria-current', 'step') : li.removeAttribute('aria-current');
+    });
+    const list = root.querySelector('.c-progress__steps');
+    list.setAttribute('aria-label', 'Step ' + n + ' of ' + items.length);
+    root.dispatchEvent(new CustomEvent('c-progress:change', { bubbles: true, detail: { step: n } }));
+  }
+  function setValue(root, value, max) {
+    const track = root.querySelector('.c-progress__track'), fill = root.querySelector('.c-progress__fill');
+    if (value === null || value === undefined) { root.dataset.state = 'indeterminate'; track.removeAttribute('aria-valuenow'); fill.style.width = ''; return; }
+    max = max || Number(track.getAttribute('aria-valuemax')) || 100;
+    const pct = Math.max(0, Math.min(100, Math.round(value / max * 100)));
+    root.dataset.state = pct >= 100 ? 'done' : 'active';
+    track.setAttribute('aria-valuemax', max); track.setAttribute('aria-valuenow', value);
+    fill.style.width = pct + '%';
+    const c = root.querySelector('.c-progress__count'), p = root.querySelector('.c-progress__pct');
+    if (c) c.textContent = fmt(value) + ' of ' + fmt(max);
+    if (p) p.textContent = pct + '%';
+    root.dispatchEvent(new CustomEvent('c-progress:change', { bubbles: true, detail: { value, max, percent: pct } }));
+  }
+  const complete = root => { const t = root.querySelector('.c-progress__track'); const m = Number(t.getAttribute('aria-valuemax')) || 100; setValue(root, m, m); };
+  window.cProgress = { setStep, setValue, complete };
+})();
+</script><script>
+document.querySelectorAll('[data-pc]').forEach(c=>{const st=c.querySelector('.c-progress--steps'),br=c.querySelector('.c-progress--bar');let n=2,t;
+c.addEventListener('click',e=>{const a=e.target.closest('[data-act]');if(!a)return;const k=a.dataset.act;
+if(k==='next')cProgress.setStep(st,n=Math.min(3,n+1));if(k==='back')cProgress.setStep(st,n=Math.max(1,n-1));
+if(k==='unk'){clearInterval(t);cProgress.setValue(br,null);}
+if(k==='run'){clearInterval(t);let v=0;t=setInterval(()=>{v+=48;if(v>=1248){clearInterval(t);cProgress.complete(br);}else cProgress.setValue(br,v,1248);},120);}});});</script></body></html>

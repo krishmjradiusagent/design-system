@@ -1,0 +1,37 @@
+{
+  "type": "campaign_status_card",
+  "tool_name": "launch_campaign",
+  "v": 1,
+  "data": {
+    "id": "camp_01",
+    "title": "Buyer Engagement",
+    "badge": {
+      "text": "Live",
+      "tone": "success"
+    },
+    "rows": [
+      {
+        "icon": "envelope",
+        "tone": "info",
+        "label": "First email",
+        "value": "Tomorrow, 9 AM"
+      },
+      {
+        "icon": "users",
+        "tone": "neutral",
+        "label": "Recipients",
+        "chips": [
+          {
+            "text": "81",
+            "tone": "info"
+          },
+          {
+            "text": "64",
+            "tone": "success"
+          }
+        ]
+      }
+    ]
+  },
+  "fallback_text": "Buyer Engagement · Live\nFirst email: Tomorrow, 9 AM\nRecipients: 81, 64"
+}

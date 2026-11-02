@@ -1,0 +1,24 @@
+{
+  "type": "feature_list",
+  "v": 1,
+  "data": {
+    "items": [
+      {
+        "emoji": "🏡",
+        "title": "For Buyers",
+        "text": "Search available properties, save favorites, create searches and request showings."
+      },
+      {
+        "emoji": "🏷️",
+        "title": "For Sellers",
+        "text": "Add their property, request a home valuation report and explore the local market."
+      },
+      {
+        "emoji": "💬",
+        "title": "For Every Client",
+        "text": "Chat with Mel, ask real estate questions and message their agent."
+      }
+    ]
+  },
+  "fallback_text": "🏡 For Buyers: Search available properties, save favorites, create searches and request showings.\n🏷️ For Sellers: Add their property, request a home valuation report and explore the local market.\n💬 For Every Client: Chat with Mel, ask real estate questions and message their agent."
+}

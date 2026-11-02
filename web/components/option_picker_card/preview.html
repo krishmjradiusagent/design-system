@@ -1,0 +1,25 @@
+<!-- @dsCard group="Mel chat cards" height=640 width=1100 -->
+<div class="rds" style="padding:24px;background:var(--background);min-height:100%;box-sizing:border-box">
+<div data-rds-chat style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:start">
+ <div style="display:flex;flex-direction:column;gap:16px">
+ <section class="rds-qcard" data-multi data-sentence="Create {items} for 123 Ocean View Drive" aria-label="What do you want to create for 123 Ocean View Drive?">
+  <p class="rds-qcard__title">What do you want to create for 123 Ocean View Drive?</p><p class="rds-qcard__help">Pick one or more</p>
+  <div class="rds-qcard__opts" role="group"><button type="button" class="rds-qcard__opt" aria-pressed="false" data-say="social posts"><span class="rds-qcard__key">A</span><span class="rds-qcard__t"><b>Social posts</b></span></button><button type="button" class="rds-qcard__opt" aria-pressed="false" data-say="reels"><span class="rds-qcard__key">B</span><span class="rds-qcard__t"><b>Reels</b></span></button><button type="button" class="rds-qcard__opt" aria-pressed="false" data-say="a video"><span class="rds-qcard__key">C</span><span class="rds-qcard__t"><b>Video</b></span></button><button type="button" class="rds-qcard__opt" aria-pressed="false" data-say="an emailer"><span class="rds-qcard__key">D</span><span class="rds-qcard__t"><b>Emailer</b></span></button><button type="button" class="rds-qcard__opt" aria-pressed="false" data-say="a flyer"><span class="rds-qcard__key">E</span><span class="rds-qcard__t"><b>Flyer</b></span></button><button type="button" class="rds-qcard__opt" aria-pressed="false" data-say="a property website"><span class="rds-qcard__key">F</span><span class="rds-qcard__t"><b>Property website</b></span></button>
+   <button type="button" class="rds-qcard__opt rds-qcard__own" data-rds-own aria-pressed="false"><span class="rds-qcard__key">G</span><span class="rds-qcard__t"><b>Type your own</b></span></button>
+   <div class="rds-qcard__field" hidden><span class="rds-qcard__key">G</span><input type="text" placeholder="Type your own" aria-label="Type your own answer"></div>
+  </div>
+  <div class="rds-qcard__foot"><button type="button" class="rds-btn rds-btn--primary rds-btn--sm" aria-disabled="true">Send</button></div>
+ </section>
+ <div class="rds-prompt" style="max-width:560px"><textarea class="rds-prompt__field" rows="1" placeholder="Ask Mel anything" aria-label="Message Mel"></textarea><div class="rds-prompt__toolbar"><div class="rds-prompt__tools"><button class="rds-iconbtn" aria-label="Attach"><i data-icon="plus"></i></button></div><div class="rds-prompt__right"><button class="rds-prompt__submit" data-auto disabled aria-label="Send"><i data-icon="arrow-up"></i></button></div></div></div>
+ </div>
+ <div><p class="ui-caption rds-muted" style="margin:0 0 8px">Single choice, answered (locked)</p>
+ <section class="rds-qcard" data-locked aria-label="Duplicates answered">
+  <p class="rds-qcard__title">32 contacts are already in Radius. What should I do?</p><p class="rds-qcard__help">Answered</p>
+  <div class="rds-qcard__opts" role="group">
+   <button type="button" class="rds-qcard__opt" aria-pressed="true"><span class="rds-qcard__key"><i data-icon="check"></i></span><span class="rds-qcard__t"><b>Skip duplicates</b><span>Keep what's in Radius</span></span></button>
+   <button type="button" class="rds-qcard__opt" aria-pressed="false"><span class="rds-qcard__key">B</span><span class="rds-qcard__t"><b>Update them</b><span>Use the CSV values</span></span><span class="rds-qcard__tag" data-tone="warn">Overwrites</span></button>
+  </div>
+ </section></div>
+</div>
+</div>
+<script>window.RadiusUI && RadiusUI.init(document.body);</script>

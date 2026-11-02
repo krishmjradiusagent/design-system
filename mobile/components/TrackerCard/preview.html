@@ -1,0 +1,65 @@
+<!-- @dsCard group="Cards and summaries" height=560 subtitle="c-tracker-card: static rendition of the review page (light and dark, quiet)" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<style>
+  /* Matrix chrome only */
+  .mx { display: grid; grid-template-columns: repeat(2, minmax(0, 380px)); gap: var(--space-6); justify-content: center; }
+  .mx > div { background: var(--bg-page); border-radius: var(--radius-sheet); padding: var(--space-4); position: relative; }
+</style>
+<style>body{margin:0;background:var(--bg-page);}</style></head>
+<body class="rm-root">
+<!-- REVIEW MATRIX: c-tracker-card × dark/light × quiet/accented/colorful. -->
+<div class="mx" id="mx"></div>
+<template id="specimen">
+<div class="rm-stack"><article class="c-tracker-card" data-c-tracker="1"></article><article class="c-tracker-card" data-c-tracker="6"></article></div>
+</template>
+<script>
+/* Demo data — real Radius content from transaction.html / index.html. For previews only. */
+window.RM_DEMO = {
+  transactions: [
+    { id: 'maple', address: '118 Maple St', city: 'Fremont, CA', price: 1150000, commission: 23000, role: 'Buyer', status: 'In escrow', close: 'Sep 12', acceptance: 'Aug 14', client: 'Sarah Reynolds', clientPhoto: '../_assets/clients/av1.jpg', photo: '../_assets/transactions/118-maple-st.jpg', complete: 1, owner: 'me',
+      coAgents: [{ name: 'Jordan Lee' }, { name: 'Maya Chen' }], collaborators: [{ name: 'Dillon Dennis' }, { name: 'Sandeep TC' }, { name: 'James Cooper' }, { name: 'Harry Cooper' }],
+      photos: ['https://images.pexels.com/photos/7587880/pexels-photo-7587880.jpeg?auto=compress&cs=tinysrgb&w=1200', 'https://images.pexels.com/photos/9976121/pexels-photo-9976121.jpeg?auto=compress&cs=tinysrgb&w=1200', 'https://images.pexels.com/photos/10610731/pexels-photo-10610731.jpeg?auto=compress&cs=tinysrgb&w=1200'] },
+    { id: 'oak', address: '42 Oak Ln', city: 'Fremont, CA', price: 980000, commission: 19600, role: 'Seller', status: 'Inspection due', close: 'Sep 15', acceptance: 'Aug 18', client: 'Daniel Ruiz', clientPhoto: '../_assets/clients/av2.jpg', photo: '../_assets/transactions/42-oak-ln.jpg', complete: 2, owner: 'me',
+      coAgents: [{ name: 'Jordan Lee' }], collaborators: [{ name: 'Dillon Dennis' }, { name: 'Sandeep TC' }] },
+    { id: 'alma', address: '640 Alma St', city: 'Palo Alto, CA', price: 1275000, commission: 25500, role: 'Seller', status: 'In escrow', close: 'Sep 20', acceptance: 'Aug 22', client: 'Priya Nair', clientPhoto: '../_assets/clients/av3.jpg', complete: 3, owner: 'jordan', private: true,
+      coAgents: [{ name: 'Maya Chen' }, { name: 'Jordan Lee' }, { name: 'Sam Patel' }], collaborators: [{ name: 'James Cooper' }] },
+    { id: 'miramar', address: '275 Miramar Ave', city: 'San Francisco, CA', price: 1480000, commission: 29600, role: 'Buyer', status: 'Closed', close: 'Sep 2', acceptance: 'Jul 30', client: 'Leo Grant', complete: 6, owner: 'me', coAgents: [], collaborators: [] }
+  ]
+};
+
+</script>
+<script>
+const t = document.getElementById('specimen').innerHTML;
+const cells = [];
+for (const theme of ['light', 'dark']) for (const exp of ['quiet'])
+  cells.push(`<div data-theme="${theme}" data-expression="${exp}"><p class="t-caption t-tertiary" style="margin-bottom:var(--space-3)">${theme} · ${exp}</p>${t}</div>`);
+document.getElementById('mx').innerHTML = cells.join('');
+</script>
+<script>
+/* c-tracker-card — markup: <article class="c-tracker-card" data-c-tracker="2"></article> (number = steps complete, 0–6) */
+(function () {
+  const LABELS = ['Checklist compliant', 'Agent CDA approved', 'Team lead CDA approved', 'Group lead CDA approved', 'Commission received', 'Agent payment'];
+  let uid = 0;
+  function render(el) {
+    const done = Math.max(0, Math.min(LABELS.length, Number(el.dataset.cTracker) || 0)), id = 'c-tracker-' + (++uid);
+    const stage = done === LABELS.length ? 'Payment complete' : LABELS[done];
+    el.setAttribute('aria-label', 'Commission tracker');
+    el.innerHTML = `<div class="c-tracker-card__summary">
+      <svg class="c-tracker-card__ring" viewBox="0 0 40 40" role="progressbar" aria-label="Commission progress" aria-valuemin="0" aria-valuemax="${LABELS.length}" aria-valuenow="${done}">
+        <circle class="c-tracker-card__track" cx="20" cy="20" r="16"/><circle class="c-tracker-card__fill" cx="20" cy="20" r="16" pathLength="100" stroke-dasharray="${done / LABELS.length * 100} 100"/>
+        <text x="20" y="20" dy=".35em" text-anchor="middle">${done}/${LABELS.length}</text></svg>
+      <div class="c-tracker-card__copy"><span class="t-caption t-secondary">Commission tracker</span><span class="t-row-title">${stage}</span></div>
+      <button type="button" class="c-tracker-card__toggle" aria-label="View full tracker" aria-expanded="false" aria-controls="${id}"><i class="ph ph-caret-down" aria-hidden="true"></i></button></div>
+      <ol class="c-tracker-card__steps" id="${id}" hidden>${LABELS.map((l, i) => { const s = i < done ? 'done' : i === done ? 'current' : 'pending'; return `<li class="c-tracker-card__step" data-state="${s}"><span class="c-tracker-card__marker ${s === 'done' ? 'tone-success' : s === 'current' ? 'tone-info' : ''}" aria-hidden="true"><i class="ph ${s === 'done' ? 'ph-check' : s === 'current' ? 'ph-clock' : 'ph-circle'}"></i></span><span class="c-tracker-card__label t-meta">${l}</span><span class="rm-end t-caption t-tertiary">${s === 'done' ? 'Done' : s === 'current' ? 'In progress' : ''}</span></li>`; }).join('')}</ol>`;
+    const btn = el.querySelector('.c-tracker-card__toggle'), list = el.querySelector('ol');
+    btn.addEventListener('click', () => { const open = btn.getAttribute('aria-expanded') !== 'true'; btn.setAttribute('aria-expanded', open); list.hidden = !open; });
+  }
+  window.cTrackerCard = { init: (scope = document) => scope.querySelectorAll('[data-c-tracker]').forEach(render), labels: LABELS };
+  document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', () => window.cTrackerCard.init()) : window.cTrackerCard.init();
+})();
+
+</script>
+
+</body></html>

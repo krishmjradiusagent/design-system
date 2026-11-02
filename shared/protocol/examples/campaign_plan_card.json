@@ -1,0 +1,30 @@
+{
+  "type": "campaign_plan_card",
+  "tool_name": "plan_campaign",
+  "v": 1,
+  "data": {
+    "id": "plan_01",
+    "state": "draft",
+    "title": "4-week check-in",
+    "subtitle": "12 inactive clients · not contacted in 90 days",
+    "rows": [
+      {
+        "label": "Week 1",
+        "value": "Text · “Still thinking about a move this year?”"
+      },
+      {
+        "label": "Week 2",
+        "value": "Email · new listings in their area"
+      }
+    ],
+    "footnote": "You approve each message before it sends",
+    "actions": [
+      {
+        "label": "Start the campaign",
+        "style": "primary",
+        "kind": "approve"
+      }
+    ]
+  },
+  "fallback_text": "4-week check-in\n12 inactive clients · not contacted in 90 days\nWeek 1: Text · “Still thinking about a move this year?”\nWeek 2: Email · new listings in their area"
+}

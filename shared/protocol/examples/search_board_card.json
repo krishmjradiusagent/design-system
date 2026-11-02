@@ -1,0 +1,31 @@
+{
+  "type": "search_board_card",
+  "tool_name": "create_search_board",
+  "v": 1,
+  "data": {
+    "id": "board:88231:9",
+    "state": "done",
+    "title": "Jordan · Oak Street",
+    "subtitle": "Saved search",
+    "rows": [
+      {
+        "label": "Area",
+        "value": "Oak Street"
+      },
+      {
+        "label": "Beds / baths",
+        "value": "3+ beds / 2+ baths"
+      },
+      {
+        "label": "Budget",
+        "value": "$600K – $900K"
+      }
+    ],
+    "link": {
+      "title": "Open search board",
+      "kind": "deep_link",
+      "value": "radius://crm/client/88231/searches/9"
+    }
+  },
+  "fallback_text": "Jordan · Oak Street · Saved search\nArea: Oak Street\nBeds / baths: 3+ beds / 2+ baths\nBudget: $600K – $900K"
+}

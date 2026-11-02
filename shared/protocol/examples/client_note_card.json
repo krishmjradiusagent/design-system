@@ -1,0 +1,12 @@
+{
+  "type": "client_note",
+  "data": {
+    "id": 501,
+    "u_cust_id": "88231",
+    "title": "Prefers Oak Street",
+    "note": "Wants 3 beds, under $900K",
+    "client_info": {
+      "name": "Jordan Lee"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "type": "ytd_progress_card",
+  "tool_name": "deal_impact",
+  "v": 1,
+  "data": {
+    "title": "Your year if 88 Pine Avenue closes",
+    "subtitle": "Year to date, team of 14",
+    "rows": [
+      {
+        "label": "Volume",
+        "from": "$8.4M",
+        "to": "$9.6M",
+        "delta": "+$1.2M"
+      },
+      {
+        "label": "GCI",
+        "from": "$214K",
+        "to": "$250K",
+        "delta": "+$36K"
+      },
+      {
+        "label": "Sides",
+        "from": "14",
+        "to": "15",
+        "delta": "+1"
+      }
+    ],
+    "rank": "Team rank, production 6th → 4th"
+  },
+  "fallback_text": "Your year if 88 Pine Avenue closes · Year to date, team of 14\nVolume: $8.4M → $9.6M (+$1.2M)\nGCI: $214K → $250K (+$36K)\nSides: 14 → 15 (+1)\nTeam rank, production 6th → 4th"
+}

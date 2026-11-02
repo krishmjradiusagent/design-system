@@ -1,0 +1,14 @@
+<!-- @dsCard group="Forms" height=300 -->
+<div class="rds" style="padding:24px;background:var(--background);min-height:100%;box-sizing:border-box">
+<form class="rds-fieldset" style="max-width:440px" onsubmit="return false">
+ <div class="rds-fieldset__legend">Email preferences</div>
+ <div class="rds-field"><label class="rds-label" for="f1">Sender name</label><input id="f1" class="rds-input" value="Jordan Reyes"><span class="rds-field__help">Clients see this in their inbox.</span></div>
+ <div style="display:flex;gap:12px">
+  <div class="rds-field" style="flex:1"><label class="rds-label" for="f2">Send window</label><select id="f2" class="rds-native-select"><option>9:00 – 18:00</option></select></div>
+  <div class="rds-field" style="flex:1"><label class="rds-label" for="f3">Daily cap</label><input id="f3" class="rds-input rds-num" value="40"></div>
+ </div>
+ <label class="rds-field rds-field--row"><input type="checkbox" class="rds-checkbox" checked> <span class="rds-label">Let Mel send replies on its own</span></label>
+ <div style="display:flex;gap:8px"><button class="rds-btn rds-btn--primary">Save</button><button class="rds-btn rds-btn--ghost">Cancel</button></div>
+</form>
+</div>
+<script>window.RadiusUI && RadiusUI.init(document.body);</script>

@@ -1,0 +1,9 @@
+{
+  "type": "empty_card",
+  "v": 1,
+  "data": {
+    "title": "No buyer activity this month",
+    "text": "Views, saves and replies show up here."
+  },
+  "fallback_text": "No buyer activity this month\nViews, saves and replies show up here."
+}

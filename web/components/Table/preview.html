@@ -1,0 +1,13 @@
+<!-- @dsCard group="Data display" height=330 -->
+<div class="rds" style="padding:24px;background:var(--background);min-height:100%;box-sizing:border-box">
+<div class="rds-table-wrap"><table class="rds-table">
+ <thead><tr><th><input type="checkbox" class="rds-checkbox" aria-label="Select all"></th><th>Client</th><th>Stage</th><th>Address</th><th class="r">Price</th><th class="r">GCI</th></tr></thead>
+ <tbody>
+  <tr><td><input type="checkbox" class="rds-checkbox" aria-label="Select"></td><td><div style="display:flex;gap:10px;align-items:center"><span class="rds-avatar rds-avatar--sm">JR</span><b style="font-weight:600">Jordan Reyes</b></div></td><td><span class="rds-badge rds-badge--success">Under contract</span></td><td class="rds-muted">12 Oak St</td><td class="r">$1,240,000</td><td class="r">$31,000</td></tr>
+  <tr aria-selected="true"><td><input type="checkbox" class="rds-checkbox" checked aria-label="Select"></td><td><div style="display:flex;gap:10px;align-items:center"><span class="rds-avatar rds-avatar--sm rds-avatar--sky">MK</span><b style="font-weight:600">Maya Kapoor</b></div></td><td><span class="rds-badge rds-badge--warning">Needs review</span></td><td class="rds-muted">48 Birch Ln</td><td class="r">$860,000</td><td class="r">$21,500</td></tr>
+  <tr><td><input type="checkbox" class="rds-checkbox" aria-label="Select"></td><td><div style="display:flex;gap:10px;align-items:center"><span class="rds-avatar rds-avatar--sm rds-avatar--dark">TL</span><b style="font-weight:600">Theo Lindqvist</b></div></td><td><span class="rds-badge rds-badge--info">Listed</span></td><td class="rds-muted">7 Harbor Rd</td><td class="r">$2,100,000</td><td class="r">$52,500</td></tr>
+ </tbody>
+ <tfoot><tr><td></td><td colspan="3">3 transactions</td><td class="r">$4,200,000</td><td class="r">$105,000</td></tr></tfoot>
+</table></div>
+</div>
+<script>window.RadiusUI && RadiusUI.init(document.body);</script>

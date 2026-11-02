@@ -1,0 +1,41 @@
+{
+  "type": "status_list_card",
+  "tool_name": "publish_marketing",
+  "v": 1,
+  "data": {
+    "state": "partial",
+    "title": "3 of 5 destinations complete",
+    "items": [
+      {
+        "icon": "instagram",
+        "title": "Instagram",
+        "subtitle": "Published",
+        "badge": {
+          "text": "Published",
+          "tone": "success"
+        }
+      },
+      {
+        "icon": "email",
+        "title": "Email",
+        "subtitle": "38 sent, 2 failed: invalid address",
+        "badge": {
+          "text": "Partly sent",
+          "tone": "warning"
+        }
+      },
+      {
+        "icon": "facebook",
+        "title": "Facebook",
+        "subtitle": "Authorization expired",
+        "action": {
+          "label": "Reconnect",
+          "style": "secondary",
+          "kind": "connect",
+          "value": "facebook"
+        }
+      }
+    ]
+  },
+  "fallback_text": "3 of 5 destinations complete\nInstagram: Published\nEmail: Partly sent\nFacebook: Authorization expired"
+}

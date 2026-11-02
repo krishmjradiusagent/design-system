@@ -1,0 +1,88 @@
+<!-- @dsCard group="Navigation and chrome" height=560 subtitle="c-m3-navbar: static rendition of the review page (light and dark, quiet)" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<style>
+  /* Matrix chrome only */
+  .mx { display: grid; grid-template-columns: repeat(2, minmax(0, 380px)); gap: var(--space-6); justify-content: center; }
+  .mx > div { background: var(--bg-page); border-radius: var(--radius-sheet); padding: var(--space-4); position: relative; }
+</style>
+<style>body{margin:0;background:var(--bg-page);}</style></head>
+<body class="rm-root">
+<!-- REVIEW MATRIX: c-status-control × dark/light × quiet/accented/colorful. -->
+<div class="mx" id="mx"></div>
+<template id="specimen">
+<div data-platform="android" style="position:relative;height:120px"><nav class="c-m3-navbar" aria-label="Main">
+  <a class="c-m3-navbar__item" href="#" aria-current="page"><span class="c-m3-navbar__pill"><i class="ph-fill ph-house-simple"></i></span><span class="t-caption">Home</span></a>
+  <a class="c-m3-navbar__item" href="#"><span class="c-m3-navbar__pill"><i class="ph ph-check-square"></i></span><span class="t-caption">Tasks</span></a>
+  <a class="c-m3-navbar__item" href="c-quick-view.html"><span class="c-m3-navbar__pill"><i class="ph ph-briefcase"></i></span><span class="t-caption">Deals</span></a>
+  <a class="c-m3-navbar__item" href="#"><span class="c-m3-navbar__pill"><i class="ph ph-calendar-blank"></i></span><span class="t-caption">Calendar</span></a>
+  <span class="mel mel--dock c-m3-navbar__mel" data-state="idle"></span>
+</nav></div>
+</template>
+<script>
+/* Demo data — real Radius content from transaction.html / index.html. For previews only. */
+window.RM_DEMO = {
+  transactions: [
+    { id: 'maple', address: '118 Maple St', city: 'Fremont, CA', price: 1150000, commission: 23000, role: 'Buyer', status: 'In escrow', close: 'Sep 12', acceptance: 'Aug 14', client: 'Sarah Reynolds', clientPhoto: '../_assets/clients/av1.jpg', photo: '../_assets/transactions/118-maple-st.jpg', complete: 1, owner: 'me',
+      coAgents: [{ name: 'Jordan Lee' }, { name: 'Maya Chen' }], collaborators: [{ name: 'Dillon Dennis' }, { name: 'Sandeep TC' }, { name: 'James Cooper' }, { name: 'Harry Cooper' }],
+      photos: ['https://images.pexels.com/photos/7587880/pexels-photo-7587880.jpeg?auto=compress&cs=tinysrgb&w=1200', 'https://images.pexels.com/photos/9976121/pexels-photo-9976121.jpeg?auto=compress&cs=tinysrgb&w=1200', 'https://images.pexels.com/photos/10610731/pexels-photo-10610731.jpeg?auto=compress&cs=tinysrgb&w=1200'] },
+    { id: 'oak', address: '42 Oak Ln', city: 'Fremont, CA', price: 980000, commission: 19600, role: 'Seller', status: 'Inspection due', close: 'Sep 15', acceptance: 'Aug 18', client: 'Daniel Ruiz', clientPhoto: '../_assets/clients/av2.jpg', photo: '../_assets/transactions/42-oak-ln.jpg', complete: 2, owner: 'me',
+      coAgents: [{ name: 'Jordan Lee' }], collaborators: [{ name: 'Dillon Dennis' }, { name: 'Sandeep TC' }] },
+    { id: 'alma', address: '640 Alma St', city: 'Palo Alto, CA', price: 1275000, commission: 25500, role: 'Seller', status: 'In escrow', close: 'Sep 20', acceptance: 'Aug 22', client: 'Priya Nair', clientPhoto: '../_assets/clients/av3.jpg', complete: 3, owner: 'jordan', private: true,
+      coAgents: [{ name: 'Maya Chen' }, { name: 'Jordan Lee' }, { name: 'Sam Patel' }], collaborators: [{ name: 'James Cooper' }] },
+    { id: 'miramar', address: '275 Miramar Ave', city: 'San Francisco, CA', price: 1480000, commission: 29600, role: 'Buyer', status: 'Closed', close: 'Sep 2', acceptance: 'Jul 30', client: 'Leo Grant', complete: 6, owner: 'me', coAgents: [], collaborators: [] }
+  ]
+};
+
+</script>
+<script>
+const t = document.getElementById('specimen').innerHTML;
+const cells = [];
+for (const theme of ['light', 'dark']) for (const exp of ['quiet'])
+  cells.push(`<div data-theme="${theme}" data-expression="${exp}"><p class="t-caption t-tertiary" style="margin-bottom:var(--space-3)">${theme} · ${exp}</p>${t}</div>`);
+document.getElementById('mx').innerHTML = cells.join('');
+</script>
+
+
+<script>/* Radius Mobile harness. Include LAST on any prototype page:
+   <script src="<path>/harness/harness.js"><\/script>
+   - URL params: ?theme=dark|light  &exp=quiet|accented|colorful  &platform=ios|android  &ts=1|1.2|1.5  &compare=1
+   - compare=1 renders the device twice: dark + light, side by side (use for self-review screenshots).
+   - Fills every empty <span class="mel" data-state="..."> with the correct Mel body + face. Never hand-write Mel SVG. */
+(function () {
+  const q = new URLSearchParams(location.search);
+  const html = document.documentElement;
+  const set = (k, v) => v && (html.dataset[k] = v);
+  set('theme', q.get('theme')); set('expression', q.get('exp')); set('platform', q.get('platform'));
+  if (q.get('ts')) html.style.setProperty('--type-scale', q.get('ts'));
+
+  const FACE = '<span class="mel__body"><svg class="mel__eyes" viewBox="0 0 17 8" aria-hidden="true"><path class="mel__eye" d="M0 8V3a3 3 0 0 1 6 0v5Z"/><path class="mel__eye" d="M11 8V3a3 3 0 0 1 6 0v5Z"/></svg><svg class="mel__smile" viewBox="0 0 17 6.5" aria-hidden="true"><path d="M0 6V3a3 3 0 0 1 6 0v3H4.6V3a1.6 1.6 0 0 0-3.2 0v3Z"/><path d="M11 6V3a3 3 0 0 1 6 0v3h-1.4V3a1.6 1.6 0 0 0-3.2 0v3Z"/></svg></span>';
+  const fillMel = root => root.querySelectorAll('.mel').forEach(m => {
+    if (!m.querySelector('.mel__body')) m.innerHTML = FACE;
+    if (!m.hasAttribute('role')) { m.setAttribute('role', 'img'); m.setAttribute('aria-label', 'MEL, ' + (m.dataset.state || 'idle')); }
+    if (!m.dataset.state) m.dataset.state = 'idle';
+  });
+  fillMel(document);
+
+  // compare mode: clone first device into a light/dark pair
+  const dev = document.querySelector('.rm-device');
+  if (q.get('compare') && dev) {
+    const stage = dev.closest('.rm-stage') || dev.parentElement;
+    const mk = (theme, node) => { const c = document.createElement('div'); c.className = 'rm-stage__col'; c.dataset.theme = theme; c.innerHTML = `<p class="t-caption t-secondary">${theme}</p>`; c.appendChild(node); return c; };
+    const clone = dev.cloneNode(true);
+    stage.innerHTML = ''; stage.appendChild(mk('dark', dev)); stage.appendChild(mk('light', clone));
+  }
+
+  // control bar
+  if (q.get('bar') !== '0' && document.body.classList.contains('rm-harness')) {
+    const bar = document.createElement('div'); bar.className = 'rm-harness-bar'; bar.setAttribute('aria-label', 'Harness controls');
+    const sel = (name, opts, cur) => `<select data-k="${name}" aria-label="${name}">${opts.map(o => `<option ${o == cur ? 'selected' : ''}>${o}</option>`).join('')}</select>`;
+    bar.innerHTML = sel('theme', ['dark', 'light'], q.get('theme') || html.dataset.theme || 'light') + sel('exp', ['quiet', 'accented', 'colorful'], q.get('exp') || 'quiet') + sel('platform', ['ios', 'android'], q.get('platform') || 'ios') + sel('ts', ['1', '1.2', '1.5'], q.get('ts') || '1') + `<button data-compare>${q.get('compare') ? 'single' : 'compare'}</button>`;
+    bar.addEventListener('change', e => { q.set(e.target.dataset.k, e.target.value); location.search = q; });
+    bar.querySelector('[data-compare]').onclick = () => { q.get('compare') ? q.delete('compare') : q.set('compare', '1'); location.search = q; };
+    document.body.appendChild(bar);
+  }
+})();
+</script>
+</body></html>

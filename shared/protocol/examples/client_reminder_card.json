@@ -1,0 +1,16 @@
+{
+  "type": "client_reminder",
+  "data": {
+    "reminder": {
+      "date": 1792922400,
+      "note": "Call about Oak Street",
+      "type": "call",
+      "u_cust_id": "88231",
+      "event_duration": 30,
+      "client_transaction_id": null
+    },
+    "client_info": {
+      "name": "Jordan Lee"
+    }
+  }
+}

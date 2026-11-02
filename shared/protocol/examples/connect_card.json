@@ -1,0 +1,29 @@
+{
+  "type": "connect_card",
+  "tool_name": "check_connections",
+  "v": 1,
+  "data": {
+    "id": "connect_01",
+    "items": [
+      {
+        "provider": "gmail",
+        "title": "Gmail",
+        "subtitle": "Send emails · read replies",
+        "connected": true
+      },
+      {
+        "provider": "radius_text",
+        "title": "Radius texting number",
+        "subtitle": "Send texts · read replies",
+        "connected": false,
+        "action": {
+          "label": "Connect",
+          "style": "secondary",
+          "kind": "connect",
+          "value": "radius_text"
+        }
+      }
+    ]
+  },
+  "fallback_text": "Gmail: Connected\nRadius texting number: Not connected"
+}

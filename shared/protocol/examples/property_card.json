@@ -1,0 +1,29 @@
+{
+  "type": "property_card",
+  "tool_name": "get_specific_property",
+  "v": 1,
+  "data": {
+    "id": "property:123",
+    "state": "done",
+    "photo_url": "https://example.test/listing/1.jpg",
+    "price": "$2,450,000",
+    "title": "123 Ocean View Dr",
+    "subtitle": "4 bd · 3 ba · 2,400 sqft",
+    "rows": [
+      {
+        "label": "Status",
+        "value": "Active"
+      },
+      {
+        "label": "MLS",
+        "value": "ML81234567"
+      }
+    ],
+    "link": {
+      "title": "Open listing",
+      "kind": "open_url",
+      "value": "https://example.test/properties/123"
+    }
+  },
+  "fallback_text": "123 Ocean View Dr · $2,450,000\n4 bd · 3 ba · 2,400 sqft\nStatus: Active\nMLS: ML81234567"
+}

@@ -1,0 +1,22 @@
+{
+  "type": "sequence_step_card",
+  "tool_name": "edit_campaign_step",
+  "v": 1,
+  "data": {
+    "id": "seq_01",
+    "title": "Buyer Engagement Campaign",
+    "subtitle": "Day 3 updated",
+    "badge": {
+      "text": "Draft",
+      "tone": "neutral"
+    },
+    "step": {
+      "index": 2,
+      "timing": "Day 3",
+      "channel": "text",
+      "title": "Personal follow-up",
+      "body": "Hi Sarah, still looking? Happy to help."
+    }
+  },
+  "fallback_text": "Buyer Engagement Campaign · Day 3 updated\nDay 3 · Text · Personal follow-up\nHi Sarah, still looking? Happy to help."
+}

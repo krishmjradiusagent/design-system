@@ -1,0 +1,15 @@
+<!-- @dsCard group="Overlays" height=340 -->
+<div class="rds" style="padding:24px;background:var(--background);min-height:100%;box-sizing:border-box">
+<div data-rds-root data-rds-floating data-open style="position:relative;display:inline-block">
+ <button class="rds-btn rds-btn--outline rds-btn--icon" data-rds-trigger aria-haspopup="menu" aria-expanded="true" aria-label="Draft actions"><i data-icon="more-horizontal"></i></button>
+ <div class="rds-menu rds-floating" role="menu" style="width:220px">
+  <div class="rds-menu__label">Draft</div>
+  <button class="rds-menu__item" role="menuitem"><i data-icon="pencil"></i> Edit <span class="rds-menu__shortcut">E</span></button>
+  <button class="rds-menu__item" role="menuitem"><i data-icon="copy"></i> Duplicate <span class="rds-menu__shortcut">⌘D</span></button>
+  <button class="rds-menu__item" role="menuitemcheckbox" aria-checked="true"><i data-icon="eye"></i> Show preview <span class="rds-menu__check"><i data-icon="check"></i></span></button>
+  <div class="rds-menu__sep"></div>
+  <button class="rds-menu__item rds-menu__item--danger" role="menuitem"><i data-icon="trash"></i> Delete</button>
+ </div>
+</div>
+</div>
+<script>window.RadiusUI && RadiusUI.init(document.body);</script>

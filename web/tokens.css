@@ -1,0 +1,211 @@
+/* Radius UI Design System — generated from tokens.json */
+@font-face { font-family: "Mona Sans"; src: url("fonts/MonaSans-VF.ttf") format("truetype"); font-weight: 200 900; font-style: normal; font-display: swap; }
+:root, [data-theme="light"] {
+  --mel-deep-teal: #0e2b30;
+  --mel-teal-2: #173b41;
+  --mel-night: #08191c;
+  --mel-green: #12a867;
+  --mel-green-hover: #0f9a5e;
+  --mel-green-press: #0c8550;
+  --mel-green-text: #0b7a4d;
+  --mel-mint: #3ddc97;
+  --mel-mint-ring: #5ed6a0;
+  --mel-mint-pale: #bdeed4;
+  --mel-mint-mist: #e2f5ea;
+  --mel-sky-mist: #e8f1f6;
+  --mel-cloud: #f3f9f6;
+  --mel-white: #ffffff;
+  --mel-slate: #4a5e61;
+  --mel-slate-light: #7a8d90;
+  --mel-line: #dce8e4;
+  --mel-line-soft: #e6eeeb;
+  --mel-icon-tile: #dff5ea;
+  --mel-icon-ink: #0e8a58;
+  --mel-on-dark-text: #d5e3e3;
+  --mel-on-dark-muted: #a3babb;
+  --mel-on-dark-line: #4e6f74;
+  --mel-error: #b42318;
+  --background: var(--mel-white);
+  --foreground: var(--mel-deep-teal);
+  --card: var(--mel-white);
+  --card-foreground: var(--mel-deep-teal);
+  --popover: var(--mel-white);
+  --popover-foreground: var(--mel-deep-teal);
+  --primary: var(--mel-deep-teal);
+  --primary-hover: var(--mel-teal-2);
+  --primary-active: var(--mel-night);
+  --primary-foreground: var(--mel-white);
+  --secondary: var(--mel-cloud);
+  --secondary-foreground: var(--mel-deep-teal);
+  --muted: var(--mel-cloud);
+  --muted-foreground: var(--mel-slate);
+  --subtle-foreground: var(--mel-slate-light);
+  --accent: var(--mel-mint-mist);
+  --accent-foreground: var(--mel-deep-teal);
+  --brand: var(--mel-green);
+  --brand-foreground: var(--mel-deep-teal);
+  --destructive: var(--mel-error);
+  --destructive-foreground: var(--mel-white);
+  --border: var(--mel-line);
+  --input: var(--mel-line);
+  --ring: var(--mel-mint-ring);
+  --success: var(--mel-green-text);
+  --success-muted: var(--mel-mint-mist);
+  --warning: #9a5b00;
+  --warning-muted: #fdf1e1;
+  --info: #1f5a7a;
+  --info-muted: var(--mel-sky-mist);
+  --danger: var(--mel-error);
+  --danger-muted: #fde8e6;
+  --tone-teal-bg: #e0f3f5;
+  --tone-teal-fg: #2e7480;
+  --tone-terracotta-bg: #fdece6;
+  --tone-terracotta-fg: #a0452a;
+  --tone-iris-bg: #eef0f6;
+  --tone-iris-fg: #3f4a7a;
+  --tone-plum-bg: #f6ebf1;
+  --tone-plum-fg: #7a3a62;
+  --tone-sage-bg: #eef3ea;
+  --tone-sage-fg: #4e6b3f;
+  --assistant-coral: #ee6a4c;
+  --assistant-coral-pill: #fde6df;
+  --assistant-coral-text: #9a3418;
+  --assistant-lagoon: #0fa3b1;
+  --assistant-lagoon-pill: #d5f1f3;
+  --assistant-lagoon-text: #0a5f68;
+  --assistant-honey: #e9a320;
+  --assistant-honey-pill: #fcefd3;
+  --assistant-honey-text: #7a5200;
+  --assistant-rose: #e0588a;
+  --assistant-rose-pill: #fbe2eb;
+  --assistant-rose-text: #9a2351;
+  --assistant-harbor: #4479b3;
+  --assistant-harbor-pill: #e1eaf5;
+  --assistant-harbor-text: #244b78;
+  --assistant-cocoa: #9c6b4f;
+  --assistant-cocoa-pill: #f3e8e1;
+  --assistant-cocoa-text: #6a3e26;
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: var(--mel-cloud);
+  --sidebar-foreground: var(--mel-deep-teal);
+  --sidebar-primary: var(--mel-deep-teal);
+  --sidebar-primary-foreground: var(--mel-white);
+  --sidebar-accent: var(--mel-line);
+  --sidebar-accent-foreground: var(--mel-deep-teal);
+  --sidebar-border: var(--mel-line);
+  --sidebar-ring: var(--mel-mint-ring);
+  --shadow-xs: 0 1px 2px 0 rgba(14, 43, 48, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(14, 43, 48, 0.08), 0 1px 2px -1px rgba(14, 43, 48, 0.08);
+  --shadow-md: 0 4px 6px -1px rgba(14, 43, 48, 0.08), 0 2px 4px -2px rgba(14, 43, 48, 0.08);
+  --shadow-lg: 0 10px 15px -3px rgba(14, 43, 48, 0.10), 0 4px 6px -4px rgba(14, 43, 48, 0.10);
+  --shadow-composer: 0 2px 10px rgba(14, 43, 48, 0.05);
+  --shadow-button-hover: 0 6px 16px rgba(14, 43, 48, 0.14);
+  --shadow-card-hover: 0 12px 28px rgba(14, 43, 48, 0.10);
+  --shadow-focus: 0 0 0 3px #ffffff, 0 0 0 6px #5ed6a0;
+  --shadow-focus-input: 0 0 0 4px rgba(61, 220, 151, 0.22);
+}
+:root {
+  --space-0-5: 2px;
+  --space-1: 4px;
+  --space-1-5: 6px;
+  --space-2: 8px;
+  --space-2-5: 10px;
+  --space-3: 12px;
+  --space-3-5: 14px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-18: 72px;
+  --control-xs: 24px;
+  --control-sm: 32px;
+  --control-md: 36px;
+  --control-lg: 40px;
+  --control-xl: 48px;
+  --control-2xl: 56px;
+  --sidebar-width: 260px;
+  --chat-column: 720px;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-2xl: 18px;
+  --radius-3xl: 22px;
+  --radius-4xl: 26px;
+  --radius-full: 9999px;
+  --gradient-hero: radial-gradient(circle at 12% 0%, rgba(61,220,151,0.30), rgba(61,220,151,0) 45%), radial-gradient(circle at 92% 70%, rgba(150,205,240,0.45), rgba(150,205,240,0) 45%), linear-gradient(180deg, #ffffff 0%, #f3f9f6 100%);
+  --gradient-morning: linear-gradient(135deg, #e2f5ea 0%, #e8f1f6 100%);
+  --gradient-mint-glow: radial-gradient(ellipse 60% 55% at 50% 60%, rgba(166,235,201,0.95), rgba(166,235,201,0) 70%);
+  --gradient-deep-teal: radial-gradient(circle at 85% 0%, rgba(61,220,151,0.22), rgba(61,220,151,0) 45%), linear-gradient(160deg, #173b41 0%, #08191c 100%);
+  --gradient-signal: linear-gradient(120deg, #12a867 0%, #3ddc97 100%);
+  --gradient-sky: linear-gradient(180deg, #ffffff 0%, #e8f1f6 100%);
+  --ease-mel: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-loop: ease-in-out;
+  --ease-linear: linear;
+  --ease-chevron: ease;
+  --duration-press: 100ms;
+  --duration-fast: 150ms;
+  --duration-chevron: 180ms;
+  --duration-hover-card: 200ms;
+  --duration-base: 240ms;
+  --duration-expand: 300ms;
+  --duration-reveal: 360ms;
+  --duration-spinner-min: 600ms;
+  --duration-done: 600ms;
+  --duration-trace-step: 700ms;
+  --duration-reply-delay: 800ms;
+  --duration-reply-delay-skill: 1400ms;
+  --duration-stream-word: 60ms;
+  --duration-spin: 800ms;
+  --duration-refresh-spin: 900ms;
+  --duration-dots: 1200ms;
+  --duration-pulse: 1400ms;
+  --duration-shimmer: 1600ms;
+  --duration-listening: 1800ms;
+  --duration-ready: 2400ms;
+  --duration-idle: 3200ms;
+  --duration-attention: 900ms;
+  --duration-voice-bars: 900ms;
+  --duration-return-ready: 2000ms;
+  --duration-mascot-blink: 6000ms;
+  --duration-mascot-rest: 7000ms;
+  --stagger-reveal: 80ms;
+  --stagger-dots: 150ms;
+  --stagger-bars: 110ms;
+  --stagger-rings: 600ms;
+  --move-lift-button: 1px;
+  --move-lift-card: 3px;
+  --move-step-in: 4px;
+  --move-slide-confirm: 12px;
+  --move-reveal: 16px;
+  --scale-press: 0.97;
+  --scale-swap-from: 0.92;
+  --font-sans: "Mona Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+.ui-h1 { font-family: var(--font-sans); font-size: 30px; line-height: 36px; font-weight: 600; letter-spacing: -0.02em; }
+.ui-h2 { font-family: var(--font-sans); font-size: 24px; line-height: 32px; font-weight: 600; letter-spacing: -0.02em; }
+.ui-h3 { font-family: var(--font-sans); font-size: 20px; line-height: 28px; font-weight: 600; letter-spacing: -0.01em; }
+.ui-h4 { font-family: var(--font-sans); font-size: 16px; line-height: 24px; font-weight: 600; }
+.ui-chat { font-family: var(--font-sans); font-size: 16px; line-height: 24px; font-weight: 400; }
+.ui-body-lg { font-family: var(--font-sans); font-size: 15px; line-height: 22px; font-weight: 400; }
+.ui-body { font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 400; }
+.ui-body-strong { font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 600; }
+.ui-small { font-family: var(--font-sans); font-size: 13px; line-height: 18px; font-weight: 500; }
+.ui-caption { font-family: var(--font-sans); font-size: 12px; line-height: 16px; font-weight: 400; }
+.ui-label { font-family: var(--font-sans); font-size: 11px; line-height: 16px; font-weight: 600; letter-spacing: 0.08em; }
+.brand-display { font-family: var(--font-sans); font-size: 96px; line-height: 1.02; font-weight: 400; letter-spacing: -0.03em; }
+.brand-h1 { font-family: var(--font-sans); font-size: 64px; line-height: 1.04; font-weight: 400; letter-spacing: -0.03em; }
+.brand-h2 { font-family: var(--font-sans); font-size: 44px; line-height: 1.08; font-weight: 500; letter-spacing: -0.025em; }
+.brand-h3 { font-family: var(--font-sans); font-size: 28px; line-height: 1.15; font-weight: 500; letter-spacing: -0.02em; }
+.brand-body-lg { font-family: var(--font-sans); font-size: 20px; line-height: 1.55; font-weight: 400; }
+.brand-body { font-family: var(--font-sans); font-size: 17px; line-height: 1.55; font-weight: 400; }
+.brand-small { font-family: var(--font-sans); font-size: 14px; line-height: 1.45; font-weight: 500; }
+.brand-label { font-family: var(--font-sans); font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: 1px; }

@@ -1,0 +1,16 @@
+{
+  "prompts": [
+    {
+      "text": "Find Jordan Lee",
+      "style": "standard"
+    },
+    {
+      "text": "Draft a message to Jordan",
+      "style": "standard"
+    },
+    {
+      "text": "What else can you do?",
+      "style": "more"
+    }
+  ]
+}

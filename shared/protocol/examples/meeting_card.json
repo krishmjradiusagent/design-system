@@ -1,0 +1,21 @@
+{
+  "type": "meeting",
+  "data": {
+    "success": true,
+    "summary": "Tour with Jordan Lee",
+    "description": "123 Ocean View Dr",
+    "event_id": "evt_1",
+    "meeting_link": "https://meet.google.com/…",
+    "calendar_link": "https://calendar.google.com/…",
+    "agent_email": "agent@…",
+    "client_email": "jordan.lee@gmail.com",
+    "agent_name": "Agent",
+    "client_name": "Jordan Lee",
+    "meeting_time": "2026-10-27T10:00:00Z",
+    "meeting_time_epoch": 1792922400,
+    "attendees": [
+      "jordan.lee@gmail.com"
+    ],
+    "organizer": "agent@…"
+  }
+}

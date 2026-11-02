@@ -1,0 +1,31 @@
+{
+  "type": "campaign_sequence_card",
+  "tool_name": "write_campaign",
+  "v": 1,
+  "data": {
+    "id": "seq_01",
+    "state": "draft",
+    "title": "Buyer Engagement Campaign",
+    "subtitle": "4 touchpoints · 14 days",
+    "badge": {
+      "text": "Draft",
+      "tone": "neutral"
+    },
+    "steps": [
+      {
+        "timing": "Day 1",
+        "channel": "email",
+        "title": "Introduction",
+        "subject": "Still thinking about your next home?",
+        "body": "Hi Sarah, I wanted to check in and see how your home search is going."
+      },
+      {
+        "timing": "Day 3",
+        "channel": "text",
+        "title": "Personal follow-up",
+        "body": "Hey Sarah. Just following up on your home search."
+      }
+    ]
+  },
+  "fallback_text": "Buyer Engagement Campaign · 4 touchpoints · 14 days\nDay 1 · Email · Introduction\nDay 3 · Text · Personal follow-up"
+}

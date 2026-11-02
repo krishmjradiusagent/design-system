@@ -1,0 +1,12 @@
+{
+  "type": "property_visit",
+  "data": {
+    "success": true,
+    "summary": "Showing at 123 Ocean View Dr",
+    "event_id": "evt_2",
+    "client_name": "Jordan Lee",
+    "property_address": "123 Ocean View Dr",
+    "meeting_time": "2026-10-28T15:00:00Z",
+    "meeting_time_epoch": 1793026800
+  }
+}

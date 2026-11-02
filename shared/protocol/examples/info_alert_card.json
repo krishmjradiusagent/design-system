@@ -1,0 +1,18 @@
+{
+  "type": "info_alert_card",
+  "v": 1,
+  "data": {
+    "tone": "info",
+    "title": "Your import is waiting",
+    "text": "clients-export.csv · 1,280 rows read. Pick up where you left off.",
+    "actions": [
+      {
+        "label": "Resume import",
+        "style": "link",
+        "kind": "send_prompt",
+        "value": "Resume my import"
+      }
+    ]
+  },
+  "fallback_text": "Your import is waiting\nclients-export.csv · 1,280 rows read. Pick up where you left off."
+}

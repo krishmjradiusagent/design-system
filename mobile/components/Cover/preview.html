@@ -1,0 +1,25 @@
+<!-- @dsCard height=300 -->
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><style>
+html,body{margin:0;background:var(--bg-page)}
+svg{display:block}
+.b-green{fill:var(--action-primary)}
+.b-deep{fill:var(--accent-teal-7)}
+.b-mint{fill:var(--accent-teal-2)}
+.b-tile{fill:var(--surface-tile)}
+.dot{fill:var(--accent-teal-3)}
+.name{font-family:var(--font-sans);font-weight:700;font-size:96px;letter-spacing:-0.02em;fill:var(--text-primary)}
+.tag{font-family:var(--font-sans);font-weight:500;font-size:14px;fill:var(--text-secondary)}
+</style></head><body>
+<svg viewBox="0 0 960 300" width="960" height="300" role="img" aria-label="Radius Mobile">
+<!--
+blocks: action-primary (green) 96x190, accent-teal-7 (deep) 96x250, accent-teal-2 (mint) 96x150, surface-tile 96x210; widths are space-24, gap space-4 + space-2
+arrangement: four staggered arches bleeding off the bottom, tallest second, light mint third, tile last
+pattern: half-rounds (arches), because Mel's identity is the arched eye and the radius scale runs to pill and sheet curves; 12 half-discs of radius space-2 on a 36px pitch in accent-teal-3
+scales: arch radius = half the 96px width (space-24 / 2), dots space-2 radius, tagline 14px, name 96px/0.95
+-->
+<path class="dot" d="M500,40 A8,8 0 0 1 516,40 Z"/><path class="dot" d="M536,40 A8,8 0 0 1 552,40 Z"/><path class="dot" d="M572,40 A8,8 0 0 1 588,40 Z"/><path class="dot" d="M608,40 A8,8 0 0 1 624,40 Z"/><path class="dot" d="M644,40 A8,8 0 0 1 660,40 Z"/><path class="dot" d="M680,40 A8,8 0 0 1 696,40 Z"/><path class="dot" d="M716,40 A8,8 0 0 1 732,40 Z"/><path class="dot" d="M752,40 A8,8 0 0 1 768,40 Z"/><path class="dot" d="M788,40 A8,8 0 0 1 804,40 Z"/><path class="dot" d="M824,40 A8,8 0 0 1 840,40 Z"/><path class="dot" d="M860,40 A8,8 0 0 1 876,40 Z"/><path class="dot" d="M896,40 A8,8 0 0 1 912,40 Z"/>
+<path class="b-green" d="M500,300 L500,158.0 A48.0,48.0 0 0 1 596,158.0 L596,300 Z"/><path class="b-deep" d="M612,300 L612,98.0 A48.0,48.0 0 0 1 708,98.0 L708,300 Z"/><path class="b-mint" d="M724,300 L724,198.0 A48.0,48.0 0 0 1 820,198.0 L820,300 Z"/><path class="b-tile" d="M836,300 L836,138.0 A48.0,48.0 0 0 1 932,138.0 L932,300 Z"/>
+<text class="name" x="48" y="146">Radius</text>
+<text class="name" x="48" y="237">Mobile</text>
+<text class="tag" x="48" y="272">Compose, never invent.</text>
+</svg></body></html>

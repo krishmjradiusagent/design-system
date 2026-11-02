@@ -1,0 +1,46 @@
+{
+  "type": "email_review_card",
+  "tool_name": "prepare_publish",
+  "v": 1,
+  "data": {
+    "id": "pub_email_01",
+    "state": "draft",
+    "title": "Email",
+    "subtitle": "1 email · from jordan@jordanlee.com",
+    "to": {
+      "label": "40 buyers",
+      "emails": [
+        "maya.chen@gmail.com",
+        "james.ortiz@outlook.com"
+      ],
+      "more_count": 38
+    },
+    "subject": "Just listed: 123 Ocean View Drive",
+    "asset": {
+      "kind": "image",
+      "url": "https://…/email.jpg"
+    },
+    "actions": [
+      {
+        "label": "Send email",
+        "style": "primary",
+        "kind": "approve"
+      }
+    ],
+    "empty_actions": [
+      {
+        "label": "Upload CSV",
+        "style": "secondary",
+        "kind": "fill_prompt",
+        "value": "Upload a CSV"
+      },
+      {
+        "label": "Add a client",
+        "style": "secondary",
+        "kind": "fill_prompt",
+        "value": "Add a client"
+      }
+    ]
+  },
+  "fallback_text": "Email · 1 email · from jordan@jordanlee.com\nTo: 40 buyers\nSubject: Just listed: 123 Ocean View Drive"
+}

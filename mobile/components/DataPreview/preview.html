@@ -1,0 +1,43 @@
+<!-- @dsCard group="Import" height=470 subtitle="c-data-preview: one sample row at a time, previous and next, arrow keys" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<style>body{margin:0;background:var(--bg-page)}.mx{display:grid;grid-template-columns:repeat(2,minmax(0,380px));gap:var(--space-6);justify-content:center;padding:var(--space-4)}
+.mx>.cell{background:var(--bg-page);border-radius:var(--radius-sheet);padding:var(--space-4);color:var(--text-primary);min-width:0}.lab{margin:var(--space-4) 0 var(--space-2);color:var(--text-secondary)}.lab:first-child{margin-top:0}.hd{margin:0 0 var(--space-3)}.hd p{margin:0}
+.demo{display:flex;gap:var(--space-2);margin-top:var(--space-3)}.demo .rm-btn{flex:1}</style></head><body class="rm-root"><div class="mx"><div class="cell" data-theme="light"><div class="hd"><p class="t-sheet-title">Check your file</p><p class="t-meta" style="color:var(--text-secondary)" data-sub>Row 1 of 3 · 1,248 rows</p></div><div class="c-data-preview" tabindex="0" role="group" aria-label="File preview" data-index="0" data-rows='[{"First name": "Sarah", "Last name": "Johnson", "Email": "s.johnson@oak.com", "Phone": "555 0142", "Source": "Zillow"}, {"First name": "Michael", "Last name": "Lee", "Email": "m.lee@home.com", "Phone": "555 0199", "Source": "Referral"}, {"First name": "Lisa", "Last name": "Chen", "Email": "lisa@chen.io", "Phone": "555 0177", "Source": "Open house"}]'><div class="rm-card c-data-preview__card" aria-live="polite"><dl class="c-data-preview__list"></dl></div><div class="c-data-preview__pager"><button type="button" class="c-data-preview__nav" data-dir="prev" aria-label="Previous row"><i class="ph ph-caret-left"></i></button><span class="c-data-preview__count t-meta">1 of 3</span><button type="button" class="c-data-preview__nav" data-dir="next" aria-label="Next row"><i class="ph ph-caret-right"></i></button></div></div></div><div class="cell" data-theme="dark"><div class="hd"><p class="t-sheet-title">Check your file</p><p class="t-meta" style="color:var(--text-secondary)" data-sub>Row 1 of 3 · 1,248 rows</p></div><div class="c-data-preview" tabindex="0" role="group" aria-label="File preview" data-index="0" data-rows='[{"First name": "Sarah", "Last name": "Johnson", "Email": "s.johnson@oak.com", "Phone": "555 0142", "Source": "Zillow"}, {"First name": "Michael", "Last name": "Lee", "Email": "m.lee@home.com", "Phone": "555 0199", "Source": "Referral"}, {"First name": "Lisa", "Last name": "Chen", "Email": "lisa@chen.io", "Phone": "555 0177", "Source": "Open house"}]'><div class="rm-card c-data-preview__card" aria-live="polite"><dl class="c-data-preview__list"></dl></div><div class="c-data-preview__pager"><button type="button" class="c-data-preview__nav" data-dir="prev" aria-label="Previous row"><i class="ph ph-caret-left"></i></button><span class="c-data-preview__count t-meta">1 of 3</span><button type="button" class="c-data-preview__nav" data-dir="next" aria-label="Next row"><i class="ph ph-caret-right"></i></button></div></div></div></div><script>/* c-data-preview — cDataPreview.init(root)   renders row 0 from root's data-rows (JSON array of objects, same keys in each).
+                    cDataPreview.show(root, i) go to row i (0-based)
+   Controls: Previous and Next buttons, ArrowLeft and ArrowRight when the preview has focus. Buttons disable at the ends.
+   Event: root dispatches "c-data-preview:change" with detail {index, total}. Values are shown as text, never HTML. */
+(function () {
+  function show(root, i) {
+    const rows = root._rows || [];
+    if (!rows.length) return;
+    i = Math.max(0, Math.min(rows.length - 1, i));
+    root.dataset.index = i;
+    const dl = root.querySelector('.c-data-preview__list'); dl.replaceChildren();
+    Object.entries(rows[i]).forEach(([k, v]) => {
+      const dt = document.createElement('dt'), dd = document.createElement('dd');
+      dt.className = 't-body'; dd.className = 't-body'; dt.textContent = k; dd.textContent = v; dd.title = v;
+      dl.append(dt, dd);
+    });
+    root.querySelector('.c-data-preview__count').textContent = (i + 1) + ' of ' + rows.length;
+    root.querySelector('[data-dir="prev"]').disabled = i === 0;
+    root.querySelector('[data-dir="next"]').disabled = i === rows.length - 1;
+    root.dispatchEvent(new CustomEvent('c-data-preview:change', { bubbles: true, detail: { index: i, total: rows.length } }));
+  }
+  function init(root) {
+    if (root.dataset.cPreviewBound) return; root.dataset.cPreviewBound = '1';
+    try { root._rows = JSON.parse(root.dataset.rows || '[]'); } catch (e) { root._rows = []; }
+    root.querySelector('[data-dir="prev"]').addEventListener('click', () => show(root, +root.dataset.index - 1));
+    root.querySelector('[data-dir="next"]').addEventListener('click', () => show(root, +root.dataset.index + 1));
+    root.addEventListener('keydown', e => {
+      if (e.target.closest('button')) return;
+      if (e.key === 'ArrowLeft') { e.preventDefault(); show(root, +root.dataset.index - 1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); show(root, +root.dataset.index + 1); }
+    });
+    show(root, 0);
+  }
+  window.cDataPreview = { init: r => (r && r.nodeType ? init(r) : document.querySelectorAll(".c-data-preview").forEach(init)), show };
+})();
+</script><script>
+cDataPreview.init();
+document.querySelectorAll('.c-data-preview').forEach(r=>r.addEventListener('c-data-preview:change',e=>{r.closest('.cell').querySelector('[data-sub]').textContent='Row '+(e.detail.index+1)+' of '+e.detail.total+' · 1,248 rows';}));</script></body></html>

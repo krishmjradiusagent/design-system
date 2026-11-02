@@ -1,0 +1,33 @@
+{
+  "type": "social_post_review_card",
+  "tool_name": "prepare_publish",
+  "v": 1,
+  "data": {
+    "id": "pub_ig_01",
+    "state": "draft",
+    "platform": "instagram",
+    "title": "Instagram",
+    "subtitle": "3 pieces · @jordanlee.homes",
+    "items": [
+      {
+        "kind": "image",
+        "url": "https://…/1.jpg",
+        "aspect": "4:5"
+      }
+    ],
+    "caption": "Just listed. 123 Ocean View Drive, 4 beds, 3 baths, ocean views.",
+    "tags": [
+      "#justlisted",
+      "#sanfrancisco"
+    ],
+    "footnote": "Posts as soon as you approve",
+    "actions": [
+      {
+        "label": "Post to Instagram",
+        "style": "primary",
+        "kind": "approve"
+      }
+    ]
+  },
+  "fallback_text": "Instagram · 3 pieces · @jordanlee.homes\nJust listed. 123 Ocean View Drive, 4 beds, 3 baths, ocean views.\n#justlisted #sanfrancisco"
+}

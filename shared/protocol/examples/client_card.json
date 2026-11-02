@@ -1,0 +1,12 @@
+{
+  "type": "client",
+  "data": {
+    "id": "88231",
+    "name": "Jordan Lee",
+    "type": "buyer",
+    "email": "jordan.lee@gmail.com",
+    "source": "Website",
+    "status": "Active",
+    "sub_text": "Added today"
+  }
+}

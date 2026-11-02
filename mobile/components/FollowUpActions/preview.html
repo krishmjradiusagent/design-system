@@ -1,0 +1,47 @@
+<!-- @dsCard group="Cards and summaries" height=560 subtitle="c-follow-up-actions: static rendition of the review page (light and dark, quiet)" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<style>
+  /* Matrix chrome only */
+  .mx { display: grid; grid-template-columns: repeat(2, minmax(0, 380px)); gap: var(--space-6); justify-content: center; }
+  .mx > div { background: var(--bg-page); border-radius: var(--radius-sheet); padding: var(--space-4); position: relative; }
+</style>
+<style>body{margin:0;background:var(--bg-page);}</style></head>
+<body class="rm-root">
+<!-- REVIEW MATRIX: c-status-control × dark/light × quiet/accented/colorful. -->
+<div class="mx" id="mx"></div>
+<template id="specimen">
+<nav class="c-follow-up-actions" aria-label="Follow-up actions">
+  <button type="button" class="c-follow-up-action t-body"><i class="ph ph-list-plus" aria-hidden="true"></i><span class="c-follow-up-action__label">Add task</span></button>
+  <button type="button" class="c-follow-up-action c-follow-up-action--breakdown t-body"><i class="ph ph-receipt" aria-hidden="true"></i><span class="c-follow-up-action__label">Commission breakdown</span></button>
+  <button type="button" class="c-follow-up-action c-follow-up-action--tracker t-body"><i class="ph ph-chart-donut" aria-hidden="true"></i><span class="c-follow-up-action__label">Commission tracker</span></button>
+  <div class="c-follow-up-actions__pair"><button type="button" class="c-follow-up-action c-follow-up-action--accept t-body"><i class="ph ph-check-circle" aria-hidden="true"></i><span class="c-follow-up-action__label">Accept contract</span></button><button type="button" class="c-follow-up-action c-follow-up-action--cancel t-body"><i class="ph ph-x-circle" aria-hidden="true"></i><span class="c-follow-up-action__label">Cancel contract</span></button></div>
+</nav>
+</template>
+<script>
+/* Demo data — real Radius content from transaction.html / index.html. For previews only. */
+window.RM_DEMO = {
+  transactions: [
+    { id: 'maple', address: '118 Maple St', city: 'Fremont, CA', price: 1150000, commission: 23000, role: 'Buyer', status: 'In escrow', close: 'Sep 12', acceptance: 'Aug 14', client: 'Sarah Reynolds', clientPhoto: '../_assets/clients/av1.jpg', photo: '../_assets/transactions/118-maple-st.jpg', complete: 1, owner: 'me',
+      coAgents: [{ name: 'Jordan Lee' }, { name: 'Maya Chen' }], collaborators: [{ name: 'Dillon Dennis' }, { name: 'Sandeep TC' }, { name: 'James Cooper' }, { name: 'Harry Cooper' }],
+      photos: ['https://images.pexels.com/photos/7587880/pexels-photo-7587880.jpeg?auto=compress&cs=tinysrgb&w=1200', 'https://images.pexels.com/photos/9976121/pexels-photo-9976121.jpeg?auto=compress&cs=tinysrgb&w=1200', 'https://images.pexels.com/photos/10610731/pexels-photo-10610731.jpeg?auto=compress&cs=tinysrgb&w=1200'] },
+    { id: 'oak', address: '42 Oak Ln', city: 'Fremont, CA', price: 980000, commission: 19600, role: 'Seller', status: 'Inspection due', close: 'Sep 15', acceptance: 'Aug 18', client: 'Daniel Ruiz', clientPhoto: '../_assets/clients/av2.jpg', photo: '../_assets/transactions/42-oak-ln.jpg', complete: 2, owner: 'me',
+      coAgents: [{ name: 'Jordan Lee' }], collaborators: [{ name: 'Dillon Dennis' }, { name: 'Sandeep TC' }] },
+    { id: 'alma', address: '640 Alma St', city: 'Palo Alto, CA', price: 1275000, commission: 25500, role: 'Seller', status: 'In escrow', close: 'Sep 20', acceptance: 'Aug 22', client: 'Priya Nair', clientPhoto: '../_assets/clients/av3.jpg', complete: 3, owner: 'jordan', private: true,
+      coAgents: [{ name: 'Maya Chen' }, { name: 'Jordan Lee' }, { name: 'Sam Patel' }], collaborators: [{ name: 'James Cooper' }] },
+    { id: 'miramar', address: '275 Miramar Ave', city: 'San Francisco, CA', price: 1480000, commission: 29600, role: 'Buyer', status: 'Closed', close: 'Sep 2', acceptance: 'Jul 30', client: 'Leo Grant', complete: 6, owner: 'me', coAgents: [], collaborators: [] }
+  ]
+};
+
+</script>
+<script>
+const t = document.getElementById('specimen').innerHTML;
+const cells = [];
+for (const theme of ['light', 'dark']) for (const exp of ['quiet'])
+  cells.push(`<div data-theme="${theme}" data-expression="${exp}"><p class="t-caption t-tertiary" style="margin-bottom:var(--space-3)">${theme} · ${exp}</p>${t}</div>`);
+document.getElementById('mx').innerHTML = cells.join('');
+</script>
+
+
+</body></html>

@@ -1,0 +1,37 @@
+{
+  "type": "stats_card",
+  "tool_name": "import_contacts",
+  "v": 1,
+  "data": {
+    "id": "import_01",
+    "stats": [
+      {
+        "label": "Imported",
+        "value": "1,248"
+      },
+      {
+        "label": "Buyers",
+        "value": "836"
+      },
+      {
+        "label": "Sellers",
+        "value": "412"
+      },
+      {
+        "label": "Duplicates skipped",
+        "value": "32"
+      }
+    ],
+    "warning": {
+      "title": "12 need review",
+      "text": "missing phone or email"
+    },
+    "link": {
+      "title": "View my contacts",
+      "subtitle": "1,248 in Radius CRM",
+      "kind": "deep_link",
+      "value": "radius://crm/contacts"
+    }
+  },
+  "fallback_text": "Imported: 1,248\nBuyers: 836\nSellers: 412\nDuplicates skipped: 32\n12 need review: missing phone or email"
+}

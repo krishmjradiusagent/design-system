@@ -1,0 +1,29 @@
+{
+  "type": "send_summary_card",
+  "tool_name": "send_invites",
+  "v": 1,
+  "data": {
+    "state": "partial",
+    "title": "Sent to 304 of 312",
+    "counts": [
+      {
+        "channel": "email",
+        "value": 304
+      },
+      {
+        "channel": "text",
+        "value": 287
+      }
+    ],
+    "failed": 8,
+    "actions": [
+      {
+        "label": "See who failed",
+        "style": "link",
+        "kind": "send_prompt",
+        "value": "Show the 8 that failed"
+      }
+    ]
+  },
+  "fallback_text": "Sent to 304 of 312\nEmail: 304\nText: 287\nFailed: 8"
+}

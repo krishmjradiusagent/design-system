@@ -1,0 +1,147 @@
+<!-- @dsCard group="Cards and summaries" height=560 subtitle="c-summary-cards: static rendition of the review page (light and dark, quiet)" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<style>
+  /* Matrix chrome only */
+  .mx { display: grid; grid-template-columns: repeat(2, minmax(0, 380px)); gap: var(--space-6); justify-content: center; }
+  .mx > div { background: var(--bg-page); border-radius: var(--radius-sheet); padding: var(--space-4); position: relative; }
+</style>
+<style>body{margin:0;background:var(--bg-page);}</style></head>
+<body class="rm-root">
+<!-- REVIEW MATRIX: c-status-control × dark/light × quiet/accented/colorful. -->
+<div class="mx" id="mx"></div>
+<template id="specimen">
+<div class="rm-stack"><section class="c-summary-cards c-summary-cards--compact">
+      <article class="c-summary-card c-summary-card--status"><span class="c-summary-card__label t-caption"><i class="ph ph-flag" aria-hidden="true"></i><span>Status</span></span><strong class="c-summary-card__value"><span class="c-status-control c-status-control--plain t-body-strong" data-c-status="In escrow" data-c-statuses='["Active listing","Offer accepted","In escrow","Inspection due","Closing soon","Closed","Cancelled"]' data-c-tone-target=".c-summary-card"></span></strong></article>
+      <article class="c-summary-card"><span class="c-summary-card__label t-caption"><i class="ph ph-calendar-blank" aria-hidden="true"></i><span>Closes Sep 20</span></span><strong class="c-summary-card__value"><span class="c-assigned-roles" data-c-roles='["Seller","Buyer","Landlord","Tenant","Referral"]'></span></strong></article>
+    </section><div class="c-summary-cards">
+        <article class="c-summary-card"><span class="c-summary-card__label t-caption"><i class="ph ph-file-text" aria-hidden="true"></i><span>Transaction template</span></span><strong class="c-summary-card__value"><span class="c-picker" data-label="Transaction template" data-value="Standard listing" data-c-picker='["No template","Standard purchase","Standard listing","So Cal Standard Residential Purchase"]'></span></strong></article>
+        <article class="c-summary-card c-summary-card--status"><span class="c-summary-card__label t-caption"><i class="ph ph-flag" aria-hidden="true"></i><span>Status</span></span><strong class="c-summary-card__value"><span class="c-status-control c-status-control--plain t-body-strong" data-c-status="Inspection due" data-c-statuses='["Active listing","Offer accepted","In escrow","Inspection due","Closing soon","Closed","Cancelled"]' data-c-tone-target=".c-summary-card"></span></strong></article>
+      </div></div>
+</template>
+<script>
+/* Demo data — real Radius content from transaction.html / index.html. For previews only. */
+window.RM_DEMO = {
+  transactions: [
+    { id: 'maple', address: '118 Maple St', city: 'Fremont, CA', price: 1150000, commission: 23000, role: 'Buyer', status: 'In escrow', close: 'Sep 12', acceptance: 'Aug 14', client: 'Sarah Reynolds', clientPhoto: '../_assets/clients/av1.jpg', photo: '../_assets/transactions/118-maple-st.jpg', complete: 1, owner: 'me',
+      coAgents: [{ name: 'Jordan Lee' }, { name: 'Maya Chen' }], collaborators: [{ name: 'Dillon Dennis' }, { name: 'Sandeep TC' }, { name: 'James Cooper' }, { name: 'Harry Cooper' }],
+      photos: ['https://images.pexels.com/photos/7587880/pexels-photo-7587880.jpeg?auto=compress&cs=tinysrgb&w=1200', 'https://images.pexels.com/photos/9976121/pexels-photo-9976121.jpeg?auto=compress&cs=tinysrgb&w=1200', 'https://images.pexels.com/photos/10610731/pexels-photo-10610731.jpeg?auto=compress&cs=tinysrgb&w=1200'] },
+    { id: 'oak', address: '42 Oak Ln', city: 'Fremont, CA', price: 980000, commission: 19600, role: 'Seller', status: 'Inspection due', close: 'Sep 15', acceptance: 'Aug 18', client: 'Daniel Ruiz', clientPhoto: '../_assets/clients/av2.jpg', photo: '../_assets/transactions/42-oak-ln.jpg', complete: 2, owner: 'me',
+      coAgents: [{ name: 'Jordan Lee' }], collaborators: [{ name: 'Dillon Dennis' }, { name: 'Sandeep TC' }] },
+    { id: 'alma', address: '640 Alma St', city: 'Palo Alto, CA', price: 1275000, commission: 25500, role: 'Seller', status: 'In escrow', close: 'Sep 20', acceptance: 'Aug 22', client: 'Priya Nair', clientPhoto: '../_assets/clients/av3.jpg', complete: 3, owner: 'jordan', private: true,
+      coAgents: [{ name: 'Maya Chen' }, { name: 'Jordan Lee' }, { name: 'Sam Patel' }], collaborators: [{ name: 'James Cooper' }] },
+    { id: 'miramar', address: '275 Miramar Ave', city: 'San Francisco, CA', price: 1480000, commission: 29600, role: 'Buyer', status: 'Closed', close: 'Sep 2', acceptance: 'Jul 30', client: 'Leo Grant', complete: 6, owner: 'me', coAgents: [], collaborators: [] }
+  ]
+};
+
+</script>
+<script>
+const t = document.getElementById('specimen').innerHTML;
+const cells = [];
+for (const theme of ['light', 'dark']) for (const exp of ['quiet'])
+  cells.push(`<div data-theme="${theme}" data-expression="${exp}"><p class="t-caption t-tertiary" style="margin-bottom:var(--space-3)">${theme} · ${exp}</p>${t}</div>`);
+document.getElementById('mx').innerHTML = cells.join('');
+</script>
+<script>
+/* c-menu — attach(trigger, menu, {align:'end'|'start', place:'below'|'above', matchWidth:bool, keepOpen:bool}). Menu element needs popover="manual" + class c-menu.
+   Handles: open/close, placement (flips if no room), ↑↓ focus, Esc, outside click, scroll close, aria-expanded. */
+(function () {
+  const openMenus = new Set();
+  function attach(trigger, menu, opts = {}) {
+    if (trigger.dataset.cMenuBound) return; trigger.dataset.cMenuBound = '1';
+    const items = () => [...menu.querySelectorAll('.c-menu__item:not([disabled]):not(.c-menu__item--static)')];
+    const isOpen = () => menu.matches(':popover-open');
+    const place = () => { if (opts.matchWidth) menu.style.minWidth = Math.max(200, trigger.getBoundingClientRect().width) + 'px'; const r = trigger.getBoundingClientRect(), mw = menu.offsetWidth, mh = menu.offsetHeight; const up = opts.place === 'above' ? r.top - 8 - mh > 0 : !(r.bottom + 8 + mh < innerHeight); menu.style.top = (up ? r.top - 8 - mh : r.bottom + 8) + 'px'; const left = opts.align === 'start' ? r.left : r.right - mw; menu.style.left = Math.max(8, Math.min(innerWidth - mw - 8, left)) + 'px'; };
+    const close = (focus) => { if (isOpen()) menu.hidePopover(); openMenus.delete(api); trigger.setAttribute('aria-expanded', 'false'); if (focus) trigger.focus(); };
+    const open = () => { openMenus.forEach(m => m.close()); menu.showPopover(); place(); openMenus.add(api); trigger.setAttribute('aria-expanded', 'true'); const sel = menu.querySelector('[aria-checked="true"]') || items()[0]; sel && sel.focus(); };
+    const api = { close, open, isOpen, trigger, menu };
+    trigger.setAttribute('aria-expanded', 'false');
+    trigger.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); isOpen() ? close(true) : open(); });
+    menu.addEventListener('click', e => { e.stopPropagation(); const it = e.target.closest('.c-menu__item'); if (it && !it.classList.contains('c-menu__item--static') && !opts.keepOpen) close(true); });
+    menu.addEventListener('keydown', e => { const list = items(), i = list.indexOf(document.activeElement); if (e.key === 'ArrowDown') { e.preventDefault(); list[(i + 1) % list.length]?.focus(); } if (e.key === 'ArrowUp') { e.preventDefault(); list[(i - 1 + list.length) % list.length]?.focus(); } if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); close(true); } });   // stop: Esc closes only the menu, not the sheet behind it
+    return api;
+  }
+  document.addEventListener('click', () => openMenus.forEach(m => m.close(false)));
+  addEventListener('scroll', () => openMenus.forEach(m => m.close(false)), true);
+  addEventListener('resize', () => openMenus.forEach(m => m.close(false)));
+  window.cMenu = { attach };
+})();
+
+</script>
+<script>
+/* c-status-control — markup: <span class="c-status-control" data-c-status="In escrow"></span>
+   Optional data-c-statuses='[...]' (detail page uses 7: Active listing, Offer accepted, In escrow, Inspection due, Closing soon, Closed, Cancelled).
+   Optional data-c-tone-target="closest selector" → also sets the matching tone-* class on that ancestor (status card tint).
+   Emits 'c-status-change' {status} on the root. Keyboard: Enter/Space opens, ↑↓ moves, Esc closes. */
+(function () {
+  const STATUSES = ['Offer accepted', 'In escrow', 'Inspection due', 'Closing soon', 'Closed'];
+  const TONE = s => s === 'Inspection due' ? 'tone-warning' : s === 'Cancelled' ? 'tone-danger' : ['Closed', 'Active listing'].includes(s) ? 'tone-success' : 'tone-info';
+  let uid = 0;
+  function render(root) {
+    const list = root.dataset.cStatuses ? JSON.parse(root.dataset.cStatuses) : STATUSES;
+    const status = root.dataset.cStatus || list[0];
+    const id = root.dataset.cMenuId || ('c-status-menu-' + (++uid));
+    root.dataset.cMenuId = id;
+    const tgt = root.dataset.cToneTarget && root.closest(root.dataset.cToneTarget);
+    if (tgt) { tgt.classList.remove('tone-info', 'tone-warning', 'tone-success', 'tone-danger'); tgt.classList.add(TONE(status)); }
+    root.innerHTML = `<button type="button" class="c-status-control__trigger" aria-haspopup="menu" aria-expanded="false" aria-controls="${id}" aria-label="Status: ${status}. Change status">
+      <span class="c-status-control__pill ${TONE(status)} t-chip"><span class="c-status-control__dot"></span>${status}</span><i class="ph ph-caret-down" aria-hidden="true"></i></button>
+      <div class="c-status-control__menu" id="${id}" role="menu" aria-label="Change status" popover="manual">
+      ${list.map(s => `<button type="button" role="menuitemradio" class="c-status-control__option t-body" aria-checked="${s === status}" data-value="${s}">${s}<i class="ph ph-check" aria-hidden="true"></i></button>`).join('')}</div>`;
+    const trig = root.querySelector('.c-status-control__trigger'), menu = root.querySelector('[role="menu"]');
+    const items = [...menu.querySelectorAll('[role="menuitemradio"]')];
+    const isOpen = () => menu.matches(':popover-open');
+    const place = () => { const r = trig.getBoundingClientRect(), mw = Math.max(200, menu.offsetWidth), mh = menu.offsetHeight, below = r.bottom + 8 + mh < innerHeight; menu.style.left = Math.max(8, Math.min(innerWidth - mw - 8, r.right - mw)) + 'px'; menu.style.top = (below ? r.bottom + 8 : r.top - 8 - mh) + 'px'; };
+    const close = (focus) => { if (isOpen()) menu.hidePopover(); trig.setAttribute('aria-expanded', 'false'); if (focus) trig.focus(); };
+    const open = () => { document.querySelectorAll('.c-status-control__menu:popover-open').forEach(m => m.hidePopover()); menu.showPopover(); place(); trig.setAttribute('aria-expanded', 'true'); (items.find(i => i.getAttribute('aria-checked') === 'true') || items[0]).focus(); };
+    trig.addEventListener('click', e => { e.stopPropagation(); isOpen() ? close(true) : open(); });
+    menu.addEventListener('click', e => { e.stopPropagation(); const b = e.target.closest('[data-value]'); if (!b) return; root.dataset.cStatus = b.dataset.value; render(root); root.dispatchEvent(new CustomEvent('c-status-change', { bubbles: true, detail: { status: b.dataset.value } })); root.querySelector('.c-status-control__trigger').focus(); });
+    menu.addEventListener('keydown', e => { const i = items.indexOf(document.activeElement); if (e.key === 'ArrowDown') { e.preventDefault(); items[(i + 1) % items.length].focus(); } if (e.key === 'ArrowUp') { e.preventDefault(); items[(i - 1 + items.length) % items.length].focus(); } if (e.key === 'Escape') { e.preventDefault(); close(true); } });
+  }
+  document.addEventListener('click', () => document.querySelectorAll('.c-status-control__menu:popover-open').forEach(m => { m.hidePopover(); m.previousElementSibling.setAttribute('aria-expanded', 'false'); }));
+  addEventListener('scroll', () => document.querySelectorAll('.c-status-control__menu:popover-open').forEach(m => m.hidePopover()), true);
+  window.cStatusControl = { init: (scope = document) => scope.querySelectorAll('[data-c-status]').forEach(render), tone: TONE, statuses: STATUSES };
+  document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', () => window.cStatusControl.init()) : window.cStatusControl.init();
+})();
+
+</script>
+<script>
+/* c-picker — <span class="c-picker" data-c-picker='["No template","Standard purchase"]' data-value="Standard purchase" data-label="Transaction template"></span>
+   Emits 'c-picker-change' {value}. Needs c-menu.js. */
+(function () {
+  let uid = 0;
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  function render(root) {
+    const opts = JSON.parse(root.dataset.cPicker || '[]'), value = root.dataset.value || '', id = 'c-picker-' + (++uid);
+    root.innerHTML = `<button type="button" class="c-picker__trigger t-body-strong" aria-haspopup="menu" aria-controls="${id}" aria-label="${esc(root.dataset.label || 'Choose')}: ${esc(value || 'Select')}"><span class="c-picker__value">${esc(value || root.dataset.placeholder || 'Select')}</span><i class="ph ph-caret-down" aria-hidden="true"></i></button>
+      <div class="c-menu" id="${id}" role="menu" popover="manual">${opts.map(o => `<button type="button" role="menuitemradio" class="c-menu__item t-body" aria-checked="${o === value}" data-value="${esc(o)}">${esc(o)}<i class="ph ph-check" aria-hidden="true"></i></button>`).join('')}</div>`;
+    const menu = root.querySelector('.c-menu');
+    window.cMenu.attach(root.querySelector('.c-picker__trigger'), menu, { align: root.dataset.align || 'start' });
+    menu.addEventListener('click', e => { const b = e.target.closest('[data-value]'); if (!b) return; root.dataset.value = b.dataset.value; render(root); root.querySelector('.c-picker__trigger').focus(); root.dispatchEvent(new CustomEvent('c-picker-change', { bubbles: true, detail: { value: b.dataset.value } })); });
+  }
+  window.cPicker = { init: (s = document) => s.querySelectorAll('[data-c-picker]').forEach(render) };
+  document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', () => window.cPicker.init()) : window.cPicker.init();
+})();
+
+</script>
+<script>
+/* c-assigned-roles — <span class="c-assigned-roles" data-c-roles='["Seller","Buyer","Landlord"]'></span>
+   ≤2 roles → plain text. 0 → "Not assigned". >2 → button + list menu. Needs c-menu.js. */
+(function () {
+  let uid = 0;
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  function render(root) {
+    const roles = JSON.parse(root.dataset.cRoles || '[]'), id = 'c-roles-' + (++uid), preview = roles.slice(0, 2).join(', ');
+    if (roles.length <= 2) { root.innerHTML = `<span class="c-assigned-roles__preview t-body-strong">${esc(preview || 'Not assigned')}</span>`; return; }
+    root.innerHTML = `<button type="button" class="c-assigned-roles__trigger t-body-strong" aria-controls="${id}" aria-label="Show all assigned roles"><span class="c-assigned-roles__preview">${esc(preview)}</span><span class="c-assigned-roles__more">+${roles.length - 2}</span><i class="ph ph-caret-down" aria-hidden="true"></i></button>
+      <div class="c-menu" id="${id}" role="region" aria-label="Assigned roles" popover="manual">${roles.map(r => `<span class="c-menu__item c-menu__item--static t-body">${esc(r)}</span>`).join('')}</div>`;
+    window.cMenu.attach(root.querySelector('button'), root.querySelector('.c-menu'), { align: 'end' });
+  }
+  window.cAssignedRoles = { init: (s = document) => s.querySelectorAll('[data-c-roles]').forEach(render) };
+  document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', () => window.cAssignedRoles.init()) : window.cAssignedRoles.init();
+})();
+
+</script>
+
+</body></html>
